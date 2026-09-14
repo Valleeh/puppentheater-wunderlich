@@ -149,7 +149,7 @@ nav > a:not(.button):hover, .text-link:hover, footer a:hover { color: var(--red)
   height: 520px;
   display: block;
   object-fit: cover;
-  object-position: 42% 30%;
+  object-position: center 22%;
   border-radius: 48% 48% 4px 4px;
   background: #d8ddea;
 }
@@ -277,17 +277,7 @@ nav > a:not(.button):hover, .text-link:hover, footer a:hover { color: var(--red)
   align-items: center;
 }
 .about-photo { position: relative; }
-.about-photo > img:first-child { width: 100%; height: 520px; object-fit: cover; object-position: 60% center; border-radius: 4px; display: block; }
-.about-photo-small {
-  position: absolute;
-  right: -18px;
-  bottom: -30px;
-  width: 34%;
-  height: auto;
-  border: 6px solid var(--paper);
-  border-radius: 4px;
-  box-shadow: 0 12px 30px rgba(32, 43, 71, .18);
-}
+.about-photo > img { width: 100%; height: 520px; object-fit: cover; object-position: 60% center; border-radius: 4px; display: block; }
 .about h2 { margin-bottom: 28px; }
 .about-copy p:not(.eyebrow) { font-size: 16px; max-width: 560px; color: #526079; }
 .membership { font-size: 14px !important; border-left: 3px solid var(--red); padding-left: 14px; }
@@ -480,8 +470,7 @@ footer > div { display: flex; gap: 25px; }
   .poster-media .poster { max-width: 300px; }
 
   .about { grid-template-columns: 1fr; gap: 50px; }
-  .about-photo > img:first-child { height: 340px; }
-  .about-photo-small { right: 0; bottom: -24px; width: 38%; }
+  .about-photo > img { height: 340px; }
   .team { grid-template-columns: 1fr; }
 
   .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
