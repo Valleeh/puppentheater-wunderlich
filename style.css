@@ -18,7 +18,7 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+html { scroll-behavior: smooth; scroll-padding-top: 150px; }
 
 body {
   margin: 0;
@@ -68,34 +68,29 @@ header {
   position: sticky;
   top: 0;
   z-index: 30;
-  min-height: 96px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 14px 5.2%;
+  gap: 12px;
+  padding: 14px 5.2% 12px;
   border-bottom: 1px solid var(--line);
   background: var(--paper);
   transition: box-shadow .2s;
 }
 header.scrolled { box-shadow: 0 6px 24px rgba(32, 43, 71, .08); }
 
-.brand { display: flex; gap: 14px; align-items: center; flex-shrink: 0; }
-.brand-logo { height: 66px; width: auto; display: block; }
+.brand { display: flex; gap: 16px; align-items: center; flex-shrink: 0; }
+.brand-logo { height: 60px; width: auto; display: block; }
 .brand-text {
-  font: 700 21px/1.02 "Stardos Stencil", "Rockwell", Georgia, serif;
+  font: 700 32px/1.05 "Stardos Stencil", "Rockwell", Georgia, serif;
   text-transform: uppercase;
-  letter-spacing: .5px;
-  color: var(--red);
-}
-.brand-text strong {
-  font-weight: 700;
-  display: block;
-  font-size: 30px;
   letter-spacing: 1px;
+  color: var(--red);
+  white-space: nowrap;
 }
+.brand-text strong { font-weight: 700; }
 
-nav { display: flex; align-items: center; gap: 24px; font-size: 14px; font-weight: 550; }
+nav { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; font-weight: 550; }
 nav a { white-space: nowrap; }
 nav > a:not(.button):hover, .text-link:hover, footer a:hover { color: var(--red); }
 .menu { display: none; }
@@ -387,8 +382,7 @@ footer > span { color: #657083; }
 footer > div { display: flex; gap: 25px; }
 .footer-brand { display: flex; align-items: center; gap: 12px; }
 .footer-brand img { height: 44px; width: auto; }
-.footer-brand .brand-text { font-size: 15px; }
-.footer-brand .brand-text strong { font-size: 21px; }
+.footer-brand .brand-text { font-size: 20px; }
 
 /* Impressum-Seite --------------------------------------------------------- */
 
@@ -414,7 +408,8 @@ footer > div { display: flex; gap: 25px; }
 
 @media (max-width: 1100px) {
   /* Ab hier: Burger-Menü statt Navigationsleiste */
-  header { flex-wrap: wrap; }
+  html { scroll-padding-top: 110px; }
+  header { gap: 8px; }
   .menu {
     display: flex;
     align-items: center;
@@ -441,11 +436,10 @@ footer > div { display: flex; gap: 25px; }
 }
 
 @media (max-width: 880px) {
-  html { scroll-padding-top: 80px; }
-  header { min-height: 80px; padding: 12px 6%; }
-  .brand-logo { height: 52px; }
-  .brand-text { font-size: 17px; }
-  .brand-text strong { font-size: 24px; }
+  header { padding: 10px 6% 8px; }
+  .brand { gap: 10px; }
+  .brand-logo { height: 44px; }
+  .brand-text { font-size: 20px; letter-spacing: .5px; }
 
   .hero { padding: 38px 6% 48px; grid-template-columns: 1fr; gap: 35px; }
   h1 { font-size: clamp(40px, 11vw, 66px); letter-spacing: -2px; }
