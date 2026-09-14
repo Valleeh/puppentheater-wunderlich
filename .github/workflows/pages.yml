@@ -1,11 +1,16 @@
-# Veröffentlicht die statische Website über GitHub Pages.
+# Veröffentlicht die Website auf GitHub Pages.
 #
-# Einmalig im Repository aktivieren:
-#   Settings → Pages → "Build and deployment" → Source: "GitHub Actions"
+# Einmalig im Repository einstellen:
+#   Settings → Pages → "Build and deployment"
+#     Source: "Deploy from a branch"
+#     Branch: "gh-pages", Ordner "/ (root)"
 #
-# Danach wird bei jedem Push auf main automatisch veröffentlicht unter
+# Bei jedem Push auf main wird der Inhalt des Repositories in den Branch
+# gh-pages kopiert und erscheint unter
 #   https://valleeh.github.io/puppentheater-wunderlich/
-# Über "Run workflow" (Actions-Tab) kann auch ein anderer Branch veröffentlicht werden.
+#
+# PR-Vorschauen (siehe pr-preview.yml) liegen im Unterordner pr-preview/
+# und werden hier bewusst nicht gelöscht.
 
 name: GitHub Pages
 
@@ -15,32 +20,25 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  group: gh-pages
+  cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Repository auschecken
         uses: actions/checkout@v4
 
-      - name: Pages konfigurieren
-        uses: actions/configure-pages@v5
-
-      - name: Website-Dateien hochladen
-        uses: actions/upload-pages-artifact@v3
+      - name: Website nach gh-pages veröffentlichen
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          path: .
-
-      - name: Auf GitHub Pages veröffentlichen
-        id: deployment
-        uses: actions/deploy-pages@v4
+          folder: .
+          branch: gh-pages
+          clean: true
+          clean-exclude: pr-preview/
+          force: false
+          commit-message: "Website von main veröffentlichen"

@@ -3,6 +3,15 @@
    Farben aus dem Logo: Blau #003092, Rot #ed0012, Grün #2b7b00
    ========================================================================== */
 
+/* Schriftart lokal eingebunden (keine Verbindung zu Google Fonts) */
+@font-face {
+  font-family: "Stardos Stencil";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/fonts/stardos-stencil-700.woff2") format("woff2");
+}
+
 :root {
   --blue: #16368f;
   --blue-dark: #0b2470;
@@ -18,7 +27,7 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+html { scroll-behavior: smooth; scroll-padding-top: 175px; }
 
 body {
   margin: 0;
@@ -47,7 +56,7 @@ h1, h2 {
   letter-spacing: -2.4px;
   line-height: 1.07;
 }
-h1 { font-size: clamp(46px, 5.6vw, 84px); margin-bottom: 26px; }
+h1 { font-size: clamp(42px, 5vw, 72px); margin-bottom: 26px; }
 h2 { font-size: clamp(38px, 4.3vw, 62px); margin-bottom: 0; }
 h1 em, h2 em { font-style: italic; color: var(--red); }
 
@@ -68,35 +77,29 @@ header {
   position: sticky;
   top: 0;
   z-index: 30;
-  min-height: 96px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 14px 5.2%;
+  gap: 12px;
+  padding: 14px 5.2% 12px;
   border-bottom: 1px solid var(--line);
   background: var(--paper);
   transition: box-shadow .2s;
 }
 header.scrolled { box-shadow: 0 6px 24px rgba(32, 43, 71, .08); }
 
-.brand { display: flex; gap: 14px; align-items: center; flex-shrink: 0; }
-.brand-logo { height: 66px; width: auto; display: block; }
+.brand { display: flex; gap: 18px; align-items: center; flex-shrink: 0; }
+.brand-logo { height: 84px; width: auto; display: block; }
 .brand-text {
-  font-size: 12px;
-  font-weight: 650;
-  letter-spacing: 1.7px;
-  line-height: 1.3;
-  color: var(--ink);
+  font: 700 46px/1.05 "Stardos Stencil", "Rockwell", Georgia, serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--red);
+  white-space: nowrap;
 }
-.brand-text strong {
-  font: 700 28px Georgia, serif;
-  letter-spacing: -.8px;
-  display: block;
-  color: var(--blue);
-}
+.brand-text strong { font-weight: 700; }
 
-nav { display: flex; align-items: center; gap: 24px; font-size: 14px; font-weight: 550; }
+nav { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; font-weight: 550; }
 nav a { white-space: nowrap; }
 nav > a:not(.button):hover, .text-link:hover, footer a:hover { color: var(--red); }
 .menu { display: none; }
@@ -187,13 +190,11 @@ nav > a:not(.button):hover, .text-link:hover, footer a:hover { color: var(--red)
 
 .section { padding: 88px 5.2%; max-width: 1500px; margin: auto; }
 .section-head {
-  display: flex;
-  justify-content: space-between;
-  gap: 50px;
-  align-items: end;
+  text-align: center;
   margin-bottom: 44px;
 }
-.section-head > p { max-width: 380px; color: var(--muted); margin: 0 0 5px; }
+.section-head h2 { text-wrap: balance; }
+.section-head > p { max-width: 560px; color: var(--muted); margin: 20px auto 0; }
 
 /* Stücke ------------------------------------------------------------------ */
 
@@ -214,11 +215,11 @@ nav > a:not(.button):hover, .text-link:hover, footer a:hover { color: var(--red)
   display: block;
   background: var(--paper-2);
 }
-.play-placeholder { display: flex; align-items: center; justify-content: center; }
-.play-placeholder img { height: 200px; width: auto; }
+.play > img.contain { object-fit: contain; background: #f3efe6; padding: 10px; }
 .play-body { padding: 22px 24px 20px; display: flex; flex-direction: column; flex: 1; }
 .play .meta {
   display: flex;
+  justify-content: center;
   gap: 8px 14px;
   flex-wrap: wrap;
   font-size: 13px;
@@ -226,8 +227,10 @@ nav > a:not(.button):hover, .text-link:hover, footer a:hover { color: var(--red)
   color: var(--blue);
   margin: 0 0 12px;
 }
-.play h3 { font: 26px/1.15 Georgia, serif; letter-spacing: -.5px; margin: 0 0 12px; }
+.play h3 { font: 26px/1.15 Georgia, serif; letter-spacing: -.5px; margin: 0 0 12px; text-align: center; text-wrap: balance; }
+.play h3.lettering img { display: block; width: auto; max-width: 100%; height: 64px; margin: 2px auto 4px; }
 .play-body > p { font-size: 16px; color: var(--muted); }
+.play-body > p.lines { line-height: 1.6; text-align: center; }
 .play details { margin-top: auto; font-size: 15px; border-top: 1px solid var(--line); padding-top: 10px; }
 .play summary, .project summary { color: var(--blue); font-weight: 600; cursor: pointer; min-height: 36px; font-size: 14px; display: flex; align-items: center; gap: 8px; list-style: none; }
 .play summary::-webkit-details-marker, .project summary::-webkit-details-marker { display: none; }
@@ -254,10 +257,10 @@ nav > a:not(.button):hover, .text-link:hover, footer a:hover { color: var(--red)
 .project-thumbs img { width: 100%; height: 190px; object-fit: cover; border-radius: 4px; display: block; }
 .poster-media { text-align: center; }
 .poster-media .poster { height: auto; max-width: 420px; margin: auto; box-shadow: 0 16px 40px rgba(32, 43, 71, .18); }
-.project h3 { font: 40px/1.1 Georgia, serif; letter-spacing: -1.2px; margin-bottom: 20px; }
+.project h3 { font: 40px/1.1 Georgia, serif; letter-spacing: -1.2px; margin-bottom: 20px; text-align: center; text-wrap: balance; }
 .project h3 span { display: block; font-size: 18px; font-style: italic; letter-spacing: 0; color: var(--muted); margin-top: 6px; }
 .project-copy p { font-size: 16px; color: var(--muted); max-width: 560px; }
-.project-copy .eyebrow { margin-bottom: 14px; }
+.project-copy .eyebrow { margin-bottom: 14px; text-align: center; }
 .project details { margin: 6px 0 18px; }
 .credits { list-style: none; padding: 0; margin: 12px 0 0; font-size: 15px; }
 .credits li { margin-bottom: 8px; }
@@ -278,6 +281,7 @@ nav > a:not(.button):hover, .text-link:hover, footer a:hover { color: var(--red)
 }
 .about-photo { position: relative; }
 .about-photo > img { width: 100%; height: 520px; object-fit: cover; object-position: 60% center; border-radius: 4px; display: block; }
+.about h2, .about .eyebrow { text-align: center; }
 .about h2 { margin-bottom: 28px; }
 .about-copy p:not(.eyebrow) { font-size: 16px; max-width: 560px; color: #526079; }
 .membership { font-size: 14px !important; border-left: 3px solid var(--red); padding-left: 14px; }
@@ -340,6 +344,7 @@ nav > a:not(.button):hover, .text-link:hover, footer a:hover { color: var(--red)
   padding-top: 21px;
   margin-bottom: 18px;
 }
+.steps article { text-align: center; }
 .steps h3 { font: 26px Georgia, serif; margin-bottom: 16px; }
 .steps p { font-size: 16px; color: var(--muted); }
 .faq { border-top: 1px solid var(--line); padding: 21px 0; }
@@ -360,6 +365,7 @@ nav > a:not(.button):hover, .text-link:hover, footer a:hover { color: var(--red)
 }
 .contact .eyebrow { color: var(--yellow); }
 .contact h2 em { color: var(--yellow); }
+.contact h2, .contact > div > .eyebrow { text-align: center; }
 .contact h2 { margin-bottom: 28px; }
 .contact p:not(.eyebrow) { max-width: 500px; color: #e0e6f3; font-size: 16px; }
 .contact-details { border-left: 1px solid #6d86c9; padding: 28px 0 28px 45px; }
@@ -383,9 +389,9 @@ footer {
 }
 footer > span { color: #657083; }
 footer > div { display: flex; gap: 25px; }
-.footer-brand { font-size: 12px; line-height: 1.25; display: flex; align-items: center; gap: 12px; }
+.footer-brand { display: flex; align-items: center; gap: 12px; }
 .footer-brand img { height: 44px; width: auto; }
-.footer-brand strong { display: block; font: 24px Georgia, serif; color: var(--blue); }
+.footer-brand .brand-text { font-size: 20px; }
 
 /* Impressum-Seite --------------------------------------------------------- */
 
@@ -410,8 +416,11 @@ footer > div { display: flex; gap: 25px; }
 }
 
 @media (max-width: 1100px) {
-  /* Ab hier: Burger-Menü statt Navigationsleiste */
-  header { flex-wrap: wrap; }
+  /* Ab hier: Burger-Menü statt Navigationsleiste, Knopf rechts neben dem Schriftzug */
+  html { scroll-padding-top: 130px; }
+  header { flex-direction: row; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; }
+  .brand-logo { height: 70px; }
+  .brand-text { font-size: 36px; }
   .menu {
     display: flex;
     align-items: center;
@@ -438,13 +447,19 @@ footer > div { display: flex; gap: 25px; }
 }
 
 @media (max-width: 880px) {
-  html { scroll-padding-top: 80px; }
-  header { min-height: 80px; padding: 12px 6%; }
-  .brand-logo { height: 52px; }
-  .brand-text strong { font-size: 24px; }
+  html { scroll-padding-top: 105px; }
+  header { padding: 10px 5% 10px; }
+  .brand { gap: 12px; }
+  .brand-logo { height: 58px; }
+  /* Auf dem Handy: zwei Zeilen, beide gleich groß, mittig */
+  .brand-text { font-size: 24px; letter-spacing: .3px; white-space: normal; text-align: center; line-height: 1.05; }
+  .menu { padding: 10px 12px; }
+  .menu span[aria-hidden] { font-size: 18px; }
+  .menu-label { display: none; }
+  .brand-text strong { display: block; }
 
   .hero { padding: 38px 6% 48px; grid-template-columns: 1fr; gap: 35px; }
-  h1 { font-size: clamp(40px, 11vw, 66px); letter-spacing: -2px; }
+  h1 { font-size: clamp(36px, 9.5vw, 56px); letter-spacing: -1.6px; }
   .intro { font-size: 16px; margin-bottom: 23px; }
   .hero-visual { margin: 0 0 10px 14px; }
   .hero-photo { height: 400px; }
@@ -455,9 +470,9 @@ footer > div { display: flex; gap: 25px; }
   .ribbon span:last-child, .ribbon span:nth-child(4) { display: none; }
 
   .section { padding: 58px 6%; }
-  .section-head { display: block; margin-bottom: 30px; }
+  .section-head { margin-bottom: 30px; }
   h2 { font-size: clamp(34px, 9vw, 44px); letter-spacing: -1.6px; }
-  .section-head > p { margin: 22px 0 0; font-size: 16px; }
+  .section-head > p { margin: 18px auto 0; font-size: 16px; }
 
   .plays, .quotes { grid-template-columns: 1fr; gap: 24px; }
   .play > img, .play-placeholder { height: 240px; }

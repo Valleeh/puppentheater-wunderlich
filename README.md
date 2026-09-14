@@ -1,6 +1,6 @@
 # Puppentheater Wunderlich – Website
 
-Statische Website für das [Puppentheater Wunderlich](https://puppentheater-wunderlich.de) aus Steinfurth bei Greifswald.
+Statische Website für das [Puppentheater Wunderlich](https://puppentheater-wunderlich.de) aus Steinfurth vor der Insel Usedom.
 
 ## Aufbau
 
@@ -16,22 +16,13 @@ Keine Build-Schritte, keine Abhängigkeiten: Die Dateien können direkt auf jede
 
 ## Veröffentlichung über GitHub Pages
 
-Der Workflow in `.github/workflows/pages.yml` veröffentlicht die Seite bei jedem Push auf `main` unter
-<https://valleeh.github.io/puppentheater-wunderlich/>.
+Zwei Workflows in `.github/workflows/` kümmern sich um die Veröffentlichung:
 
-Einmalig aktivieren: **Settings → Pages → Build and deployment → Source: „GitHub Actions“**.
+| Workflow | Was passiert |
+| --- | --- |
+| `pages.yml` | Bei jedem Push auf `main` wird die Seite in den Branch `gh-pages` kopiert und erscheint unter <https://valleeh.github.io/puppentheater-wunderlich/>. |
+| `pr-preview.yml` | Jeder Pull Request bekommt eine eigene Vorschau unter `…/pr-preview/pr-<Nummer>/`. Der Link steht als Kommentar im PR und wird bei jedem Push aktualisiert. Nach dem Merge verschwindet die Vorschau wieder. |
+
+Einmalig einstellen: **Settings → Pages → Build and deployment → Source: „Deploy from a branch“, Branch: `gh-pages`, Ordner `/ (root)`**.
+
 Später kann dort auch die eigene Domain `puppentheater-wunderlich.de` eingetragen werden.
-
-## Lokal ansehen
-
-```
-python3 -m http.server 8000
-```
-
-Dann `http://localhost:8000` im Browser öffnen.
-
-## Inhalte pflegen
-
-- **Neues Stück:** In `index.html` im Abschnitt `<section id="stuecke">` einen weiteren `<article class="play">`-Block kopieren und anpassen.
-- **Fotos:** Neue Bilder in `assets/` ablegen (max. ca. 1600 px Breite, JPEG) und in `index.html` einbinden.
-- **E-Mail-Adresse:** wird in `script.js` zusammengesetzt (`user` und `domain`), damit sie nicht als Klartext im Quelltext steht. Im Text erscheint sie als „info (at) puppentheater-wunderlich.de“.
