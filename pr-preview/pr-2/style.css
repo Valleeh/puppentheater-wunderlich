@@ -213,8 +213,7 @@ nav > a:not(.button):hover, .text-link:hover, footer a:hover { color: var(--red)
   display: block;
   background: var(--paper-2);
 }
-.play-placeholder { display: flex; align-items: center; justify-content: center; }
-.play-placeholder img { height: 200px; width: auto; }
+.play > img.contain { object-fit: contain; background: #f3efe6; padding: 10px; }
 .play-body { padding: 22px 24px 20px; display: flex; flex-direction: column; flex: 1; }
 .play .meta {
   display: flex;
@@ -228,6 +227,7 @@ nav > a:not(.button):hover, .text-link:hover, footer a:hover { color: var(--red)
 .play h3 { font: 26px/1.15 Georgia, serif; letter-spacing: -.5px; margin: 0 0 12px; }
 .play h3.lettering img { display: block; width: auto; max-width: 100%; height: 64px; margin: 2px 0 4px; }
 .play-body > p { font-size: 16px; color: var(--muted); }
+.play-body > p.lines { line-height: 1.55; }
 .play details { margin-top: auto; font-size: 15px; border-top: 1px solid var(--line); padding-top: 10px; }
 .play summary, .project summary { color: var(--blue); font-weight: 600; cursor: pointer; min-height: 36px; font-size: 14px; display: flex; align-items: center; gap: 8px; list-style: none; }
 .play summary::-webkit-details-marker, .project summary::-webkit-details-marker { display: none; }

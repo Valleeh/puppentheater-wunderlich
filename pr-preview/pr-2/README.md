@@ -1,6 +1,6 @@
 # Puppentheater Wunderlich – Website
 
-Statische Website für das [Puppentheater Wunderlich](https://puppentheater-wunderlich.de) aus Steinfurth bei Greifswald.
+Statische Website für das [Puppentheater Wunderlich](https://puppentheater-wunderlich.de) aus Steinfurth vor der Insel Usedom.
 
 ## Aufbau
 
