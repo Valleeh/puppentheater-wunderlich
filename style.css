@@ -446,9 +446,11 @@ footer > div { display: flex; gap: 25px; }
 
 @media (max-width: 880px) {
   header { padding: 10px 6% 8px; }
-  .brand { gap: 10px; }
-  .brand-logo { height: 44px; }
-  .brand-text { font-size: 20px; letter-spacing: .5px; }
+  .brand { gap: 12px; }
+  .brand-logo { height: 52px; }
+  /* Auf dem Handy: zwei Zeilen, beide gleich groß, mittig */
+  .brand-text { font-size: 22px; letter-spacing: .5px; white-space: normal; text-align: center; line-height: 1.05; }
+  .brand-text strong { display: block; }
 
   .hero { padding: 38px 6% 48px; grid-template-columns: 1fr; gap: 35px; }
   h1 { font-size: clamp(40px, 11vw, 66px); letter-spacing: -2px; }
