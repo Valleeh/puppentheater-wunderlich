@@ -1,0 +1,518 @@
+/* ==========================================================================
+   Puppentheater Wunderlich – Stylesheet
+   Farben aus dem Logo: Blau #003092, Rot #ed0012, Grün #2b7b00
+   ========================================================================== */
+
+/* Schriftart lokal eingebunden (keine Verbindung zu Google Fonts) */
+@font-face {
+  font-family: "Stardos Stencil";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/fonts/stardos-stencil-700.woff2") format("woff2");
+}
+
+:root {
+  --blue: #16368f;
+  --blue-dark: #0b2470;
+  --blue-logo: #003092;
+  --ink: #202b47;
+  --red: #d0111f;
+  --yellow: #f1d78f;
+  --paper: #faf9f5;
+  --paper-2: #eaf0f8;
+  --line: #d8dce5;
+  --muted: #596479;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 175px; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 3px solid #f1af31;
+  outline-offset: 5px;
+}
+
+.skip { position: absolute; top: -100px; left: 8px; }
+.skip:focus { top: 8px; background: white; z-index: 40; padding: 12px; }
+
+h1, h2, h3, p { margin-top: 0; }
+h1, h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -2.4px;
+  line-height: 1.07;
+}
+h1 { font-size: clamp(42px, 5vw, 72px); margin-bottom: 26px; }
+h2 { font-size: clamp(38px, 4.3vw, 62px); margin-bottom: 0; }
+h1 em, h2 em { font-style: italic; color: var(--red); }
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--blue);
+  margin: 0 0 22px;
+}
+
+/* --------------------------------------------------------------------------
+   Kopfzeile
+   -------------------------------------------------------------------------- */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 5.2% 12px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  transition: box-shadow .2s;
+}
+header.scrolled { box-shadow: 0 6px 24px rgba(32, 43, 71, .08); }
+
+.brand { display: flex; gap: 18px; align-items: center; flex-shrink: 0; }
+.brand-logo { height: 84px; width: auto; display: block; }
+.brand-text {
+  font: 700 46px/1.05 "Stardos Stencil", "Rockwell", Georgia, serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--red);
+  white-space: nowrap;
+}
+.brand-text strong { font-weight: 700; }
+
+nav { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; font-weight: 550; }
+nav a { white-space: nowrap; }
+nav > a:not(.button):hover, .text-link:hover, footer a:hover { color: var(--red); }
+.menu { display: none; }
+
+.button {
+  display: inline-flex;
+  gap: 22px;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--blue);
+  color: white;
+  padding: 15px 23px;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 4px;
+  transition: background .2s, transform .2s;
+}
+.button:hover { background: var(--blue-dark); transform: translateY(-2px); }
+.button.small { padding: 12px 20px; }
+.button.light { background: var(--yellow); color: var(--ink); }
+.button.light:hover { background: #ffe7a6; }
+
+.text-link {
+  font-size: 14px;
+  font-weight: 650;
+  border-bottom: 1px solid;
+  padding: 7px 0;
+}
+
+/* --------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.08fr 1fr;
+  max-width: 1500px;
+  margin: auto;
+  padding: 55px 5.2% 70px;
+  align-items: center;
+  gap: 5%;
+}
+.intro { font-size: 18px; line-height: 1.75; max-width: 440px; color: #526079; margin-bottom: 30px; }
+.actions { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.hero-note { font-size: 14px; margin: 22px 0 0; color: #616a7d; }
+
+.hero-visual { position: relative; margin-left: 8px; }
+.hero-photo {
+  width: 100%;
+  height: 520px;
+  display: block;
+  object-fit: cover;
+  object-position: center 22%;
+  border-radius: 48% 48% 4px 4px;
+  background: #d8ddea;
+}
+.photo-caption {
+  background: var(--yellow);
+  position: absolute;
+  bottom: -19px;
+  left: -28px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  transform: rotate(-4deg);
+  box-shadow: 0 6px 18px #25315212;
+}
+.photo-caption > span:first-child { font: italic 22px/1.15 Georgia, serif; }
+.caption-star { font-size: 44px; color: var(--red); line-height: 1; }
+
+.ribbon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5vw;
+  background: var(--blue-logo);
+  color: white;
+  padding: 22px;
+  font-size: 14px;
+  letter-spacing: .4px;
+}
+.ribbon [aria-hidden] { color: var(--yellow); font-size: 19px; }
+
+/* --------------------------------------------------------------------------
+   Abschnitte
+   -------------------------------------------------------------------------- */
+
+.section { padding: 88px 5.2%; max-width: 1500px; margin: auto; }
+.section-head {
+  text-align: center;
+  margin-bottom: 44px;
+}
+.section-head h2 { text-wrap: balance; }
+.section-head > p { max-width: 560px; color: var(--muted); margin: 20px auto 0; }
+
+/* Stücke ------------------------------------------------------------------ */
+
+.plays { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 30px; }
+.play {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.play > img, .play-placeholder {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  background: var(--paper-2);
+}
+.play > img.contain { object-fit: contain; background: #f3efe6; padding: 10px; }
+.play-body { padding: 22px 24px 20px; display: flex; flex-direction: column; flex: 1; }
+.play .meta {
+  display: flex;
+  justify-content: center;
+  gap: 8px 14px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue);
+  margin: 0 0 12px;
+}
+.play h3 { font: 26px/1.15 Georgia, serif; letter-spacing: -.5px; margin: 0 0 12px; text-align: center; text-wrap: balance; }
+.play h3.lettering img { display: block; width: auto; max-width: 100%; height: 64px; margin: 2px auto 4px; }
+.play-body > p { font-size: 16px; color: var(--muted); }
+.play-body > p.lines { line-height: 1.6; text-align: center; }
+.play details { margin-top: auto; font-size: 15px; border-top: 1px solid var(--line); padding-top: 10px; }
+.play summary, .project summary { color: var(--blue); font-weight: 600; cursor: pointer; min-height: 36px; font-size: 14px; display: flex; align-items: center; gap: 8px; list-style: none; }
+.play summary::-webkit-details-marker, .project summary::-webkit-details-marker { display: none; }
+.play summary::before, .project summary::before { content: "+"; font-size: 20px; line-height: 1; }
+.play details[open] summary::before, .project details[open] summary::before { content: "–"; }
+.play details p { margin: 10px 0; color: var(--ink); }
+.play details .tech, .small-note { font-size: 13.5px; color: var(--muted); }
+.play details .text-link { display: inline-block; margin-top: 6px; }
+
+/* Bühnenprojekte ---------------------------------------------------------- */
+
+.projects { padding-top: 0; }
+.project {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 6%;
+  align-items: center;
+  padding: 56px 0;
+  border-top: 1px solid var(--line);
+}
+.project.reverse .project-media { order: 2; }
+.project-media > img { width: 100%; height: 420px; object-fit: cover; border-radius: 4px; display: block; }
+.project-thumbs { display: grid; grid-template-columns: 1.6fr 1fr; gap: 14px; margin-top: 14px; }
+.project-thumbs img { width: 100%; height: 190px; object-fit: cover; border-radius: 4px; display: block; }
+.poster-media { text-align: center; }
+.poster-media .poster { height: auto; max-width: 420px; margin: auto; box-shadow: 0 16px 40px rgba(32, 43, 71, .18); }
+.project h3 { font: 40px/1.1 Georgia, serif; letter-spacing: -1.2px; margin-bottom: 20px; text-align: center; text-wrap: balance; }
+.project h3 span { display: block; font-size: 18px; font-style: italic; letter-spacing: 0; color: var(--muted); margin-top: 6px; }
+.project-copy p { font-size: 16px; color: var(--muted); max-width: 560px; }
+.project-copy .eyebrow { margin-bottom: 14px; text-align: center; }
+.project details { margin: 6px 0 18px; }
+.credits { list-style: none; padding: 0; margin: 12px 0 0; font-size: 15px; }
+.credits li { margin-bottom: 8px; }
+.project-copy .text-link { display: inline-block; }
+.small-note a { border-bottom: 1px solid; }
+
+/* Über uns ---------------------------------------------------------------- */
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 7%;
+  background: var(--paper-2);
+  max-width: none;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  align-items: center;
+}
+.about-photo { position: relative; }
+.about-photo > img { width: 100%; height: 520px; object-fit: cover; object-position: 60% center; border-radius: 4px; display: block; }
+.about h2, .about .eyebrow { text-align: center; }
+.about h2 { margin-bottom: 28px; }
+.about-copy p:not(.eyebrow) { font-size: 16px; max-width: 560px; color: #526079; }
+.membership { font-size: 14px !important; border-left: 3px solid var(--red); padding-left: 14px; }
+.team-head { font: 22px Georgia, serif; margin: 30px 0 12px; }
+.team { list-style: none; padding: 0; margin: 0 0 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; font-size: 15px; }
+.team strong { display: block; }
+.team span { color: var(--muted); font-size: 14px; }
+.about .text-link { display: inline-block; }
+
+/* Stimmen ----------------------------------------------------------------- */
+
+.quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.quotes blockquote {
+  margin: 0;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 28px 28px 22px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.quotes blockquote::before {
+  content: "„";
+  font: italic 72px/1 Georgia, serif;
+  color: var(--yellow);
+  position: absolute;
+  top: 10px;
+  left: 18px;
+}
+.quotes p { font-size: 16px; line-height: 1.7; color: var(--ink); margin: 14px 0 18px; }
+.quotes footer { margin-top: auto; font-size: 13px; font-weight: 650; color: var(--blue); letter-spacing: .3px; }
+
+/* Galerie ----------------------------------------------------------------- */
+
+.gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.gallery figure { margin: 0; position: relative; overflow: hidden; border-radius: 4px; background: var(--paper-2); }
+.gallery img { width: 100%; height: 280px; object-fit: cover; display: block; transition: transform .4s; }
+.gallery figure:hover img { transform: scale(1.04); }
+.gallery figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 26px 14px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(transparent, rgba(20, 28, 50, .75));
+}
+.posters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 16px; }
+.posters img { width: 100%; height: 320px; object-fit: contain; padding: 8px; border: 1px solid var(--line); border-radius: 4px; background: white; display: block; }
+
+/* Ablauf ------------------------------------------------------------------ */
+
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 45px; margin-bottom: 32px; }
+.step-number {
+  font: italic 32px Georgia, serif;
+  color: var(--red);
+  display: block;
+  border-top: 1px solid var(--line);
+  padding-top: 21px;
+  margin-bottom: 18px;
+}
+.steps article { text-align: center; }
+.steps h3 { font: 26px Georgia, serif; margin-bottom: 16px; }
+.steps p { font-size: 16px; color: var(--muted); }
+.faq { border-top: 1px solid var(--line); padding: 21px 0; }
+.faq:last-child { border-bottom: 1px solid var(--line); }
+.faq summary { font-size: 17px; font-weight: 600; cursor: pointer; }
+.faq p { max-width: 900px; margin: 18px 0 0; color: var(--muted); }
+
+/* Kontakt ----------------------------------------------------------------- */
+
+.contact {
+  background: var(--blue-logo);
+  color: white;
+  max-width: none;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 9%;
+  align-items: center;
+}
+.contact .eyebrow { color: var(--yellow); }
+.contact h2 em { color: var(--yellow); }
+.contact h2, .contact > div > .eyebrow { text-align: center; }
+.contact h2 { margin-bottom: 28px; }
+.contact p:not(.eyebrow) { max-width: 500px; color: #e0e6f3; font-size: 16px; }
+.contact-details { border-left: 1px solid #6d86c9; padding: 28px 0 28px 45px; }
+.contact-details h3 { font: 28px Georgia, serif; margin-bottom: 17px; }
+.contact-details a { display: block; overflow-wrap: anywhere; font-size: 16px; }
+.contact-details a:hover { text-decoration: underline; }
+.contact-details .phone { font-size: clamp(24px, 2.8vw, 38px); letter-spacing: -1px; margin-bottom: 4px; }
+.contact-details .address { margin: 16px 0 0 !important; font-size: 14px !important; }
+.contact-details p:last-child { margin: 22px 0 0; font-size: 14px; }
+
+/* Fußzeile ---------------------------------------------------------------- */
+
+footer {
+  padding: 35px 5.2%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+footer > span { color: #657083; }
+footer > div { display: flex; gap: 25px; }
+.footer-brand { display: flex; align-items: center; gap: 12px; }
+.footer-brand img { height: 44px; width: auto; }
+.footer-brand .brand-text { font-size: 20px; }
+
+/* Impressum-Seite --------------------------------------------------------- */
+
+.legal { max-width: 860px; padding-top: 60px; }
+.legal h1 { font-size: clamp(38px, 5vw, 64px); }
+.legal h2 { font-size: 30px; letter-spacing: -1px; margin: 48px 0 16px; }
+.legal h3 { font: 20px Georgia, serif; margin: 28px 0 10px; }
+.legal p, .legal li { font-size: 16px; color: #3d4864; }
+.legal address { font-style: normal; font-size: 16px; line-height: 1.7; margin-bottom: 20px; }
+.legal .back { display: inline-block; margin-bottom: 30px; }
+.legal .caps { text-transform: none; }
+
+/* --------------------------------------------------------------------------
+   Responsiv
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 1600px) {
+  header, footer, .about, .contact {
+    padding-left: max(5.2%, calc((100vw - 1344px) / 2));
+    padding-right: max(5.2%, calc((100vw - 1344px) / 2));
+  }
+}
+
+@media (max-width: 1100px) {
+  /* Ab hier: Burger-Menü statt Navigationsleiste, Knopf rechts neben dem Schriftzug */
+  html { scroll-padding-top: 130px; }
+  header { flex-direction: row; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; }
+  .brand-logo { height: 70px; }
+  .brand-text { font-size: 36px; }
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--blue);
+    border: 1px solid var(--line);
+    background: transparent;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  nav { display: none; width: 100%; flex-direction: column; align-items: stretch; gap: 0; padding-top: 10px; }
+  nav.open { display: flex; }
+  nav a { padding: 12px 0; font-size: 16px; border-top: 1px solid var(--line); }
+  nav .button { margin-top: 10px; justify-content: center; border-top: 0; }
+
+  .plays, .quotes { grid-template-columns: repeat(2, 1fr); }
+  .gallery, .posters { grid-template-columns: repeat(3, 1fr); }
+  .hero-photo { height: 460px; }
+  .about { gap: 6%; }
+  .contact { gap: 4%; }
+  .contact-details { padding-left: 28px; }
+}
+
+@media (max-width: 880px) {
+  html { scroll-padding-top: 105px; }
+  header { padding: 10px 5% 10px; }
+  .brand { gap: 12px; }
+  .brand-logo { height: 58px; }
+  /* Auf dem Handy: zwei Zeilen, beide gleich groß, mittig */
+  .brand-text { font-size: 24px; letter-spacing: .3px; white-space: normal; text-align: center; line-height: 1.05; }
+  .menu { padding: 10px 12px; }
+  .menu span[aria-hidden] { font-size: 18px; }
+  .menu-label { display: none; }
+  .brand-text strong { display: block; }
+
+  .hero { padding: 38px 6% 48px; grid-template-columns: 1fr; gap: 35px; }
+  h1 { font-size: clamp(36px, 9.5vw, 56px); letter-spacing: -1.6px; }
+  .intro { font-size: 16px; margin-bottom: 23px; }
+  .hero-visual { margin: 0 0 10px 14px; }
+  .hero-photo { height: 400px; }
+  .photo-caption { left: -14px; bottom: -14px; }
+  .photo-caption > span:first-child { font-size: 19px; }
+
+  .ribbon { gap: 15px; padding: 19px 6%; flex-wrap: wrap; font-size: 14px; }
+  .ribbon span:last-child, .ribbon span:nth-child(4) { display: none; }
+
+  .section { padding: 58px 6%; }
+  .section-head { margin-bottom: 30px; }
+  h2 { font-size: clamp(34px, 9vw, 44px); letter-spacing: -1.6px; }
+  .section-head > p { margin: 18px auto 0; font-size: 16px; }
+
+  .plays, .quotes { grid-template-columns: 1fr; gap: 24px; }
+  .play > img, .play-placeholder { height: 240px; }
+
+  .project { grid-template-columns: 1fr; gap: 28px; padding: 44px 0; }
+  .project.reverse .project-media { order: 0; }
+  .project-media > img { height: 300px; }
+  .project-thumbs img { height: 140px; }
+  .project h3 { font-size: 32px; }
+  .poster-media .poster { max-width: 300px; }
+
+  .about { grid-template-columns: 1fr; gap: 50px; }
+  .about-photo > img { height: 340px; }
+  .team { grid-template-columns: 1fr; }
+
+  .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .gallery img { height: 200px; }
+  .posters { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .posters img { height: 220px; }
+
+  .steps { grid-template-columns: 1fr; gap: 8px; }
+  .step-number { margin-bottom: 12px; }
+  .steps h3 { font-size: 26px; }
+
+  .contact { grid-template-columns: 1fr; gap: 35px; }
+  .contact-details { border-left: 0; border-top: 1px solid #6d86c9; padding: 30px 0 0; }
+  .contact-details .phone { font-size: 32px; }
+
+  footer { padding: 30px 6%; align-items: start; }
+  footer > span { display: none; }
+  footer > div { flex-direction: column; gap: 10px; }
+  .button { font-size: 14px; padding: 14px 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+@media print {
+  header, footer, .menu, .ribbon { display: none; }
+  body { background: white; }
+}
