@@ -14,6 +14,14 @@ Statische Website für das [Puppentheater Wunderlich](https://puppentheater-wund
 
 Keine Build-Schritte, keine Abhängigkeiten: Die Dateien können direkt auf jeden Webspace (z. B. Strato) hochgeladen werden.
 
+## Veröffentlichung über GitHub Pages
+
+Der Workflow in `.github/workflows/pages.yml` veröffentlicht die Seite bei jedem Push auf `main` unter
+<https://valleeh.github.io/puppentheater-wunderlich/>.
+
+Einmalig aktivieren: **Settings → Pages → Build and deployment → Source: „GitHub Actions“**.
+Später kann dort auch die eigene Domain `puppentheater-wunderlich.de` eingetragen werden.
+
 ## Lokal ansehen
 
 ```
