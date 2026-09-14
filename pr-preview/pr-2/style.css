@@ -3,6 +3,15 @@
    Farben aus dem Logo: Blau #003092, Rot #ed0012, Grün #2b7b00
    ========================================================================== */
 
+/* Schriftart lokal eingebunden (keine Verbindung zu Google Fonts) */
+@font-face {
+  font-family: "Stardos Stencil";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/fonts/stardos-stencil-700.woff2") format("woff2");
+}
+
 :root {
   --blue: #16368f;
   --blue-dark: #0b2470;
