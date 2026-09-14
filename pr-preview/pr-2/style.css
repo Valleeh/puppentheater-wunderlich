@@ -93,7 +93,7 @@ header.scrolled { box-shadow: 0 6px 24px rgba(32, 43, 71, .08); }
   font: 700 28px Georgia, serif;
   letter-spacing: -.8px;
   display: block;
-  color: var(--blue);
+  color: var(--red);
 }
 
 nav { display: flex; align-items: center; gap: 24px; font-size: 14px; font-weight: 550; }
@@ -385,7 +385,7 @@ footer > span { color: #657083; }
 footer > div { display: flex; gap: 25px; }
 .footer-brand { font-size: 12px; line-height: 1.25; display: flex; align-items: center; gap: 12px; }
 .footer-brand img { height: 44px; width: auto; }
-.footer-brand strong { display: block; font: 24px Georgia, serif; color: var(--blue); }
+.footer-brand strong { display: block; font: 24px Georgia, serif; color: var(--red); }
 
 /* Impressum-Seite --------------------------------------------------------- */
 
