@@ -27,7 +27,7 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 150px; }
+html { scroll-behavior: smooth; scroll-padding-top: 175px; }
 
 body {
   margin: 0;
@@ -56,7 +56,7 @@ h1, h2 {
   letter-spacing: -2.4px;
   line-height: 1.07;
 }
-h1 { font-size: clamp(46px, 5.6vw, 84px); margin-bottom: 26px; }
+h1 { font-size: clamp(42px, 5vw, 72px); margin-bottom: 26px; }
 h2 { font-size: clamp(38px, 4.3vw, 62px); margin-bottom: 0; }
 h1 em, h2 em { font-style: italic; color: var(--red); }
 
@@ -88,10 +88,10 @@ header {
 }
 header.scrolled { box-shadow: 0 6px 24px rgba(32, 43, 71, .08); }
 
-.brand { display: flex; gap: 16px; align-items: center; flex-shrink: 0; }
-.brand-logo { height: 60px; width: auto; display: block; }
+.brand { display: flex; gap: 18px; align-items: center; flex-shrink: 0; }
+.brand-logo { height: 84px; width: auto; display: block; }
 .brand-text {
-  font: 700 32px/1.05 "Stardos Stencil", "Rockwell", Georgia, serif;
+  font: 700 46px/1.05 "Stardos Stencil", "Rockwell", Georgia, serif;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--red);
@@ -417,7 +417,7 @@ footer > div { display: flex; gap: 25px; }
 
 @media (max-width: 1100px) {
   /* Ab hier: Burger-Menü statt Navigationsleiste */
-  html { scroll-padding-top: 110px; }
+  html { scroll-padding-top: 135px; }
   header { gap: 8px; }
   .menu {
     display: flex;
@@ -446,14 +446,14 @@ footer > div { display: flex; gap: 25px; }
 
 @media (max-width: 880px) {
   header { padding: 10px 6% 8px; }
-  .brand { gap: 12px; }
-  .brand-logo { height: 52px; }
+  .brand { gap: 14px; }
+  .brand-logo { height: 64px; }
   /* Auf dem Handy: zwei Zeilen, beide gleich groß, mittig */
-  .brand-text { font-size: 22px; letter-spacing: .5px; white-space: normal; text-align: center; line-height: 1.05; }
+  .brand-text { font-size: 28px; letter-spacing: .5px; white-space: normal; text-align: center; line-height: 1.05; }
   .brand-text strong { display: block; }
 
   .hero { padding: 38px 6% 48px; grid-template-columns: 1fr; gap: 35px; }
-  h1 { font-size: clamp(40px, 11vw, 66px); letter-spacing: -2px; }
+  h1 { font-size: clamp(36px, 9.5vw, 56px); letter-spacing: -1.6px; }
   .intro { font-size: 16px; margin-bottom: 23px; }
   .hero-visual { margin: 0 0 10px 14px; }
   .hero-photo { height: 400px; }
