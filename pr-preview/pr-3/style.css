@@ -258,6 +258,8 @@ header .button:hover { background: #ffe7a6; }
   background: var(--paper-2);
 }
 .play > img.contain { object-fit: contain; background: #f3efe6; padding: 10px; }
+/* Hochformat mit Kopf oben: Ausschnitt weiter oben ansetzen */
+.play > img.focus-top { object-position: center 18%; }
 .play-body { padding: 22px 24px 20px; display: flex; flex-direction: column; flex: 1; }
 .play .meta {
   display: flex;
