@@ -311,6 +311,18 @@ header .button:hover { background: #ffe7a6; }
 .project-copy .text-link { display: inline-block; }
 .small-note a { border-bottom: 1px solid; }
 
+/* Video aus den Proben (selbst gehostet, keine Cookies, kein Fremdanbieter) */
+.video-card { margin: 4px 0 22px; max-width: 280px; }
+.video-card video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  background: #0b0b0e;
+  box-shadow: 0 16px 40px rgba(32, 43, 71, .2);
+}
+.video-card figcaption { margin-top: 10px; font-size: 13.5px; color: var(--muted); }
+
 /* Über uns ---------------------------------------------------------------- */
 
 .about {
