@@ -18,6 +18,8 @@
   --blue-logo: #003092;
   --ink: #202b47;
   --red: #d0111f;
+  /* Rot auf blauem Grund: etwas heller, damit der Schriftzug lesbar bleibt */
+  --red-on-blue: #fa2b25;
   --yellow: #f1d78f;
   --paper: #faf9f5;
   --paper-2: #eaf0f8;
@@ -27,7 +29,7 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 175px; }
+html { scroll-behavior: smooth; scroll-padding-top: 100px; }
 
 body {
   margin: 0;
@@ -81,27 +83,42 @@ header {
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  padding: 14px 5.2% 12px;
-  border-bottom: 1px solid var(--line);
-  background: var(--paper);
-  transition: box-shadow .2s;
+  padding: 16px 5.2% 14px;
+  background: var(--blue-logo);
+  color: white;
+  transition: padding .25s ease, box-shadow .25s ease, gap .25s ease;
 }
-header.scrolled { box-shadow: 0 6px 24px rgba(32, 43, 71, .08); }
+header.scrolled { box-shadow: 0 6px 24px rgba(11, 25, 60, .35); }
+
+/* Beim Scrollen zieht sich die Kopfzeile auf eine schmale Leiste zusammen */
+header.compact {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 7px 5.2%;
+}
+header.compact .brand-logo { height: 38px; }
+header.compact .brand-text { font-size: 22px; letter-spacing: .5px; }
+header.compact nav { gap: 8px 20px; }
 
 .brand { display: flex; gap: 18px; align-items: center; flex-shrink: 0; }
-.brand-logo { height: 84px; width: auto; display: block; }
+.brand-logo { height: 84px; width: auto; display: block; transition: height .25s ease; }
 .brand-text {
   font: 700 46px/1.05 "Stardos Stencil", "Rockwell", Georgia, serif;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--red);
+  color: var(--red-on-blue);
   white-space: nowrap;
+  transition: font-size .25s ease;
 }
 .brand-text strong { font-weight: 700; }
 
 nav { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; font-weight: 550; }
 nav a { white-space: nowrap; }
-nav > a:not(.button):hover, .text-link:hover, footer a:hover { color: var(--red); }
+header nav > a:not(.button) { color: white; }
+header nav > a:not(.button):hover { color: var(--yellow); }
+.text-link:hover, footer a:hover { color: var(--red); }
 .menu { display: none; }
 
 .button {
@@ -119,6 +136,8 @@ nav > a:not(.button):hover, .text-link:hover, footer a:hover { color: var(--red)
 }
 .button:hover { background: var(--blue-dark); transform: translateY(-2px); }
 .button.small { padding: 12px 20px; }
+header .button { background: var(--yellow); color: var(--ink); }
+header .button:hover { background: #ffe7a6; }
 .button.light { background: var(--yellow); color: var(--ink); }
 .button.light:hover { background: #ffe7a6; }
 
@@ -177,10 +196,12 @@ nav > a:not(.button):hover, .text-link:hover, footer a:hover { color: var(--red)
   align-items: center;
   gap: 5vw;
   background: var(--blue-logo);
-  color: white;
-  padding: 22px;
+  color: #e6ecfa;
+  padding: 13px 22px;
   font-size: 14px;
   letter-spacing: .4px;
+  border-top: 2px solid var(--yellow);
+  border-bottom: 2px solid var(--yellow);
 }
 .ribbon [aria-hidden] { color: var(--yellow); font-size: 19px; }
 
@@ -391,7 +412,7 @@ footer > span { color: #657083; }
 footer > div { display: flex; gap: 25px; }
 .footer-brand { display: flex; align-items: center; gap: 12px; }
 .footer-brand img { height: 44px; width: auto; }
-.footer-brand .brand-text { font-size: 20px; }
+.footer-brand .brand-text { font-size: 20px; color: var(--red); }
 
 /* Impressum-Seite --------------------------------------------------------- */
 
@@ -417,7 +438,7 @@ footer > div { display: flex; gap: 25px; }
 
 @media (max-width: 1100px) {
   /* Ab hier: Burger-Menü statt Navigationsleiste, Knopf rechts neben dem Schriftzug */
-  html { scroll-padding-top: 130px; }
+  html { scroll-padding-top: 90px; }
   header { flex-direction: row; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; }
   .brand-logo { height: 70px; }
   .brand-text { font-size: 36px; }
@@ -425,8 +446,8 @@ footer > div { display: flex; gap: 25px; }
     display: flex;
     align-items: center;
     gap: 10px;
-    color: var(--blue);
-    border: 1px solid var(--line);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, .45);
     background: transparent;
     padding: 8px 12px;
     border-radius: 4px;
@@ -435,7 +456,7 @@ footer > div { display: flex; gap: 25px; }
   }
   nav { display: none; width: 100%; flex-direction: column; align-items: stretch; gap: 0; padding-top: 10px; }
   nav.open { display: flex; }
-  nav a { padding: 12px 0; font-size: 16px; border-top: 1px solid var(--line); }
+  nav a { padding: 12px 0; font-size: 16px; border-top: 1px solid rgba(255, 255, 255, .25); }
   nav .button { margin-top: 10px; justify-content: center; border-top: 0; }
 
   .plays, .quotes { grid-template-columns: repeat(2, 1fr); }
@@ -447,7 +468,7 @@ footer > div { display: flex; gap: 25px; }
 }
 
 @media (max-width: 880px) {
-  html { scroll-padding-top: 105px; }
+  html { scroll-padding-top: 80px; }
   header { padding: 10px 5% 10px; }
   .brand { gap: 12px; }
   .brand-logo { height: 58px; }
@@ -466,7 +487,8 @@ footer > div { display: flex; gap: 25px; }
   .photo-caption { left: -14px; bottom: -14px; }
   .photo-caption > span:first-child { font-size: 19px; }
 
-  .ribbon { gap: 15px; padding: 19px 6%; flex-wrap: wrap; font-size: 14px; }
+  /* Auf dem Handy bleibt das Bühnenband eine schmale Zeile */
+  .ribbon { gap: 10px; padding: 9px 5%; flex-wrap: nowrap; font-size: 12px; letter-spacing: .2px; }
   .ribbon span:last-child, .ribbon span:nth-child(4) { display: none; }
 
   .section { padding: 58px 6%; }

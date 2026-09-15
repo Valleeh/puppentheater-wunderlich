@@ -42,13 +42,24 @@
     /* Der sichtbare Text bleibt bewusst "info (at) …" – nur der Link enthält die echte Adresse. */
   });
 
-  /* Kopfzeile bekommt einen Schatten, sobald gescrollt wird */
+  /* Kopfzeile: ganz oben der große Auftritt, beim Scrollen eine schmale Leiste */
   var header = document.querySelector('header');
   if (header) {
+    var ticking = false;
+    var apply = function () {
+      var y = window.scrollY;
+      header.classList.toggle('scrolled', y > 8);
+      /* Zwei Schwellen, damit die Kopfzeile am Umschaltpunkt nicht flattert */
+      if (y > 90) header.classList.add('compact');
+      else if (y < 40) header.classList.remove('compact');
+      ticking = false;
+    };
     var onScroll = function () {
-      header.classList.toggle('scrolled', window.scrollY > 8);
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(apply);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    apply();
   }
 })();
