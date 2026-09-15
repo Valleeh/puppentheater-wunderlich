@@ -258,10 +258,14 @@ header .button:hover { background: #ffe7a6; }
   background: var(--paper-2);
 }
 .play > img.contain { object-fit: contain; background: #f3efe6; padding: 10px; }
-/* Hochformat mit Kopf oben: Ausschnitt weiter oben ansetzen */
-.play > img.focus-top { object-position: center 18%; }
-/* Ganz oben im Bild liegt das Motiv (Luftballons) */
-.play > img.focus-high { object-position: center 6%; }
+/* Bildausschnitt je Foto: was im Fenster bleiben muss.
+   Die Fenster sind flacher als die Fotos, mittig würde oben Wichtiges wegfallen. */
+.play > img.focus-top { object-position: center 8%; }    /* erhobener Fuß */
+.play > img.focus-high { object-position: center 6%; }   /* Luftballons */
+.play > img.focus-face { object-position: center 22%; }  /* Zipfelmütze und Gesicht */
+.play > img.focus-stage { object-position: center 25%; } /* Puppen über der Rampe */
+.play-duo img.focus-right { object-position: 65% 50%; }  /* Kopf sitzt rechts der Mitte */
+.play-duo img.focus-left { object-position: 35% 50%; }   /* Figuren stehen links */
 /* Zwei Fotos nebeneinander im Kopf einer Stück-Karte */
 .play-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--line); }
 .play-duo img { width: 100%; height: 260px; object-fit: cover; display: block; background: var(--paper-2); }
