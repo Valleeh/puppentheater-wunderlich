@@ -77,6 +77,7 @@ h1 em, h2 em { font-style: italic; color: var(--red); }
 
 header {
   position: sticky;
+  position: -webkit-sticky;
   top: 0;
   z-index: 30;
   display: flex;
@@ -90,6 +91,27 @@ header {
 }
 header.scrolled { box-shadow: 0 6px 24px rgba(11, 25, 60, .35); }
 
+/* Bühnenband: die geschwungene Kante eines Vorhangvolants */
+header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -15px;
+  height: 15px;
+  background-image: radial-gradient(circle at 15px 0, var(--blue-logo) 14px, rgba(0, 48, 146, 0) 14.5px);
+  background-size: 30px 15px;
+  background-repeat: repeat-x;
+  pointer-events: none;
+  transition: height .25s ease, bottom .25s ease;
+}
+header.compact::after {
+  bottom: -10px;
+  height: 10px;
+  background-image: radial-gradient(circle at 10px 0, var(--blue-logo) 9px, rgba(0, 48, 146, 0) 9.5px);
+  background-size: 20px 10px;
+}
+
 /* Beim Scrollen zieht sich die Kopfzeile auf eine schmale Leiste zusammen */
 header.compact {
   flex-direction: row;
@@ -98,9 +120,10 @@ header.compact {
   gap: 24px;
   padding: 7px 5.2%;
 }
-header.compact .brand-logo { height: 38px; }
-header.compact .brand-text { font-size: 22px; letter-spacing: .5px; }
-header.compact nav { gap: 8px 20px; }
+header.compact .brand-logo { height: 36px; }
+header.compact .brand-text { font-size: 20px; letter-spacing: .3px; }
+header.compact nav { gap: 8px 20px; font-size: 13px; }
+header.compact .button { padding: 9px 16px; font-size: 13px; }
 
 .brand { display: flex; gap: 18px; align-items: center; flex-shrink: 0; }
 .brand-logo { height: 84px; width: auto; display: block; transition: height .25s ease; }
@@ -197,11 +220,9 @@ header .button:hover { background: #ffe7a6; }
   gap: 5vw;
   background: var(--blue-logo);
   color: #e6ecfa;
-  padding: 13px 22px;
+  padding: 20px 22px;
   font-size: 14px;
   letter-spacing: .4px;
-  border-top: 2px solid var(--yellow);
-  border-bottom: 2px solid var(--yellow);
 }
 .ribbon [aria-hidden] { color: var(--yellow); font-size: 19px; }
 
@@ -468,10 +489,16 @@ footer > div { display: flex; gap: 25px; }
 }
 
 @media (max-width: 880px) {
-  html { scroll-padding-top: 80px; }
+  html { scroll-padding-top: 75px; }
   header { padding: 10px 5% 10px; }
   .brand { gap: 12px; }
   .brand-logo { height: 58px; }
+  /* Sonst überschreiben die Handy-Maße den Schrumpfkopf */
+  header.compact { padding: 5px 5%; }
+  header.compact .brand { gap: 9px; }
+  header.compact .brand-logo { height: 30px; }
+  header.compact .brand-text { font-size: 15px; letter-spacing: .2px; }
+  header.compact .menu { padding: 5px 10px; font-size: 13px; }
   /* Auf dem Handy: zwei Zeilen, beide gleich groß, mittig */
   .brand-text { font-size: 24px; letter-spacing: .3px; white-space: normal; text-align: center; line-height: 1.05; }
   .menu { padding: 10px 12px; }
@@ -487,8 +514,7 @@ footer > div { display: flex; gap: 25px; }
   .photo-caption { left: -14px; bottom: -14px; }
   .photo-caption > span:first-child { font-size: 19px; }
 
-  /* Auf dem Handy bleibt das Bühnenband eine schmale Zeile */
-  .ribbon { gap: 10px; padding: 9px 5%; flex-wrap: nowrap; font-size: 12px; letter-spacing: .2px; }
+  .ribbon { gap: 15px; padding: 17px 6%; flex-wrap: wrap; font-size: 14px; }
   .ribbon span:last-child, .ribbon span:nth-child(4) { display: none; }
 
   .section { padding: 58px 6%; }
