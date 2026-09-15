@@ -260,6 +260,9 @@ header .button:hover { background: #ffe7a6; }
 .play > img.contain { object-fit: contain; background: #f3efe6; padding: 10px; }
 /* Hochformat mit Kopf oben: Ausschnitt weiter oben ansetzen */
 .play > img.focus-top { object-position: center 18%; }
+/* Zwei Fotos nebeneinander im Kopf einer Stück-Karte */
+.play-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--line); }
+.play-duo img { width: 100%; height: 260px; object-fit: cover; display: block; background: var(--paper-2); }
 .play-body { padding: 22px 24px 20px; display: flex; flex-direction: column; flex: 1; }
 .play .meta {
   display: flex;
