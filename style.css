@@ -471,8 +471,8 @@ header .button:hover { background: #ffe7a6; }
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: 1.25fr 1fr 1fr;
-  gap: 22px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
   align-items: stretch;
 }
 .date-card {
@@ -480,7 +480,7 @@ header .button:hover { background: #ffe7a6; }
   border-top: 4px solid var(--blue-logo);
   border-radius: 4px;
   background: white;
-  padding: 26px 26px 28px;
+  padding: 24px 22px 26px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -508,21 +508,25 @@ header .button:hover { background: #ffe7a6; }
   letter-spacing: .3px;
 }
 .date-card.premiere .date-day span { color: #c3d2f2; }
-.date-day strong { font: 400 clamp(26px, 2.4vw, 34px)/1.15 Georgia, serif; letter-spacing: -1px; display: block; }
+.date-day strong { font: 400 clamp(25px, 2.1vw, 31px)/1.15 Georgia, serif; letter-spacing: -1px; display: block; }
 .date-time {
   font: italic 26px/1.2 Georgia, serif;
   color: var(--red);
   margin: 0;
 }
 .date-card.premiere .date-time { color: var(--yellow); }
-.date-place { margin: auto 0 0; font-size: 16px; padding-top: 12px; border-top: 1px solid var(--line); }
+.date-place { margin: 0; font-size: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.date-place a { border-bottom: 1px solid; }
+.date-place a:hover { color: var(--red); }
 .date-card.premiere .date-place { border-top-color: #6d86c9; }
 .date-place strong { display: block; }
 .date-place span { color: var(--muted); font-size: 15px; }
 .date-card.premiere .date-place span { color: #d7e0f5; }
-.date-note { margin: 0; font-size: 15px; color: var(--muted); }
+.date-note { margin: 0 0 auto; font-size: 15px; color: var(--muted); }
 .date-card.premiere .date-note { color: #e0e6f3; }
-.dates-note { max-width: 620px; margin: 30px auto 0; text-align: center; font-size: 16px; color: var(--muted); }
+.dates-note { max-width: 680px; margin: 30px auto 0; text-align: center; font-size: 16px; color: var(--muted); line-height: 1.8; }
+.dates-note a:not(.text-link) { color: var(--blue); border-bottom: 1px solid; overflow-wrap: anywhere; }
+.dates-note a:not(.text-link):hover { color: var(--red); }
 
 /* Kontakt ----------------------------------------------------------------- */
 
@@ -611,7 +615,7 @@ footer > div { display: flex; gap: 25px; }
   nav .button { margin-top: 10px; justify-content: center; border-top: 0; }
 
   .plays, .quotes { grid-template-columns: repeat(2, 1fr); }
-  .date-list { grid-template-columns: 1fr 1fr; }
+  .date-list { grid-template-columns: repeat(2, 1fr); }
   .gallery, .posters { grid-template-columns: repeat(3, 1fr); }
   .hero-photo { height: 460px; }
   .about { gap: 6%; }
