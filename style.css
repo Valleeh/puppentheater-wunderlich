@@ -463,6 +463,67 @@ header .button:hover { background: #ffe7a6; }
 .faq summary { font-size: 17px; font-weight: 600; cursor: pointer; }
 .faq p { max-width: 900px; margin: 18px 0 0; color: var(--muted); }
 
+/* Termine ---------------------------------------------------------------- */
+
+.dates { padding-bottom: 20px; }
+.date-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr;
+  gap: 22px;
+  align-items: stretch;
+}
+.date-card {
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--blue-logo);
+  border-radius: 4px;
+  background: white;
+  padding: 26px 26px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.date-card.premiere {
+  background: var(--blue-logo);
+  border-color: var(--blue-logo);
+  border-top-color: var(--red-on-blue);
+  color: white;
+}
+.date-tag {
+  font-size: 12px;
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--blue);
+  margin: 0;
+}
+.date-card.premiere .date-tag { color: var(--yellow); }
+.date-day { margin: 0; }
+.date-day span {
+  display: block;
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: .3px;
+}
+.date-card.premiere .date-day span { color: #c3d2f2; }
+.date-day strong { font: 400 clamp(26px, 2.4vw, 34px)/1.15 Georgia, serif; letter-spacing: -1px; display: block; }
+.date-time {
+  font: italic 26px/1.2 Georgia, serif;
+  color: var(--red);
+  margin: 0;
+}
+.date-card.premiere .date-time { color: var(--yellow); }
+.date-place { margin: auto 0 0; font-size: 16px; padding-top: 12px; border-top: 1px solid var(--line); }
+.date-card.premiere .date-place { border-top-color: #6d86c9; }
+.date-place strong { display: block; }
+.date-place span { color: var(--muted); font-size: 15px; }
+.date-card.premiere .date-place span { color: #d7e0f5; }
+.date-note { margin: 0; font-size: 15px; color: var(--muted); }
+.date-card.premiere .date-note { color: #e0e6f3; }
+.dates-note { max-width: 620px; margin: 30px auto 0; text-align: center; font-size: 16px; color: var(--muted); }
+
 /* Kontakt ----------------------------------------------------------------- */
 
 .contact {
@@ -550,6 +611,7 @@ footer > div { display: flex; gap: 25px; }
   nav .button { margin-top: 10px; justify-content: center; border-top: 0; }
 
   .plays, .quotes { grid-template-columns: repeat(2, 1fr); }
+  .date-list { grid-template-columns: 1fr 1fr; }
   .gallery, .posters { grid-template-columns: repeat(3, 1fr); }
   .hero-photo { height: 460px; }
   .about { gap: 6%; }
@@ -592,6 +654,8 @@ footer > div { display: flex; gap: 25px; }
   .section-head > p { margin: 18px auto 0; font-size: 16px; }
 
   .plays, .quotes { grid-template-columns: 1fr; gap: 24px; }
+  .date-list { grid-template-columns: 1fr; gap: 16px; }
+  .date-card { padding: 22px 22px 24px; }
 
   .project { grid-template-columns: 1fr; gap: 28px; padding: 44px 0; }
   .project.reverse .project-media { order: 0; }
