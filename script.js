@@ -82,9 +82,13 @@
       video.controls = true;
       video.autoplay = true;
       video.setAttribute('playsinline', '');
-      if (poster) {
-        video.setAttribute('width', poster.getAttribute('width') || '360');
-        video.setAttribute('height', poster.getAttribute('height') || '640');
+      /* Maße: erst die des Videos, sonst die des Vorschaubildes.
+         Sie legen das Seitenverhältnis fest, damit die Seite beim Start nicht springt. */
+      var vw = shell.getAttribute('data-video-width') || (poster && poster.getAttribute('width'));
+      var vh = shell.getAttribute('data-video-height') || (poster && poster.getAttribute('height'));
+      if (vw && vh) {
+        video.setAttribute('width', vw);
+        video.setAttribute('height', vh);
       }
       shell.innerHTML = '';
       shell.appendChild(video);

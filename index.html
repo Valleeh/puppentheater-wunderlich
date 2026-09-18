@@ -210,7 +210,19 @@
   <div class="plays">
 
     <article class="play" id="prinzessin">
-      <img srcset="assets/prinzessin-buehne-480.jpg 480w, assets/prinzessin-buehne-800.jpg 800w, assets/prinzessin-buehne.jpg?v=20260915d 1536w" sizes="(max-width: 880px) 92vw, (max-width: 1100px) 46vw, 29vw" src="assets/prinzessin-buehne.jpg?v=20260915d" width="1536" height="1024" loading="lazy" alt="Die Spielerin mit den beiden Prinzessinnen-Puppen am weißen Bett, davor die Kinder">
+      <div class="video-shell" data-video-mp4="assets/prinzessin-in-der-suppe.mp4?v=20260918" data-video-width="720" data-video-height="1280">
+        <button type="button" class="video-start">
+          <img srcset="assets/prinzessin-buehne-480.jpg 480w, assets/prinzessin-buehne-800.jpg 800w, assets/prinzessin-buehne.jpg?v=20260915d 1536w" sizes="(max-width: 880px) 92vw, (max-width: 1100px) 46vw, 29vw" src="assets/prinzessin-buehne.jpg?v=20260915d" width="1536" height="1024" loading="lazy" decoding="async" alt="Die Spielerin mit den beiden Prinzessinnen-Puppen am weißen Bett, davor die Kinder">
+          <span class="video-play" aria-hidden="true"></span>
+          <span class="video-label">Ausschnitt ansehen · 26 Sekunden</span>
+        </button>
+      </div>
+      <noscript>
+        <video controls playsinline preload="none" width="720" height="1280" poster="assets/prinzessin-buehne-800.jpg">
+          <source src="assets/prinzessin-in-der-suppe.mp4?v=20260918" type="video/mp4">
+          <p>Ihr Browser kann dieses Video nicht abspielen. <a href="assets/prinzessin-in-der-suppe.mp4">Video herunterladen</a></p>
+        </video>
+      </noscript>
       <div class="play-body">
         <div class="meta"><span>Ein Märchen zum Mitmachen</span><span>Ab 3 Jahren</span></div>
         <h3>Das Märchen von der Prinzessin in der Suppe</h3>
