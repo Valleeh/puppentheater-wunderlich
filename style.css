@@ -141,7 +141,7 @@ nav { display: flex; align-items: center; justify-content: center; flex-wrap: wr
 nav a { white-space: nowrap; }
 header nav > a:not(.button) { color: white; }
 header nav > a:not(.button):hover { color: var(--yellow); }
-.text-link:hover, footer a:hover { color: var(--red); }
+.text-link:hover, body > footer a:hover { color: var(--red); }
 .menu { display: none; }
 
 .button {
@@ -259,6 +259,22 @@ header .button:hover { background: #ffe7a6; }
   background: var(--paper-2);
 }
 .play > img.contain { object-fit: contain; background: #f3efe6; padding: 10px; }
+
+/* Stück-Karte mit Video: Vorschaubild sitzt im selben Fenster wie ein Foto,
+   der Player übernimmt beim Start das Hochformat des Videos. */
+.play > .video-shell { line-height: 0; }
+.play > .video-shell .video-start,
+.play > .video-shell video { border-radius: 0; box-shadow: none; }
+.play > .video-shell .video-start img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+.play > .video-shell .video-label { font-size: 13px; padding: 24px 12px 10px; }
+.play > .video-shell .video-play { width: 54px; height: 54px; top: 50%; }
+.play > noscript video { width: 100%; height: auto; display: block; }
 /* Bildausschnitt je Foto: was im Fenster bleiben muss.
    Die Fenster sind flacher als die Fotos, mittig würde oben Wichtiges wegfallen. */
 .play > img.focus-top { object-position: center 8%; }    /* erhobener Fuß */
@@ -410,21 +426,20 @@ header .button:hover { background: #ffe7a6; }
   background: white;
   border: 1px solid var(--line);
   border-radius: 6px;
-  padding: 28px 28px 22px;
+  padding: 22px 28px 22px;
   display: flex;
   flex-direction: column;
-  position: relative;
 }
+/* Das große Anführungszeichen steht über dem Zitat, nicht darin */
 .quotes blockquote::before {
   content: "„";
-  font: italic 72px/1 Georgia, serif;
+  display: block;
+  font: italic 58px/1 Georgia, serif;
   color: var(--yellow);
-  position: absolute;
-  top: 10px;
-  left: 18px;
+  margin-bottom: 2px;
 }
-.quotes p { font-size: 16px; line-height: 1.7; color: var(--ink); margin: 14px 0 18px; }
-.quotes footer { margin-top: auto; font-size: 13px; font-weight: 650; color: var(--blue); letter-spacing: .3px; }
+.quotes p { font-size: 16px; line-height: 1.7; color: var(--ink); margin: 0 0 18px; }
+.quotes footer { display: block; padding: 0; margin-top: auto; font-size: 13px; font-weight: 650; color: var(--blue); letter-spacing: .3px; }
 
 /* Galerie ----------------------------------------------------------------- */
 
@@ -463,6 +478,77 @@ header .button:hover { background: #ffe7a6; }
 .faq summary { font-size: 17px; font-weight: 600; cursor: pointer; }
 .faq p { max-width: 900px; margin: 18px 0 0; color: var(--muted); }
 
+/* Termine ---------------------------------------------------------------- */
+
+.dates { padding-bottom: 20px; }
+.date-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+.date-card {
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--blue-logo);
+  border-radius: 4px;
+  background: white;
+  padding: 24px 22px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.date-card.premiere {
+  background: var(--blue-logo);
+  border-color: var(--blue-logo);
+  border-top-color: var(--red-on-blue);
+  color: white;
+}
+.date-tag, .date-price span {
+  font-size: 11.5px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--blue);
+  margin: 0;
+}
+.date-card.premiere .date-tag, .date-card.premiere .date-price span { color: var(--yellow); }
+.date-day { margin: 0; }
+.date-day span {
+  display: block;
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: .3px;
+}
+.date-card.premiere .date-day span { color: #c3d2f2; }
+.date-day strong { font: 400 clamp(25px, 2.1vw, 31px)/1.15 Georgia, serif; letter-spacing: -1px; display: block; }
+.date-time {
+  font: italic 26px/1.2 Georgia, serif;
+  color: var(--red);
+  margin: 0 0 2px;
+}
+.date-card.premiere .date-time { color: var(--yellow); }
+.date-cast { margin: 0; font-size: 15.5px; font-weight: 600; }
+.date-extra { margin: 0; font-size: 14.5px; color: var(--muted); }
+.date-card.premiere .date-extra { color: #d7e0f5; }
+
+/* Eintritt und Ort stehen in allen Karten unten, damit sie auf einer Höhe liegen */
+.date-foot { margin-top: auto; padding-top: 18px; display: grid; gap: 14px; }
+.date-price { margin: 0; font-size: 15.5px; }
+.date-price span { display: block; margin-bottom: 3px; }
+.date-place { margin: 0; font-size: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.date-card.premiere .date-place { border-top-color: #6d86c9; }
+.date-place strong { display: block; }
+.date-place span { color: var(--muted); font-size: 15px; }
+.date-card.premiere .date-place span { color: #d7e0f5; }
+.date-place a { border-bottom: 1px solid; }
+.date-place a:hover { color: var(--red); }
+.dates-note { max-width: 680px; margin: 30px auto 0; text-align: center; font-size: 16px; color: var(--muted); line-height: 1.8; }
+.dates-note a:not(.text-link) { color: var(--blue); border-bottom: 1px solid; overflow-wrap: anywhere; }
+.dates-note a:not(.text-link):hover { color: var(--red); }
+
 /* Kontakt ----------------------------------------------------------------- */
 
 .contact {
@@ -489,7 +575,7 @@ header .button:hover { background: #ffe7a6; }
 
 /* Fußzeile ---------------------------------------------------------------- */
 
-footer {
+body > footer {
   padding: 35px 5.2%;
   display: flex;
   align-items: center;
@@ -498,8 +584,8 @@ footer {
   flex-wrap: wrap;
   font-size: 14px;
 }
-footer > span { color: #657083; }
-footer > div { display: flex; gap: 25px; }
+body > footer > span { color: #657083; }
+body > footer > div { display: flex; gap: 25px; }
 .footer-brand { display: flex; align-items: center; gap: 12px; }
 .footer-brand img { height: 44px; width: auto; }
 .footer-brand .brand-text { font-size: 20px; color: var(--red); }
@@ -520,7 +606,7 @@ footer > div { display: flex; gap: 25px; }
    -------------------------------------------------------------------------- */
 
 @media (min-width: 1600px) {
-  header, footer, .about, .contact {
+  header, body > footer, .about, .contact {
     padding-left: max(5.2%, calc((100vw - 1344px) / 2));
     padding-right: max(5.2%, calc((100vw - 1344px) / 2));
   }
@@ -550,6 +636,7 @@ footer > div { display: flex; gap: 25px; }
   nav .button { margin-top: 10px; justify-content: center; border-top: 0; }
 
   .plays, .quotes { grid-template-columns: repeat(2, 1fr); }
+  .date-list { grid-template-columns: repeat(2, 1fr); }
   .gallery, .posters { grid-template-columns: repeat(3, 1fr); }
   .hero-photo { height: 460px; }
   .about { gap: 6%; }
@@ -592,6 +679,8 @@ footer > div { display: flex; gap: 25px; }
   .section-head > p { margin: 18px auto 0; font-size: 16px; }
 
   .plays, .quotes { grid-template-columns: 1fr; gap: 24px; }
+  .date-list { grid-template-columns: 1fr; gap: 16px; }
+  .date-card { padding: 22px 22px 24px; }
 
   .project { grid-template-columns: 1fr; gap: 28px; padding: 44px 0; }
   .project.reverse .project-media { order: 0; }
@@ -616,9 +705,9 @@ footer > div { display: flex; gap: 25px; }
   .contact-details { border-left: 0; border-top: 1px solid #6d86c9; padding: 30px 0 0; }
   .contact-details .phone { font-size: 32px; }
 
-  footer { padding: 30px 6%; align-items: start; }
-  footer > span { display: none; }
-  footer > div { flex-direction: column; gap: 10px; }
+  body > footer { padding: 30px 6%; align-items: start; }
+  body > footer > span { display: none; }
+  body > footer > div { flex-direction: column; gap: 10px; }
   .button { font-size: 14px; padding: 14px 18px; }
 }
 
@@ -628,6 +717,6 @@ footer > div { display: flex; gap: 25px; }
 }
 
 @media print {
-  header, footer, .menu, .ribbon { display: none; }
+  header, body > footer, .menu, .ribbon { display: none; }
   body { background: white; }
 }
