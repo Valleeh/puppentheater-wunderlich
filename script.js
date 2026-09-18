@@ -64,10 +64,12 @@
   }
 
   /* Video: Erst auf Klick laden. Bis dahin liegt nur das Vorschaubild auf der Seite,
-     und auch das erst, wenn man in die Nähe scrollt. */
-  var shell = document.querySelector('.video-shell');
-  if (shell) {
+     und auch das erst, wenn man in die Nähe scrollt. Gilt für jedes Video auf der Seite;
+     die Maße übernimmt der Player vom Vorschaubild. */
+  var shells = document.querySelectorAll('.video-shell');
+  Array.prototype.forEach.call(shells, function (shell) {
     shell.addEventListener('click', function () {
+      var poster = shell.querySelector('img');
       var video = document.createElement('video');
       [['data-video-webm', 'video/webm'], ['data-video-mp4', 'video/mp4']].forEach(function (pair) {
         var url = shell.getAttribute(pair[0]);
@@ -80,12 +82,14 @@
       video.controls = true;
       video.autoplay = true;
       video.setAttribute('playsinline', '');
-      video.setAttribute('width', '360');
-      video.setAttribute('height', '640');
+      if (poster) {
+        video.setAttribute('width', poster.getAttribute('width') || '360');
+        video.setAttribute('height', poster.getAttribute('height') || '640');
+      }
       shell.innerHTML = '';
       shell.appendChild(video);
       var started = video.play();
       if (started && started.catch) started.catch(function () {});
     });
-  }
+  });
 })();
