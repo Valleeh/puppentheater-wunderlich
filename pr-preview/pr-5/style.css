@@ -259,6 +259,22 @@ header .button:hover { background: #ffe7a6; }
   background: var(--paper-2);
 }
 .play > img.contain { object-fit: contain; background: #f3efe6; padding: 10px; }
+
+/* Stück-Karte mit Video: Vorschaubild sitzt im selben Fenster wie ein Foto,
+   der Player übernimmt beim Start das Hochformat des Videos. */
+.play > .video-shell { line-height: 0; }
+.play > .video-shell .video-start,
+.play > .video-shell video { border-radius: 0; box-shadow: none; }
+.play > .video-shell .video-start img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+.play > .video-shell .video-label { font-size: 13px; padding: 24px 12px 10px; }
+.play > .video-shell .video-play { width: 54px; height: 54px; top: 50%; }
+.play > noscript video { width: 100%; height: auto; display: block; }
 /* Bildausschnitt je Foto: was im Fenster bleiben muss.
    Die Fenster sind flacher als die Fotos, mittig würde oben Wichtiges wegfallen. */
 .play > img.focus-top { object-position: center 8%; }    /* erhobener Fuß */
