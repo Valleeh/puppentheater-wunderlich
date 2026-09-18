@@ -141,7 +141,7 @@ nav { display: flex; align-items: center; justify-content: center; flex-wrap: wr
 nav a { white-space: nowrap; }
 header nav > a:not(.button) { color: white; }
 header nav > a:not(.button):hover { color: var(--yellow); }
-.text-link:hover, footer a:hover { color: var(--red); }
+.text-link:hover, body > footer a:hover { color: var(--red); }
 .menu { display: none; }
 
 .button {
@@ -410,21 +410,20 @@ header .button:hover { background: #ffe7a6; }
   background: white;
   border: 1px solid var(--line);
   border-radius: 6px;
-  padding: 28px 28px 22px;
+  padding: 22px 28px 22px;
   display: flex;
   flex-direction: column;
-  position: relative;
 }
+/* Das große Anführungszeichen steht über dem Zitat, nicht darin */
 .quotes blockquote::before {
   content: "„";
-  font: italic 72px/1 Georgia, serif;
+  display: block;
+  font: italic 58px/1 Georgia, serif;
   color: var(--yellow);
-  position: absolute;
-  top: 10px;
-  left: 18px;
+  margin-bottom: 2px;
 }
-.quotes p { font-size: 16px; line-height: 1.7; color: var(--ink); margin: 14px 0 18px; }
-.quotes footer { margin-top: auto; font-size: 13px; font-weight: 650; color: var(--blue); letter-spacing: .3px; }
+.quotes p { font-size: 16px; line-height: 1.7; color: var(--ink); margin: 0 0 18px; }
+.quotes footer { display: block; padding: 0; margin-top: auto; font-size: 13px; font-weight: 650; color: var(--blue); letter-spacing: .3px; }
 
 /* Galerie ----------------------------------------------------------------- */
 
@@ -560,7 +559,7 @@ header .button:hover { background: #ffe7a6; }
 
 /* Fußzeile ---------------------------------------------------------------- */
 
-footer {
+body > footer {
   padding: 35px 5.2%;
   display: flex;
   align-items: center;
@@ -569,8 +568,8 @@ footer {
   flex-wrap: wrap;
   font-size: 14px;
 }
-footer > span { color: #657083; }
-footer > div { display: flex; gap: 25px; }
+body > footer > span { color: #657083; }
+body > footer > div { display: flex; gap: 25px; }
 .footer-brand { display: flex; align-items: center; gap: 12px; }
 .footer-brand img { height: 44px; width: auto; }
 .footer-brand .brand-text { font-size: 20px; color: var(--red); }
@@ -591,7 +590,7 @@ footer > div { display: flex; gap: 25px; }
    -------------------------------------------------------------------------- */
 
 @media (min-width: 1600px) {
-  header, footer, .about, .contact {
+  header, body > footer, .about, .contact {
     padding-left: max(5.2%, calc((100vw - 1344px) / 2));
     padding-right: max(5.2%, calc((100vw - 1344px) / 2));
   }
@@ -690,9 +689,9 @@ footer > div { display: flex; gap: 25px; }
   .contact-details { border-left: 0; border-top: 1px solid #6d86c9; padding: 30px 0 0; }
   .contact-details .phone { font-size: 32px; }
 
-  footer { padding: 30px 6%; align-items: start; }
-  footer > span { display: none; }
-  footer > div { flex-direction: column; gap: 10px; }
+  body > footer { padding: 30px 6%; align-items: start; }
+  body > footer > span { display: none; }
+  body > footer > div { flex-direction: column; gap: 10px; }
   .button { font-size: 14px; padding: 14px 18px; }
 }
 
@@ -702,6 +701,6 @@ footer > div { display: flex; gap: 25px; }
 }
 
 @media print {
-  header, footer, .menu, .ribbon { display: none; }
+  header, body > footer, .menu, .ribbon { display: none; }
   body { background: white; }
 }
