@@ -33,6 +33,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 100px; }
 
 body {
   margin: 0;
+  /* Der Browser soll beim Umschalten der Kopfzeile nicht selbst nachscrollen –
+     sonst schaukeln sich Scrollstand und Kopfzeile gegenseitig auf. */
+  overflow-anchor: none;
   color: var(--ink);
   background: var(--paper);
   font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -89,6 +92,13 @@ header {
   color: white;
   transition: padding .25s ease, box-shadow .25s ease, gap .25s ease;
 }
+/* Beim Zusammenziehen gibt die Kopfzeile den frei werdenden Platz als Abstand
+   nach unten wieder her. So bleibt der Rest der Seite an Ort und Stelle, statt
+   nach oben zu rutschen. Im Normalfall führt script.js diesen Abstand Bild für
+   Bild mit der Höhe nach; --header-shrink ist der Rückfall ohne ResizeObserver. */
+header.compact { margin-bottom: var(--header-shrink, 0px); }
+/* Nur für den Moment des Messens: ohne Übergänge sind die Maße sofort richtig */
+header.measuring, header.measuring * { transition: none !important; }
 header.scrolled { box-shadow: 0 6px 24px rgba(11, 25, 60, .35); }
 
 /* Bühnenband: die geschwungene Kante eines Vorhangvolants */
