@@ -1,6 +1,7 @@
 # Vorschau für jeden Pull Request.
 #
-# Bei jedem Push in einen PR wird der Stand des PR-Branches nach
+# Bei jedem Push in einen PR entsteht index.html aus vorlage.html und
+# inhalt.yaml, und der Stand des PR-Branches wird nach
 #   https://valleeh.github.io/puppentheater-wunderlich/pr-preview/pr-<Nummer>/
 # veröffentlicht. Der Link wird als Kommentar im PR gepostet und bei jedem
 # Push aktualisiert. Wird der PR geschlossen oder gemergt, verschwindet die
@@ -26,6 +27,27 @@ jobs:
     steps:
       - name: Repository auschecken
         uses: actions/checkout@v4
+
+      - name: Python bereitstellen
+        if: github.event.action != 'closed'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: PyYAML installieren
+        if: github.event.action != 'closed'
+        run: pip install pyyaml
+
+      # Erzeugt index.html nur für die Vorschau; in den PR wird nichts
+      # zurückgeschrieben. Steckt ein Fehler in inhalt.yaml, schlägt dieser
+      # Schritt fehl und nennt im Protokoll die Stelle.
+      - name: index.html aus vorlage.html und inhalt.yaml bauen
+        if: github.event.action != 'closed'
+        run: python3 werkzeuge/seite_bauen.py
+
+      - name: Prüfen, ob die Editor-Seite dieselbe Seite baut
+        if: github.event.action != 'closed'
+        run: node werkzeuge/gleichlauf_pruefen.js
 
       - name: Vorschau veröffentlichen oder entfernen
         uses: rossjrw/pr-preview-action@v1

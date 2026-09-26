@@ -1,0 +1,405 @@
+<!doctype html>
+<!-- index.html entsteht aus vorlage.html (Aufbau) und inhalt.yaml (Texte) mit werkzeuge/seite_bauen.py – bitte dort ändern, nicht in index.html. -->
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#003092">
+<title>{{seite.titel}}</title>
+<meta name="description" content="{{seite.beschreibung}}">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:title" content="{{seite.teilen_titel}}">
+<meta property="og:description" content="{{seite.teilen_text}}">
+<meta property="og:image" content="{{seite.teilen_bild_info.quelle}}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#inhalt">Zum Inhalt</a>
+
+<header>
+  <a class="brand" href="#" aria-label="Puppentheater Wunderlich – Startseite">
+    <img class="brand-logo" src="assets/logo-blume.png" alt="" width="239" height="450">
+    <span class="brand-text">Puppentheater <strong>Wunderlich</strong></span>
+  </a>
+  <button class="menu" aria-expanded="false" aria-controls="navigation" aria-label="Menü"><span class="menu-label">Menü</span><span aria-hidden="true">☰</span></button>
+  <nav id="navigation" aria-label="Hauptnavigation">
+{{#seite.navigation}}
+    <a href="{{ziel}}">{{beschriftung}}</a>
+{{/seite.navigation}}
+{{#seite.navigation_knopf}}
+    <a class="button small" href="{{ziel}}">{{beschriftung}}</a>
+{{/seite.navigation_knopf}}
+  </nav>
+</header>
+
+<main id="inhalt">
+
+{{#buehne}}
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">{{vorspann}}</p>
+    <h1>{{&titel}}</h1>
+    <p class="intro">{{&einleitung}}</p>
+    <div class="actions">
+{{#knopf}}
+      <a class="button" href="{{ziel}}">{{beschriftung}} <span aria-hidden="true">↗</span></a>
+{{/knopf}}
+{{#link}}
+      <a class="text-link" href="{{ziel}}">{{beschriftung}}</a>
+{{/link}}
+    </div>
+    <p class="hero-note">{{&hinweis}}</p>
+  </div>
+  <div class="hero-visual">
+    <img{{#bild_info.srcset}} srcset="{{bild_info.srcset}}" sizes="(max-width: 880px) 92vw, 42vw"{{/bild_info.srcset}} class="hero-photo" src="{{bild_info.quelle}}" alt="{{bildtext}}" width="{{bild_info.breite}}" height="{{bild_info.hoehe}}" fetchpriority="high">
+    <div class="photo-caption"><span>{{&bildunterschrift}}</span><span class="caption-star" aria-hidden="true">✳</span></div>
+  </div>
+</section>
+{{/buehne}}
+
+<div class="ribbon">
+{{#band}}
+  <span>{{.}}</span>{{^_letzter}}<span aria-hidden="true">✦</span>{{/_letzter}}
+{{/band}}
+</div>
+
+
+<!-- TERMINE -->
+{{#termine}}
+<section class="section dates" id="termine">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">{{vorspann}}</p>
+      <h2>{{&titel}}</h2>
+    </div>
+    <p>{{&einleitung}}</p>
+  </div>
+
+{{#liste?}}
+  <ol class="date-list">
+{{#liste}}
+    <li class="date-card{{#hervorheben}} premiere{{/hervorheben}}">
+{{#etikett}}
+      <p class="date-tag">{{etikett}}</p>
+{{/etikett}}
+      <p class="date-day">{{#wochentag}}<span>{{wochentag}}</span>{{/wochentag}}<strong>{{datum}}</strong></p>
+{{#uhrzeit}}
+      <p class="date-time">{{&uhrzeit}}</p>
+{{/uhrzeit}}
+{{#besetzung}}
+      <p class="date-cast">{{&besetzung}}</p>
+{{/besetzung}}
+{{#zusatz}}
+      <p class="date-extra">{{&zusatz}}</p>
+{{/zusatz}}
+      <div class="date-foot">
+{{#eintritt}}
+        <p class="date-price"><span>{{beschriftungen.eintritt}}</span>{{&eintritt}}</p>
+{{/eintritt}}
+        <p class="date-place">{{#ort}}<strong>{{#ort_link}}<a href="{{ort_link}}" target="_blank" rel="noopener noreferrer">{{ort}} ↗</a>{{/ort_link}}{{^ort_link}}{{ort}}{{/ort_link}}</strong>{{/ort}}{{#adresse}}<span>{{adresse}}</span>{{/adresse}}</p>
+      </div>
+    </li>
+{{/liste}}
+  </ol>
+{{/liste?}}
+
+  <p class="dates-note">{{&hinweis_karten}}{{#programm_link}} · <a class="text-link" href="{{ziel}}"{{#ziel_extern}} target="_blank" rel="noopener noreferrer"{{/ziel_extern}}>{{beschriftung}}</a>{{/programm_link}}<br>{{&hinweis_fragen}}{{#anfrage}} <a class="text-link mail" data-subject="{{betreff}}" href="#kontakt">{{beschriftung}}</a>{{/anfrage}}</p>
+</section>
+{{/termine}}
+
+<!-- PROJEKTE -->
+{{#projekte}}
+<section class="section projects" id="projekte">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">{{vorspann}}</p>
+      <h2>{{&titel}}</h2>
+    </div>
+    <p>{{&einleitung}}</p>
+  </div>
+
+{{#liste}}
+  <article class="project{{#_gerade}} reverse{{/_gerade}}" id="{{kennung}}">
+{{#plakat}}
+    <div class="project-media poster-media">
+      <img class="poster"{{#bild_info.srcset}} srcset="{{bild_info.srcset}}" sizes="(max-width: 880px) 92vw, 30vw"{{/bild_info.srcset}} src="{{bild_info.quelle}}" width="{{bild_info.breite}}" height="{{bild_info.hoehe}}" loading="lazy" alt="{{bildtext}}">
+    </div>
+{{/plakat}}
+{{^plakat}}
+    <div class="project-media">
+      <img{{#bild_info.srcset}} srcset="{{bild_info.srcset}}" sizes="(max-width: 880px) 92vw, 41vw"{{/bild_info.srcset}} src="{{bild_info.quelle}}" width="{{bild_info.breite}}" height="{{bild_info.hoehe}}" loading="lazy" alt="{{bildtext}}">
+{{#weitere_bilder?}}
+      <div class="project-thumbs">
+{{#weitere_bilder}}
+        <img{{#bild_info.srcset}} srcset="{{bild_info.srcset}}" sizes="(max-width: 880px) 46vw, 25vw"{{/bild_info.srcset}} src="{{bild_info.quelle}}" width="{{bild_info.breite}}" height="{{bild_info.hoehe}}" loading="lazy" alt="{{bildtext}}">
+{{/weitere_bilder}}
+      </div>
+{{/weitere_bilder?}}
+    </div>
+{{/plakat}}
+    <div class="project-copy">
+      <p class="eyebrow">{{vorspann}}</p>
+      <h3>{{&titel}}{{#untertitel}}<span>{{untertitel}}</span>{{/untertitel}}</h3>
+{{#absaetze}}
+      <p>{{&.}}</p>
+{{/absaetze}}
+{{#mitwirkende?}}
+      <details>
+        <summary>{{beschriftungen.mitwirkende}}</summary>
+        <ul class="credits">
+{{#mitwirkende}}
+          <li><strong>{{wer}}:</strong> {{&was}}</li>
+{{/mitwirkende}}
+        </ul>
+      </details>
+{{/mitwirkende?}}
+{{#hinweise}}
+      <p class="small-note">{{&.}}</p>
+{{/hinweise}}
+{{#video}}
+      <figure class="video-card">
+        <div class="video-shell"{{#datei_info.webm}} data-video-webm="{{datei_info.webm}}"{{/datei_info.webm}}{{#datei_info.mp4}} data-video-mp4="{{datei_info.mp4}}"{{/datei_info.mp4}}{{#datei_info.breite}} data-video-width="{{datei_info.breite}}" data-video-height="{{datei_info.hoehe}}"{{/datei_info.breite}}>
+          <button type="button" class="video-start">
+            <img{{#vorschau_bild_info.srcset}} srcset="{{vorschau_bild_info.srcset}}" sizes="(max-width: 880px) 60vw, 25vw"{{/vorschau_bild_info.srcset}} src="{{vorschau_bild_info.quelle}}" width="{{vorschau_bild_info.breite}}" height="{{vorschau_bild_info.hoehe}}" loading="lazy" decoding="async" alt="{{bildtext}}">
+            <span class="video-play" aria-hidden="true"></span>
+            <span class="video-label">{{knopf}}</span>
+          </button>
+        </div>
+        <noscript>
+          <video controls playsinline preload="none" width="{{datei_info.breite}}" height="{{datei_info.hoehe}}" poster="{{vorschau_bild_info.quelle}}">
+{{#datei_info.webm}}
+            <source src="{{datei_info.webm}}" type="video/webm">
+{{/datei_info.webm}}
+{{#datei_info.mp4}}
+            <source src="{{datei_info.mp4}}" type="video/mp4">
+{{/datei_info.mp4}}
+            <p>{{beschriftungen.video_fehlt}} <a href="{{datei_info.download}}">{{beschriftungen.video_herunterladen}}</a></p>
+          </video>
+        </noscript>
+{{#unterschrift}}
+        <figcaption>{{unterschrift}}</figcaption>
+{{/unterschrift}}
+      </figure>
+{{/video}}
+{{#anfrage}}
+      <a class="text-link mail" data-subject="{{betreff}}" href="#kontakt">{{beschriftung}}</a>
+{{/anfrage}}
+    </div>
+  </article>
+{{/liste}}
+
+</section>
+{{/projekte}}
+
+<!-- STÜCKE -->
+{{#stuecke}}
+<section class="section" id="stuecke">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">{{vorspann}}</p>
+      <h2>{{&titel}}</h2>
+    </div>
+    <p>{{&einleitung}}</p>
+  </div>
+
+  <div class="plays">
+
+{{#liste}}
+    <article class="play" id="{{kennung}}">
+{{#video}}
+      <div class="video-shell"{{#datei_info.webm}} data-video-webm="{{datei_info.webm}}"{{/datei_info.webm}}{{#datei_info.mp4}} data-video-mp4="{{datei_info.mp4}}"{{/datei_info.mp4}}{{#datei_info.breite}} data-video-width="{{datei_info.breite}}" data-video-height="{{datei_info.hoehe}}"{{/datei_info.breite}}>
+        <button type="button" class="video-start">
+          <img{{#vorschau_bild_info.srcset}} srcset="{{vorschau_bild_info.srcset}}" sizes="(max-width: 880px) 92vw, (max-width: 1100px) 46vw, 29vw"{{/vorschau_bild_info.srcset}} src="{{vorschau_bild_info.quelle}}" width="{{vorschau_bild_info.breite}}" height="{{vorschau_bild_info.hoehe}}" loading="lazy" decoding="async" alt="{{bildtext}}">
+          <span class="video-play" aria-hidden="true"></span>
+          <span class="video-label">{{knopf}}</span>
+        </button>
+      </div>
+      <noscript>
+        <video controls playsinline preload="none" width="{{datei_info.breite}}" height="{{datei_info.hoehe}}" poster="{{vorschau_bild_info.quelle}}">
+{{#datei_info.webm}}
+          <source src="{{datei_info.webm}}" type="video/webm">
+{{/datei_info.webm}}
+{{#datei_info.mp4}}
+          <source src="{{datei_info.mp4}}" type="video/mp4">
+{{/datei_info.mp4}}
+          <p>{{beschriftungen.video_fehlt}} <a href="{{datei_info.download}}">{{beschriftungen.video_herunterladen}}</a></p>
+        </video>
+      </noscript>
+{{/video}}
+{{^video}}
+      <img{{#bild_info.srcset}} srcset="{{bild_info.srcset}}" sizes="(max-width: 880px) 92vw, (max-width: 1100px) 46vw, 29vw"{{/bild_info.srcset}}{{#bild_ausschnitt}} class="{{bild_ausschnitt}}"{{/bild_ausschnitt}} src="{{bild_info.quelle}}" width="{{bild_info.breite}}" height="{{bild_info.hoehe}}" loading="lazy" alt="{{bildtext}}">
+{{/video}}
+      <div class="play-body">
+        <div class="meta">{{#etiketten}}<span>{{.}}</span>{{/etiketten}}</div>
+{{#titel_bild}}
+        <h3 class="lettering"><img src="{{titel_bild_info.quelle}}" alt="{{titel}}" width="{{titel_bild_info.breite}}" height="{{titel_bild_info.hoehe}}"></h3>
+{{/titel_bild}}
+{{^titel_bild}}
+        <h3>{{&titel}}</h3>
+{{/titel_bild}}
+        <p{{#gedicht}} class="lines"{{/gedicht}}>{{&einleitung}}</p>
+{{#mehr?}}
+        <details>
+          <summary>{{beschriftungen.mehr_zum_stueck}}</summary>
+{{#mehr}}
+          <p>{{&.}}</p>
+{{/mehr}}
+{{#technik}}
+          <p class="tech">{{&technik}}</p>
+{{/technik}}
+{{#anfrage}}
+          <a class="text-link mail" data-subject="{{betreff}}" href="#kontakt">{{beschriftung}}</a>
+{{/anfrage}}
+        </details>
+{{/mehr?}}
+      </div>
+    </article>
+
+{{/liste}}
+  </div>
+</section>
+{{/stuecke}}
+
+<!-- ÜBER UNS -->
+{{#ueber_uns}}
+<section class="about section" id="ueber-uns">
+  <div class="about-photo">
+    <img{{#bild_info.srcset}} srcset="{{bild_info.srcset}}" sizes="(max-width: 880px) 92vw, 40vw"{{/bild_info.srcset}} src="{{bild_info.quelle}}" width="{{bild_info.breite}}" height="{{bild_info.hoehe}}" loading="lazy" alt="{{bildtext}}">
+  </div>
+  <div class="about-copy">
+    <p class="eyebrow">{{vorspann}}</p>
+    <h2>{{&titel}}</h2>
+{{#absaetze}}
+    <p>{{&.}}</p>
+{{/absaetze}}
+{{#mitgliedschaft}}
+    <p class="membership">{{&mitgliedschaft}}</p>
+{{/mitgliedschaft}}
+{{#team?}}
+    <h3 class="team-head">{{team_titel}}</h3>
+    <ul class="team">
+{{#team}}
+      <li><strong>{{name}}</strong>{{#aufgabe}}<span>{{aufgabe}}</span>{{/aufgabe}}</li>
+{{/team}}
+    </ul>
+{{/team?}}
+{{#link}}
+    <a class="text-link" href="{{ziel}}">{{beschriftung}} <span aria-hidden="true">↗</span></a>
+{{/link}}
+  </div>
+</section>
+{{/ueber_uns}}
+
+<!-- STIMMEN -->
+{{#stimmen}}
+<section class="section testimonials" id="stimmen">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">{{vorspann}}</p>
+      <h2>{{&titel}}</h2>
+    </div>
+    <p>{{&einleitung}}</p>
+  </div>
+  <div class="quotes">
+{{#liste}}
+    <blockquote>
+      <p>{{&zitat}}</p>
+{{#quelle}}
+      <footer>{{quelle}}</footer>
+{{/quelle}}
+    </blockquote>
+{{/liste}}
+  </div>
+</section>
+{{/stimmen}}
+
+<!-- GALERIE -->
+{{#galerie}}
+<section class="section gallery-section" id="galerie">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">{{vorspann}}</p>
+      <h2>{{&titel}}</h2>
+    </div>
+    <p>{{&einleitung}}</p>
+  </div>
+  <div class="gallery">
+{{#bilder}}
+    <figure><img{{#bild_info.srcset}} srcset="{{bild_info.srcset}}" sizes="(max-width: 880px) 46vw, (max-width: 1100px) 31vw, 22vw"{{/bild_info.srcset}} src="{{bild_info.quelle}}" width="{{bild_info.breite}}" height="{{bild_info.hoehe}}" loading="lazy" alt="{{bildtext}}">{{#unterschrift}}<figcaption>{{unterschrift}}</figcaption>{{/unterschrift}}</figure>
+{{/bilder}}
+  </div>
+{{#plakate?}}
+  <div class="posters">
+{{#plakate}}
+    <img{{#bild_info.srcset}} srcset="{{bild_info.srcset}}" sizes="(max-width: 880px) 46vw, (max-width: 1100px) 31vw, 22vw"{{/bild_info.srcset}} src="{{bild_info.quelle}}" width="{{bild_info.breite}}" height="{{bild_info.hoehe}}" loading="lazy" alt="{{bildtext}}">
+{{/plakate}}
+  </div>
+{{/plakate?}}
+</section>
+{{/galerie}}
+
+<!-- ABLAUF -->
+{{#ablauf}}
+<section class="section practical" id="ablauf">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">{{vorspann}}</p>
+      <h2>{{&titel}}</h2>
+    </div>
+    <p>{{&einleitung}}</p>
+  </div>
+  <div class="steps">
+{{#schritte}}
+    <article><span class="step-number">{{_nummer}}</span><h3>{{titel}}</h3><p>{{&text}}</p></article>
+{{/schritte}}
+  </div>
+{{#fragen}}
+  <details class="faq"><summary>{{frage}}</summary><p>{{&antwort}}</p></details>
+{{/fragen}}
+</section>
+{{/ablauf}}
+
+<!-- KONTAKT -->
+{{#kontakt}}
+<section class="contact section" id="kontakt">
+  <div>
+    <p class="eyebrow">{{vorspann}}</p>
+    <h2>{{&titel}}</h2>
+    <p>{{&einleitung}}</p>
+{{#knopf}}
+    <a class="button light mail" data-subject="{{betreff}}" data-body="{{text}}" href="#kontakt">{{beschriftung}} <span aria-hidden="true">↗</span></a>
+{{/knopf}}
+  </div>
+  <div class="contact-details">
+    <p class="eyebrow">{{ansprechpartner_vorspann}}</p>
+    <h3>{{name}}</h3>
+{{#telefon}}
+    <a class="phone" href="tel:{{telefon_link}}">{{telefon}}</a>
+{{/telefon}}
+{{#email}}
+    <a class="mail email-text" href="#kontakt"><span class="mail-user">{{email_name}}</span> (at) <span class="mail-domain">{{email_domain}}</span></a>
+{{/email}}
+    <p class="address">{{adresse}}</p>
+    <p>{{&hinweis}}</p>
+  </div>
+</section>
+{{/kontakt}}
+
+</main>
+
+<footer>
+  <a class="footer-brand" href="#"><img src="assets/logo-blume.png" alt="" width="239" height="450"><span class="brand-text">Puppentheater <strong>Wunderlich</strong></span></a>
+  <span>{{fuss.spruch}}</span>
+  <div>
+{{#fuss.links}}
+    <a href="{{ziel}}"{{#ziel_extern}} target="_blank" rel="noopener noreferrer"{{/ziel_extern}}>{{beschriftung}}</a>
+{{/fuss.links}}
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
