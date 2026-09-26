@@ -5,8 +5,8 @@
 #     Source: "Deploy from a branch"
 #     Branch: "gh-pages", Ordner "/ (root)"
 #
-# Bei jedem Push auf main werden zuerst die Inhalte aus inhalt.yaml in
-# index.html eingesetzt; danach wird der Inhalt des Repositories in den Branch
+# Bei jedem Push auf main entsteht zuerst index.html aus vorlage.html und
+# inhalt.yaml; danach wird der Inhalt des Repositories in den Branch
 # gh-pages kopiert und erscheint unter
 #   https://valleeh.github.io/puppentheater-wunderlich/
 #
@@ -42,8 +42,14 @@ jobs:
       - name: PyYAML installieren
         run: pip install pyyaml
 
-      - name: Inhalte aus inhalt.yaml in index.html einsetzen
+      - name: index.html aus vorlage.html und inhalt.yaml bauen
         run: python3 werkzeuge/seite_bauen.py
+
+      # Nur zur Warnung: Weicht die Vorschau der Editor-Seite ab, wird trotzdem
+      # veröffentlicht – im Pull Request fällt so etwas vorher schon auf.
+      - name: Prüfen, ob die Editor-Seite dieselbe Seite baut
+        continue-on-error: true
+        run: node werkzeuge/gleichlauf_pruefen.js
 
       # Damit index.html im Repository nicht hinter inhalt.yaml zurückbleibt –
       # so bleibt die Datei auch zum Hochladen auf eigenen Webspace brauchbar.
@@ -52,10 +58,10 @@ jobs:
       - name: Erzeugte index.html zurückschreiben
         continue-on-error: true
         run: |
-          if [ -n "$(git status --porcelain index.html)" ]; then
+          if [ -n "$(git status --porcelain index.html assets/medien.json)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add index.html
+            git add index.html assets/medien.json
             git commit -m "index.html aus inhalt.yaml erzeugt"
             git push origin HEAD:main
           fi

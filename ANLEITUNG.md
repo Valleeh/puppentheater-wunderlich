@@ -1,7 +1,7 @@
 # Inhalte selbst ändern
 
-Diese Anleitung ist für alle, die Termine, Stimmen oder das Team auf der
-Website ändern möchten – ohne HTML, ohne Programme zu installieren.
+Diese Anleitung ist für alle, die Texte auf der Website ändern möchten – ohne
+HTML, ohne Programme zu installieren.
 
 Zum Ändern reicht ein Browser und ein GitHub-Konto. Wer noch keins hat:
 kostenlos auf <https://github.com> anlegen und Bescheid geben – das Konto
@@ -9,11 +9,16 @@ muss einmalig für die Website freigeschaltet werden.
 
 ## Was sich hier ändern lässt
 
-| Geht selbst | Bitte melden |
-| --- | --- |
-| Termine: hinzufügen, ändern, löschen, umsortieren | Neue Stücke und deren Beschreibungen |
-| Stimmen von Kitas, Schulen, Veranstaltern | Fotos und Plakate |
-| Namen und Aufgaben im Team | Alle übrigen Texte, Farben, Aufbau der Seite |
+**Jeder Text auf der Startseite** – vom Titel im Browser-Tab über die Termine,
+Stücke und Bühnenprojekte bis zur Fußzeile. Überall, wo es mehrere gleiche
+Dinge gibt (Termine, Stücke, Absätze, Fotos in der Galerie, Menüpunkte, Fragen
+…), lassen sich Einträge **hinzufügen, löschen und umsortieren**.
+
+Bilder lassen sich aus allen Fotos auswählen, die schon auf der Website
+liegen. Ein **neues** Foto muss erst hochgeladen werden – siehe unten.
+
+Nicht hier, sondern bitte melden: Farben, Schriften, Aufbau der Seite, und
+das Impressum.
 
 ## Der Weg über die Editor-Seite
 
@@ -21,16 +26,27 @@ muss einmalig für die Website freigeschaltet werden.
 
 <https://puppentheater-wunderlich.de/bearbeiten.html>
 
-Am besten gleich als Lesezeichen speichern. Links stehen die Felder, rechts
-die Vorschau der echten Website. Mit den Knöpfen **Handy** und **Rechner**
-lässt sich umschalten, wie die Seite später aussieht.
+Am besten gleich als Lesezeichen speichern. Oben steht eine Leiste mit den
+Abschnitten der Website (Termine, Stücke, Galerie …), darunter die Felder,
+rechts die Vorschau der echten Website. Mit den Knöpfen **Handy** und
+**Rechner** lässt sich umschalten, wie die Seite später aussieht.
 
 **2. Ändern**
 
-In die Felder schreiben, was drinstehen soll. Mit **+ Termin hinzufügen**
-kommt ein neuer Termin dazu, mit **↑ ↓** wandert eine Karte nach oben oder
-unten, mit **löschen** verschwindet sie. Ein Feld, das leer bleibt, fällt auf
-der Website einfach weg.
+Oben den Abschnitt anklicken, dann in die Felder schreiben, was drinstehen
+soll. Einträge in Listen sind zugeklappt – ein Klick auf den Titel klappt sie
+auf. Mit **+ … hinzufügen** kommt ein neuer Eintrag dazu, mit **↑ ↓** wandert
+er nach oben oder unten, mit **löschen** verschwindet er. Ein Feld, das leer
+bleibt, fällt auf der Website einfach weg.
+
+Ein paar Zeichen haben eine besondere Wirkung (steht auch über den Feldern):
+
+| So schreiben | So erscheint es |
+| --- | --- |
+| Neue Zeile mit Enter | ein Zeilenumbruch |
+| `*Geschichten*` | *Geschichten* – in großen Überschriften rot |
+| `**Liederliste:**` | **Liederliste:** |
+| `[Programm](https://beispiel.de)` | ein Link mit dem Wort „Programm“ |
 
 Die Vorschau rechts zieht kurz nach jeder Änderung mit. Wenn sie einmal
 stehen bleibt: auf **neu laden** klicken.
@@ -62,6 +78,18 @@ mit der Änderung – noch nicht öffentlich, nur zum Anschauen.
 Passt alles? Dann Bescheid geben. Nach dem Übernehmen („Merge“) ist die
 Änderung ein paar Minuten später auf
 <https://puppentheater-wunderlich.de/> zu sehen.
+
+## Ein neues Foto
+
+1. Das Foto bei GitHub hochladen: im Ordner `assets` auf **„Add file“ →
+   „Upload files“**, das Foto hineinziehen und unten mit
+   **„Commit changes“** bestätigen. Am besten vorher einen kurzen Namen
+   ohne Leerzeichen und Umlaute geben, z. B. `kasperl-winter.jpg`.
+2. Nach ein paar Minuten steht es in der Editor-Seite in jeder Bildauswahl
+   zur Verfügung (Seite neu laden).
+
+Fotos direkt vom Handy sind oft sehr groß. Für eine schnelle Website lohnt es
+sich, sie vorher verkleinern zu lassen – im Zweifel einfach schicken.
 
 ## Der kurze Weg für Tippfehler
 

@@ -6,13 +6,16 @@ Statische Website für das [Puppentheater Wunderlich](https://puppentheater-wund
 
 | Datei | Inhalt |
 | --- | --- |
-| `index.html` | Startseite mit allen Stücken, Bühnenprojekten, Team, Stimmen, Galerie, Ablauf und Kontakt |
-| `inhalt.yaml` | Termine, Stimmen und Team als reiner Text – die Inhalte, die sich oft ändern |
+| `index.html` | Startseite – **wird erzeugt**, nicht von Hand ändern |
+| `vorlage.html` | Aufbau der Startseite, mit Platzhaltern statt Text |
+| `inhalt.yaml` | sämtliche Texte der Startseite, Bildnamen und Links |
 | `impressum.html` | Impressum und Datenschutzerklärung |
 | `style.css` | Gestaltung (Farben aus dem Blumen-Logo) |
 | `script.js` | Mobiles Menü, Kopfzeile, Videos und Zusammensetzen der E-Mail-Adresse |
-| `bearbeiten.html`, `bearbeiten.css`, `bearbeiten.js` | Editor-Seite: Felder statt HTML, mit Vorschau der echten Website |
-| `werkzeuge/seite_bauen.py` | setzt die Inhalte aus `inhalt.yaml` in `index.html` ein |
+| `bearbeiten.html`, `bearbeiten.css`, `bearbeiten.js` | Editor-Seite: jeder Text als Feld, Listen zum Hinzufügen/Sortieren/Löschen, Vorschau der echten Website |
+| `bearbeiten-kern.js` | YAML lesen/schreiben und Vorlage ausfüllen – im Browser und in Node |
+| `werkzeuge/seite_bauen.py` | baut `index.html` aus `vorlage.html` und `inhalt.yaml`, schreibt dabei `assets/medien.json` |
+| `werkzeuge/gleichlauf_pruefen.js` | prüft, dass Editor-Vorschau und `seite_bauen.py` dieselbe Seite bauen |
 | `ANLEITUNG.md` | Schritt-für-Schritt-Anleitung zum Ändern der Inhalte, ohne Vorkenntnisse |
 | `assets/` | Logo, Favicons und optimierte Fotos |
 
@@ -20,36 +23,49 @@ Keine Build-Schritte im klassischen Sinn, keine Abhängigkeiten im Browser: Die 
 
 ## Inhalte ändern
 
-`index.html` bleibt die Seite, wie sie ausgeliefert wird – von Hand gepflegt bis auf vier Stellen, die aus `inhalt.yaml` erzeugt werden. Sie sind im HTML eingefasst:
+`index.html` entsteht aus zwei Dateien:
 
-```html
-<!-- inhalt: termine-liste -->
-…erzeugt aus inhalt.yaml…
-<!-- /inhalt: termine-liste -->
-```
+* **`vorlage.html`** – der Aufbau, mit Platzhaltern. Hier ändert man HTML, Klassen und Reihenfolge der Abschnitte.
+* **`inhalt.yaml`** – alle Texte, Listen, Bildnamen und Links. Das ist die Datei, die die Editor-Seite schreibt.
 
-Es gibt die Abschnitte `termine-kopf`, `termine-liste`, `stimmen-liste` und `team-liste`. Alles außerhalb der Markierungen bleibt unberührt.
-
-Neu erzeugen:
+Neu bauen:
 
 ```sh
-pip install pyyaml                      # einmalig
-python3 werkzeuge/seite_bauen.py        # index.html neu schreiben
-python3 werkzeuge/seite_bauen.py --pruefen   # nur prüfen, ob beides zusammenpasst
+pip install pyyaml                           # einmalig
+python3 werkzeuge/seite_bauen.py             # index.html und assets/medien.json neu schreiben
+python3 werkzeuge/seite_bauen.py --pruefen   # nur prüfen, ob alles aktuell ist
+node werkzeuge/gleichlauf_pruefen.js         # Editor und Python bauen dieselbe Seite?
 ```
 
-Auf GitHub passiert das von selbst: Bei jedem Push auf `main` wird `index.html` erzeugt, ins Repository zurückgeschrieben und veröffentlicht. Für Pull Requests wird sie nur für die Vorschau erzeugt.
+Auf GitHub passiert das von selbst: Bei jedem Push auf `main` wird gebaut, das Ergebnis ins Repository zurückgeschrieben und veröffentlicht. Für Pull Requests wird nur für die Vorschau gebaut, dort muss auch der Gleichlauf-Check grün sein.
+
+### Die Vorlagensprache
+
+Bewusst klein, angelehnt an Mustache – die vollständige Beschreibung steht oben in `werkzeuge/seite_bauen.py`:
+
+| Schreibweise | Bedeutung |
+| --- | --- |
+| `{{feld}}` | Text, HTML-sicher |
+| `{{&feld}}` | Text mit Auszeichnung: `[Wort](Adresse)`, `*kursiv*`, `**fett**`, Zeilenumbruch → `<br>` |
+| `{{#feld}}…{{/feld}}` | Liste: einmal je Eintrag; sonst nur, wenn das Feld etwas enthält |
+| `{{#feld?}}…{{/feld?}}` | nur, wenn das Feld etwas enthält – auch bei Listen nur einmal |
+| `{{^feld}}…{{/feld}}` | nur, wenn das Feld leer ist |
+| `_letzter`, `_gerade`, `_nummer` | in Listen: letzter Eintrag, 2./4./… Eintrag, „01“, „02“ … |
+
+Bilder stehen in `inhalt.yaml` nur mit Namen (`bild: "kasperl"`). Maße, Größenvarianten (`kasperl-480.jpg`, `kasperl-800.jpg`) und ein Fingerabdruck gegen veraltete Browser-Caches (`?v=…`) kommen beim Bauen aus `assets/` dazu – ein ausgetauschtes Foto ist also sofort überall frisch. Ebenso Video-Dateien und -Maße.
+
+**Neues Feld in der Vorlage?** Dann gehört es auch in `ABSCHNITTE` in `bearbeiten.js`, sonst taucht es im Editor nicht auf (in `inhalt.yaml` bleibt es trotzdem erhalten).
 
 ### Editor-Seite
 
-`bearbeiten.html` zeigt `inhalt.yaml` als Formular, daneben eine Vorschau der echten Seite, und schreibt am Ende die Datei wieder – zum Kopieren oder Herunterladen. Sie läuft ohne Server und ohne Abhängigkeiten, braucht aber eine `http://`-Adresse, weil sie `inhalt.yaml` und `index.html` nachlädt:
+`bearbeiten.html` lädt `inhalt.yaml`, `vorlage.html` und `assets/medien.json`, zeigt jeden Text als Feld und baut daneben die fertige Seite als Vorschau – mit demselben Ergebnis wie `seite_bauen.py` (das prüft `gleichlauf_pruefen.js`). Am Ende schreibt sie `inhalt.yaml` zum Kopieren oder Herunterladen; Kommentare in der Datei bleiben erhalten. Kein Server, keine Abhängigkeiten, aber eine `http://`-Adresse ist nötig:
 
 * veröffentlicht unter <https://puppentheater-wunderlich.de/bearbeiten.html>,
 * lokal mit `python3 -m http.server` im Projektverzeichnis und dann <http://localhost:8000/bearbeiten.html>.
 
-Die Seite ändert nichts von allein; der fertige Text wird bei GitHub eingefügt. Sie ist für Suchmaschinen gesperrt (`noindex`).
+Die Seite ändert nichts von allein und ist für Suchmaschinen gesperrt (`noindex`).
 
-Wichtig beim Weiterentwickeln: `werkzeuge/seite_bauen.py` (Funktionen `termine_liste` und Nachbarn) und `bearbeiten.js` (Funktion `abschnitte`) erzeugen dasselbe HTML. Wer das eine ändert, ändert auch das andere.
+`impressum.html` ist bewusst nicht dabei – Rechtstext, der selten und nur mit Bedacht geändert wird.
 
 ## Veröffentlichung über GitHub Pages
 

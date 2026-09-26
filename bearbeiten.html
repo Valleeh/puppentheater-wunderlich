@@ -13,9 +13,11 @@
 <header class="kopf">
   <a class="zurueck" href="index.html">← zur Website</a>
   <h1>Inhalte bearbeiten</h1>
-  <p class="einleitung">Hier lassen sich <strong>Termine</strong>, <strong>Stimmen</strong> und das <strong>Team</strong> ändern – ohne HTML. Rechts (auf dem Handy gleich hier oben) steht die Vorschau. Wenn alles passt: ganz unten weiter zum Schritt „Speichern“.</p>
+  <p class="einleitung">Hier lässt sich jeder Text der Website ändern – ohne HTML. Oben einen Abschnitt wählen, in den Feldern ändern, rechts (auf dem Handy gleich hier oben) in der Vorschau nachsehen. Wenn alles passt: ganz unten weiter zum Schritt „Speichern“.</p>
   <p class="status" id="status" role="status">Inhalte werden geladen …</p>
 </header>
+
+<nav class="reiter" id="reiter" aria-label="Abschnitte der Website"></nav>
 
 <div class="werkstatt">
 
@@ -29,29 +31,7 @@
       </p>
     </div>
 
-    <section class="gruppe" id="gruppe-termine" data-abschnitt="termine">
-      <h2>Termine</h2>
-      <p class="gruppe-text">Überschrift und Einleitung des Termin-Abschnitts.</p>
-      <div class="einzelfelder" data-felder="termine"></div>
-      <h3>Die Vorstellungen</h3>
-      <p class="gruppe-text">Der oberste Termin steht auf der Website links, danach geht es nach rechts weiter. Ein Feld, das leer bleibt, fällt auf der Website weg.</p>
-      <div class="karten" data-liste="termine"></div>
-      <button type="button" class="knopf" data-hinzufuegen="termine">+ Termin hinzufügen</button>
-    </section>
-
-    <section class="gruppe" id="gruppe-stimmen" data-abschnitt="stimmen">
-      <h2>Stimmen</h2>
-      <p class="gruppe-text">Rückmeldungen von Kitas, Schulen und Veranstaltern. Die Anführungszeichen „…“ gehören mit in den Text.</p>
-      <div class="karten" data-liste="stimmen"></div>
-      <button type="button" class="knopf" data-hinzufuegen="stimmen">+ Stimme hinzufügen</button>
-    </section>
-
-    <section class="gruppe" id="gruppe-team" data-abschnitt="team">
-      <h2>Team</h2>
-      <p class="gruppe-text">Die Namen im Abschnitt „Wer wir sind“.</p>
-      <div class="karten" data-liste="team"></div>
-      <button type="button" class="knopf" data-hinzufuegen="team">+ Person hinzufügen</button>
-    </section>
+    <section class="gruppe" id="abschnitt"></section>
 
   </div>
 
@@ -64,7 +44,8 @@
         <button type="button" class="knopf still klein" id="vorschau-neu">neu laden</button>
       </div>
     </div>
-    <p class="vorschau-hinweis" id="vorschau-hinweis">Die Vorschau zeigt die echte Seite mit den Änderungen. Sie springt zu dem Abschnitt, an dem gerade gearbeitet wird.</p>
+    <p class="vorschau-hinweis" id="vorschau-hinweis">Die Vorschau zeigt die echte Seite mit den Änderungen und springt zum gewählten Abschnitt.</p>
+    <p class="vorschau-warnung" id="vorschau-warnung" hidden></p>
     <div class="vorschau-buehne" id="vorschau-buehne">
       <iframe id="vorschau-rahmen" title="Vorschau der Website"></iframe>
     </div>
@@ -108,6 +89,7 @@
   <p>Puppentheater Wunderlich · Diese Seite ändert nichts von allein: Sie schreibt nur den Text, der bei GitHub eingefügt wird.</p>
 </footer>
 
+<script src="bearbeiten-kern.js"></script>
 <script src="bearbeiten.js"></script>
 </body>
 </html>
