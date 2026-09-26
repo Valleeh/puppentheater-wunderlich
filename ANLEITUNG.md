@@ -19,7 +19,7 @@ muss einmalig für die Website freigeschaltet werden.
 
 **1. Editor öffnen**
 
-<https://valleeh.github.io/puppentheater-wunderlich/bearbeiten.html>
+<https://puppentheater-wunderlich.de/bearbeiten.html>
 
 Am besten gleich als Lesezeichen speichern. Links stehen die Felder, rechts
 die Vorschau der echten Website. Mit den Knöpfen **Handy** und **Rechner**
@@ -61,7 +61,7 @@ mit der Änderung – noch nicht öffentlich, nur zum Anschauen.
 
 Passt alles? Dann Bescheid geben. Nach dem Übernehmen („Merge“) ist die
 Änderung ein paar Minuten später auf
-<https://valleeh.github.io/puppentheater-wunderlich/> zu sehen.
+<https://puppentheater-wunderlich.de/> zu sehen.
 
 ## Der kurze Weg für Tippfehler
 

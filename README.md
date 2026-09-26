@@ -44,7 +44,7 @@ Auf GitHub passiert das von selbst: Bei jedem Push auf `main` wird `index.html` 
 
 `bearbeiten.html` zeigt `inhalt.yaml` als Formular, daneben eine Vorschau der echten Seite, und schreibt am Ende die Datei wieder – zum Kopieren oder Herunterladen. Sie läuft ohne Server und ohne Abhängigkeiten, braucht aber eine `http://`-Adresse, weil sie `inhalt.yaml` und `index.html` nachlädt:
 
-* veröffentlicht unter <https://valleeh.github.io/puppentheater-wunderlich/bearbeiten.html>,
+* veröffentlicht unter <https://puppentheater-wunderlich.de/bearbeiten.html>,
 * lokal mit `python3 -m http.server` im Projektverzeichnis und dann <http://localhost:8000/bearbeiten.html>.
 
 Die Seite ändert nichts von allein; der fertige Text wird bei GitHub eingefügt. Sie ist für Suchmaschinen gesperrt (`noindex`).
@@ -57,9 +57,7 @@ Zwei Workflows in `.github/workflows/` kümmern sich um die Veröffentlichung:
 
 | Workflow | Was passiert |
 | --- | --- |
-| `pages.yml` | Bei jedem Push auf `main` wird `index.html` aus `inhalt.yaml` erzeugt und die Seite in den Branch `gh-pages` kopiert; sie erscheint unter <https://valleeh.github.io/puppentheater-wunderlich/>. |
+| `pages.yml` | Bei jedem Push auf `main` wird `index.html` aus `inhalt.yaml` erzeugt und die Seite in den Branch `gh-pages` kopiert; sie erscheint unter <https://puppentheater-wunderlich.de/> (bzw. <https://valleeh.github.io/puppentheater-wunderlich/>). |
 | `pr-preview.yml` | Jeder Pull Request bekommt eine eigene Vorschau unter `…/pr-preview/pr-<Nummer>/`. Der Link steht als Kommentar im PR und wird bei jedem Push aktualisiert. Nach dem Merge verschwindet die Vorschau wieder. |
 
-Einmalig einstellen: **Settings → Pages → Build and deployment → Source: „Deploy from a branch“, Branch: `gh-pages`, Ordner `/ (root)`**.
-
-Später kann dort auch die eigene Domain `puppentheater-wunderlich.de` eingetragen werden.
+Einmalig eingestellt: **Settings → Pages → Build and deployment → Source: „Deploy from a branch“, Branch: `gh-pages`, Ordner `/ (root)`**, dazu die eigene Domain `puppentheater-wunderlich.de` (liegt als `CNAME` im Branch `gh-pages`).
