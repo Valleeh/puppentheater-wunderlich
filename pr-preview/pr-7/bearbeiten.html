@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Inhalte bearbeiten · Puppentheater Wunderlich</title>
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+<link rel="stylesheet" href="bearbeiten.css">
+</head>
+<body>
+
+<header class="kopf">
+  <a class="zurueck" href="index.html">← zur Website</a>
+  <h1>Inhalte bearbeiten</h1>
+  <p class="einleitung">Hier lassen sich <strong>Termine</strong>, <strong>Stimmen</strong> und das <strong>Team</strong> ändern – ohne HTML. Rechts (auf dem Handy gleich hier oben) steht die Vorschau. Wenn alles passt: ganz unten weiter zum Schritt „Speichern“.</p>
+  <p class="status" id="status" role="status">Inhalte werden geladen …</p>
+</header>
+
+<div class="werkstatt">
+
+  <div class="formular">
+
+    <div class="entwurf" id="entwurf" hidden>
+      <p><strong>Unfertiger Entwurf gefunden.</strong> <span id="entwurf-zeit"></span> wurde hier schon etwas geändert, aber noch nicht gespeichert.</p>
+      <p>
+        <button type="button" class="knopf" id="entwurf-weiter">Entwurf weiterbearbeiten</button>
+        <button type="button" class="knopf still" id="entwurf-verwerfen">Entwurf verwerfen</button>
+      </p>
+    </div>
+
+    <section class="gruppe" id="gruppe-termine" data-abschnitt="termine">
+      <h2>Termine</h2>
+      <p class="gruppe-text">Überschrift und Einleitung des Termin-Abschnitts.</p>
+      <div class="einzelfelder" data-felder="termine"></div>
+      <h3>Die Vorstellungen</h3>
+      <p class="gruppe-text">Der oberste Termin steht auf der Website links, danach geht es nach rechts weiter. Ein Feld, das leer bleibt, fällt auf der Website weg.</p>
+      <div class="karten" data-liste="termine"></div>
+      <button type="button" class="knopf" data-hinzufuegen="termine">+ Termin hinzufügen</button>
+    </section>
+
+    <section class="gruppe" id="gruppe-stimmen" data-abschnitt="stimmen">
+      <h2>Stimmen</h2>
+      <p class="gruppe-text">Rückmeldungen von Kitas, Schulen und Veranstaltern. Die Anführungszeichen „…“ gehören mit in den Text.</p>
+      <div class="karten" data-liste="stimmen"></div>
+      <button type="button" class="knopf" data-hinzufuegen="stimmen">+ Stimme hinzufügen</button>
+    </section>
+
+    <section class="gruppe" id="gruppe-team" data-abschnitt="team">
+      <h2>Team</h2>
+      <p class="gruppe-text">Die Namen im Abschnitt „Wer wir sind“.</p>
+      <div class="karten" data-liste="team"></div>
+      <button type="button" class="knopf" data-hinzufuegen="team">+ Person hinzufügen</button>
+    </section>
+
+  </div>
+
+  <aside class="vorschau" id="vorschau-spalte">
+    <div class="vorschau-kopf">
+      <h2>Vorschau</h2>
+      <div class="vorschau-knoepfe">
+        <button type="button" class="knopf still klein" data-breite="handy" aria-pressed="true">Handy</button>
+        <button type="button" class="knopf still klein" data-breite="rechner" aria-pressed="false">Rechner</button>
+        <button type="button" class="knopf still klein" id="vorschau-neu">neu laden</button>
+      </div>
+    </div>
+    <p class="vorschau-hinweis" id="vorschau-hinweis">Die Vorschau zeigt die echte Seite mit den Änderungen. Sie springt zu dem Abschnitt, an dem gerade gearbeitet wird.</p>
+    <div class="vorschau-buehne" id="vorschau-buehne">
+      <iframe id="vorschau-rahmen" title="Vorschau der Website"></iframe>
+    </div>
+  </aside>
+
+</div>
+
+<section class="speichern">
+  <h2>Speichern: so kommen die Änderungen auf die Website</h2>
+  <p>Die Änderungen liegen bis jetzt nur in diesem Fenster. Für die Website müssen sie in die Datei <code>inhalt.yaml</code> – das geht in drei Schritten:</p>
+  <ol class="schritte">
+    <li>
+      <h3>Text kopieren</h3>
+      <p>Ein Klick genügt, der gesamte Inhalt landet in der Zwischenablage.</p>
+      <button type="button" class="knopf gross" id="kopieren">Text kopieren</button>
+      <span class="hinweis" id="kopiert" role="status"></span>
+    </li>
+    <li>
+      <h3>Bei GitHub einfügen</h3>
+      <p>Der Knopf öffnet die Datei <code>inhalt.yaml</code> in einem neuen Fenster. Dort im Textfeld <strong>alles markieren</strong> (Strg&nbsp;+&nbsp;A, am Mac ⌘&nbsp;+&nbsp;A) und mit <strong>Strg&nbsp;+&nbsp;V</strong> (⌘&nbsp;+&nbsp;V) den kopierten Text einfügen.</p>
+      <a class="knopf gross" href="https://github.com/Valleeh/puppentheater-wunderlich/edit/main/inhalt.yaml" target="_blank" rel="noopener noreferrer">inhalt.yaml bei GitHub öffnen ↗</a>
+    </li>
+    <li>
+      <h3>Änderung vorschlagen</h3>
+      <p>Oben rechts auf <strong>„Commit changes…“</strong> klicken, im Fenster <strong>„Create a new branch for this commit and start a pull request“</strong> auswählen und mit <strong>„Propose changes“</strong> bestätigen. Danach entsteht automatisch eine Vorschau-Seite zum Anschauen, und die Änderung kann übernommen werden.</p>
+    </li>
+  </ol>
+  <details class="ausweichweg">
+    <summary>Kein GitHub zur Hand? Datei herunterladen und verschicken</summary>
+    <p>Die Datei speichern und per E-Mail schicken – der Rest passiert dann am anderen Rechner.</p>
+    <p><button type="button" class="knopf" id="herunterladen">inhalt.yaml herunterladen</button></p>
+  </details>
+  <details class="ausweichweg">
+    <summary>Den Text hier ansehen</summary>
+    <p>So sieht der Inhalt aus, der kopiert wird. Änderungen bitte oben in den Feldern machen – dieses Feld dient nur zum Nachschauen.</p>
+    <textarea id="yaml" readonly spellcheck="false" aria-label="Inhalt der Datei inhalt.yaml"></textarea>
+  </details>
+</section>
+
+<footer class="fuss">
+  <p>Puppentheater Wunderlich · Diese Seite ändert nichts von allein: Sie schreibt nur den Text, der bei GitHub eingefügt wird.</p>
+</footer>
+
+<script src="bearbeiten.js"></script>
+</body>
+</html>

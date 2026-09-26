@@ -1,0 +1,127 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Inhalte der Website – hier stehen die Texte, die sich am häufigsten ändern:
+# die Termine, die Stimmen von Kitas und Schulen und das Team.
+#
+# Zwei Wege, diese Datei zu ändern:
+#   • bequem über die Editor-Seite bearbeiten.html – dort gibt es Felder,
+#     Knöpfe und eine Vorschau (Schritt für Schritt in ANLEITUNG.md), oder
+#   • direkt hier im Text.
+#
+# Wenn hier direkt getippt wird:
+#   • Die Einrückung mit Leerzeichen bleibt, wie sie ist – keine Tabulatoren.
+#   • Jeder Text steht zwischen "geraden Anführungszeichen". Deutsche
+#     Anführungszeichen „so“ dürfen mitten im Text stehen, ein gerades "
+#     dagegen muss als \" geschrieben werden.
+#   • Ein Feld, das leer bleiben soll, bekommt "" – die Zeile fällt dann auf
+#     der Website weg.
+#   • Aus [Bürgersinfonie-Orchester](http://buergersinfonie.de/) wird auf der
+#     Website ein Link.
+#
+# Aus dieser Datei entsteht die fertige index.html (werkzeuge/seite_bauen.py).
+# Das macht GitHub nach dem Speichern von selbst.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Der Termin-Abschnitt oben auf der Startseite.
+termine:
+  vorspann: "Termine im November 2026"
+  titel: "Geschichte eines"
+  titel_betont: "Nussknackers"
+  einleitung: "Nach Alexandre Dumas, mit der Musik von Pjotr Iljitsch Tschaikowski. Vier öffentliche Vorstellungen für Familien mit Kindern – in Berlin gemeinsam mit dem [Bürgersinfonie-Orchester](http://buergersinfonie.de/konzerte-2026/)."
+
+  # Die einzelnen Vorstellungen, von oben nach unten. Ein Termin verschwindet
+  # von der Website, wenn sein Block hier gelöscht wird. Die Felder:
+  #   etikett     – kleine Zeile über dem Datum, z. B. "Premiere"
+  #   wochentag   – z. B. "Samstag"
+  #   datum       – z. B. "7. November 2026"
+  #   uhrzeit     – z. B. "16:00 Uhr"
+  #   besetzung   – z. B. "Mit dem Bürgersinfonie-Orchester"
+  #   zusatz      – eine zusätzliche Zeile, z. B. "Kurzfassung für Kinder"
+  #   eintritt    – z. B. "15 € · Kinder 7–12 Jahre 7 €"
+  #   ort         – Name des Hauses
+  #   ort_link    – Internetseite des Hauses ("" = kein Link)
+  #   adresse     – Straße, Postleitzahl und Ort
+  #   hervorheben – true stellt die Karte farbig heraus, sonst false
+  liste:
+    - etikett: "Voraufführung"
+      wochentag: "Sonntag"
+      datum: "1. November 2026"
+      uhrzeit: "16:00 Uhr"
+      besetzung: "Mit Live-Musik am Piano"
+      zusatz: ""
+      eintritt: "wird noch bekannt gegeben"
+      ort: "Kulturhaus Steinfurth"
+      ort_link: "https://kulturhaus-steinfurth.de/"
+      adresse: "Steinfurth 15, 17495 Karlsburg"
+      hervorheben: false
+
+    - etikett: "Premiere"
+      wochentag: "Samstag"
+      datum: "7. November 2026"
+      uhrzeit: "16:00 Uhr"
+      besetzung: "Mit dem Bürgersinfonie-Orchester"
+      zusatz: ""
+      eintritt: "15 € · Kinder 7–12 Jahre 7 €"
+      ort: "Humboldt-Haus"
+      ort_link: ""
+      adresse: "Warnitzer Str. 13, 13057 Berlin"
+      hervorheben: true
+
+    - etikett: "Für die Kleinen"
+      wochentag: "Sonntag"
+      datum: "8. November 2026"
+      uhrzeit: "11:00 Uhr"
+      besetzung: "Mit dem Bürgersinfonie-Orchester"
+      zusatz: "Kurzfassung für Kinder im Vor- und Grundschulalter"
+      eintritt: "10 € · Kinder 5 €"
+      ort: "Mensa, Campus Berlin-Buch"
+      ort_link: ""
+      adresse: "Robert-Rössle-Str. 10, 13125 Berlin"
+      hervorheben: false
+
+    - etikett: "Weitere Vorstellung"
+      wochentag: "Sonntag"
+      datum: "8. November 2026"
+      uhrzeit: "16:00 Uhr"
+      besetzung: "Mit dem Bürgersinfonie-Orchester"
+      zusatz: ""
+      eintritt: "15 € · Kinder 7–12 Jahre 7 €"
+      ort: "Mensa, Campus Berlin-Buch"
+      ort_link: ""
+      adresse: "Robert-Rössle-Str. 10, 13125 Berlin"
+      hervorheben: false
+
+# Stimmen von Kitas, Schulen und Veranstaltern. „quelle“ ist die Zeile unter
+# dem Zitat, z. B. "Kindergarten München · „Glücklich im Park“".
+stimmen:
+  - zitat: "„Das Puppentheater Wunderlich hat alle Kinder und das pädagogische Team verzaubert. Die Kinderaugen haben gefunkelt und durch die Vielzahl an Kinderliedern war die Stimmung im Publikum groß. Es war eine wunderschöne interaktive Besonderheit.“"
+    quelle: "Kita München · „Glücklich im Park“"
+
+  - zitat: "„Auch noch mal an euch ein großes Dankeschön. Die Kinder haben den ganzen Tag davon erzählt und auch zuhause noch einige Szenen nachgespielt.“"
+    quelle: "Kindergarten München"
+
+  - zitat: "“We had a lot of fun with the puppet theater Wunderlich, the play was very interactive and engaging. The songs were great to sing along with and the children could follow the story well. Many thanks!”"
+    quelle: "Kids München"
+
+  - zitat: "„Die Vorstellung ist rundum gelungen. Klein und Groß hatten ihren Spaß dabei. Besonders gelobt wurde das Bühnenbild und dass die Kinder mit einbezogen waren. Die Kinder mochten vor allem den Sternenstaub zum Schluss und haben ihn gehütet wie einen Schatz.“"
+    quelle: "Kindergarten Mühldorf · „Der Stern“"
+
+  - zitat: "„Die Vorstellung ‚Glücklich im Park‘ war einfach zauberhaft! Die liebevoll gestaltete Bühne als auch die interaktive Darbietung haben die kleinen Zuschauerinnen und Zuschauer im Alter von drei bis sechs Jahren restlos begeistert und für strahlende Augen gesorgt.“"
+    quelle: "Kindergarten Waldtrudering · „Glücklich im Park“"
+
+  - zitat: "„Die Kinder fühlten sich aufgehoben und durch viele Mutmach-Möglichkeiten folgten sie der Sternengeschichte sehr aktiv und mit großer Aufmerksamkeit. Im anschließenden Gespräch war zu bemerken, dass die Kinder von der Geschichte sehr bewegt waren.“"
+    quelle: "Kita St. Martin, Kastl · „Der Stern“"
+
+# Das Team im Abschnitt „Wer wir sind“: Name und Aufgabe.
+team:
+  - name: "Maria Pieper"
+    aufgabe: "Puppenspiel, Text, Kostüm, Bühnenbild"
+  - name: "Brigitte Largeteau"
+    aufgabe: "Spiel, Text, Choreographie, Regie"
+  - name: "Barbara Buck"
+    aufgabe: "Tanz, Choreographie, Spiel"
+  - name: "Thomas Pötzsch"
+    aufgabe: "Schauspiel und Regie"
+  - name: "Mathias Bartoszewski"
+    aufgabe: "Spiel, Bühnenbild, Bühnenbau, Technik"
+  - name: "Adrian Wittmann"
+    aufgabe: "Theaterwerkstatt"

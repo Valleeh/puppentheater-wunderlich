@@ -1,0 +1,270 @@
+/* ==========================================================================
+   Puppentheater Wunderlich – Werkstatt (bearbeiten.html)
+   Bewusst schlicht und großzügig: Felder, Knöpfe, Vorschau.
+   Die Farben kommen aus style.css, damit beides zusammengehört.
+   ========================================================================== */
+
+:root {
+  --blue: #16368f;
+  --blue-dark: #0b2470;
+  --ink: #202b47;
+  --red: #d0111f;
+  --paper: #faf9f5;
+  --paper-2: #eaf0f8;
+  --line: #d8dce5;
+  --muted: #596479;
+  --gruen: #2b7b00;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; margin-top: 0; }
+h1 { font-size: clamp(30px, 4vw, 44px); margin: 0 0 12px; letter-spacing: -1px; }
+h2 { font-size: 26px; margin: 0 0 8px; }
+h3 { font-size: 20px; margin: 28px 0 6px; }
+p { margin: 0 0 14px; }
+code { background: var(--paper-2); padding: 2px 6px; border-radius: 5px; font-size: 15px; }
+
+a { color: var(--blue); }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible {
+  outline: 3px solid #f1af31;
+  outline-offset: 3px;
+}
+
+/* --- Kopf ----------------------------------------------------------------- */
+
+.kopf {
+  background: var(--blue);
+  color: white;
+  padding: 26px clamp(18px, 4vw, 48px) 30px;
+}
+.kopf h1 { color: white; }
+.kopf .einleitung { max-width: 62ch; color: #dbe4f7; }
+.kopf .einleitung strong { color: white; }
+.zurueck {
+  display: inline-block;
+  color: #c3d2f2;
+  text-decoration: none;
+  font-size: 15px;
+  margin-bottom: 18px;
+}
+.zurueck:hover { color: white; }
+
+.status {
+  display: inline-block;
+  margin: 6px 0 0;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .14);
+  color: white;
+  font-size: 15px;
+}
+.status.fehler { background: var(--red); }
+
+/* --- Zwei Spalten --------------------------------------------------------- */
+
+.werkstatt {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+  gap: clamp(20px, 3vw, 44px);
+  align-items: start;
+  padding: clamp(20px, 3vw, 40px) clamp(18px, 4vw, 48px);
+  max-width: 1500px;
+}
+
+.gruppe {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: clamp(18px, 2.4vw, 30px);
+  margin-bottom: 26px;
+}
+.gruppe-text { color: var(--muted); font-size: 15px; max-width: 62ch; }
+
+/* --- Felder --------------------------------------------------------------- */
+
+.feld { margin-bottom: 14px; }
+.feld label { display: block; font-size: 14px; font-weight: 650; letter-spacing: .2px; margin-bottom: 4px; }
+.feld .erklaerung { display: block; font-weight: 400; color: var(--muted); font-size: 13px; }
+
+.feld input[type="text"], .feld textarea {
+  width: 100%;
+  font: inherit;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+  color: inherit;
+}
+.feld input[type="text"]:focus, .feld textarea:focus { background: white; border-color: var(--blue); }
+.feld textarea { min-height: 96px; resize: vertical; line-height: 1.5; }
+
+.feld.schalter { display: flex; align-items: center; gap: 10px; }
+.feld.schalter label { margin: 0; font-weight: 650; }
+.feld.schalter input { width: 22px; height: 22px; accent-color: var(--blue); }
+
+.felder-paar { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+
+/* --- Karten (ein Termin, eine Stimme, eine Person) ------------------------ */
+
+.karte {
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--blue);
+  border-radius: 14px;
+  padding: 16px 18px 6px;
+  margin-bottom: 18px;
+  background: var(--paper);
+}
+.karte.hervor { border-left-color: var(--red); }
+
+.karte-kopf {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 14px;
+  margin-bottom: 12px;
+}
+.karte-titel { font-weight: 650; font-size: 16px; margin: 0; flex: 1 1 200px; }
+.karte-titel span { display: block; font-weight: 400; font-size: 14px; color: var(--muted); }
+.karte-knoepfe { display: flex; gap: 6px; }
+
+.knopf {
+  font: inherit;
+  font-size: 15px;
+  padding: 9px 16px;
+  border: 1px solid var(--blue);
+  border-radius: 999px;
+  background: var(--blue);
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+.knopf:hover { background: var(--blue-dark); border-color: var(--blue-dark); }
+.knopf.still { background: white; color: var(--blue); }
+.knopf.still:hover { background: var(--paper-2); }
+.knopf.klein { padding: 5px 11px; font-size: 14px; }
+.knopf.gross { padding: 12px 22px; font-size: 17px; }
+.knopf.gefahr { border-color: var(--red); color: var(--red); background: white; }
+.knopf.gefahr:hover { background: #fdeceb; }
+.knopf[disabled] { opacity: .4; cursor: default; }
+
+/* --- Vorschau ------------------------------------------------------------- */
+
+.vorschau { position: sticky; top: 20px; }
+.vorschau-kopf { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.vorschau-knoepfe { display: flex; gap: 6px; }
+.vorschau-knoepfe [aria-pressed="true"] { background: var(--blue); color: white; }
+.vorschau-hinweis { color: var(--muted); font-size: 14px; }
+
+/* Die Bühne hält die Größe; im Zustand „Rechner“ wird die Seite in voller
+   Breite gebaut und als Ganzes verkleinert. */
+.vorschau-buehne {
+  position: relative;
+  overflow: hidden;
+  height: min(74vh, 900px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: white;
+}
+#vorschau-rahmen { display: block; width: 100%; height: 100%; border: 0; }
+.vorschau-buehne.rechner #vorschau-rahmen {
+  width: 1240px;
+  height: calc(100% / var(--faktor, 1));
+  transform: scale(var(--faktor, 1));
+  transform-origin: 0 0;
+}
+
+/* --- Speichern ------------------------------------------------------------ */
+
+.speichern {
+  background: white;
+  border-top: 1px solid var(--line);
+  padding: clamp(24px, 4vw, 48px) clamp(18px, 4vw, 48px);
+}
+.speichern > p { max-width: 68ch; }
+
+.schritte { counter-reset: schritt; list-style: none; padding: 0; margin: 24px 0; display: grid; gap: 20px; }
+.schritte > li {
+  counter-increment: schritt;
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px 22px 22px 68px;
+  background: var(--paper);
+  max-width: 78ch;
+}
+.schritte > li::before {
+  content: counter(schritt);
+  position: absolute;
+  left: 20px;
+  top: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: white;
+  font: 600 17px/32px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  text-align: center;
+}
+.schritte h3 { margin: 0 0 6px; font-size: 21px; }
+.schritte p { font-size: 16px; color: var(--muted); }
+.schritte p strong { color: var(--ink); }
+
+.hinweis { margin-left: 12px; font-size: 15px; color: var(--gruen); font-weight: 650; }
+
+.ausweichweg { border-top: 1px solid var(--line); padding: 16px 0 4px; max-width: 78ch; }
+.ausweichweg summary { cursor: pointer; font-weight: 650; }
+.ausweichweg p { color: var(--muted); font-size: 15px; margin-top: 12px; }
+#yaml {
+  width: 100%;
+  min-height: 320px;
+  font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* --- Entwurf-Hinweis ------------------------------------------------------ */
+
+.entwurf {
+  border: 1px solid #f1af31;
+  background: #fdf6e6;
+  border-radius: 14px;
+  padding: 16px 20px 6px;
+  margin-bottom: 22px;
+}
+
+/* --- Fuß ------------------------------------------------------------------ */
+
+.fuss {
+  padding: 22px clamp(18px, 4vw, 48px) 40px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* --- Schmale Fenster ------------------------------------------------------ */
+
+/* Schmales Fenster: die Vorschau rückt über die Felder, damit sie beim
+   Tippen im Blick bleibt – dafür etwas flacher. */
+@media (max-width: 1000px) {
+  .werkstatt { grid-template-columns: 1fr; }
+  .vorschau { position: static; order: -1; margin-bottom: 8px; }
+  .vorschau-buehne { height: 44vh; }
+}
+
+@media (max-width: 560px) {
+  .felder-paar { grid-template-columns: 1fr; }
+  .schritte > li { padding: 60px 18px 20px; }
+  .schritte > li::before { top: 16px; }
+}
