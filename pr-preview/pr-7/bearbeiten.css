@@ -18,6 +18,9 @@
 
 * { box-sizing: border-box; }
 
+/* Platz für die feststehende Reiterleiste, wenn ein Feld in den Blick rückt */
+html { scroll-padding-top: 90px; }
+
 body {
   margin: 0;
   color: var(--ink);
@@ -113,26 +116,97 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .felder-paar { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
 
+/* --- Reiter: ein Knopf je Abschnitt der Website ---------------------------- */
+
+.reiter {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 12px clamp(18px, 4vw, 48px);
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  scrollbar-width: thin;
+}
+.reiter button {
+  flex: 0 0 auto;
+  font: inherit;
+  font-size: 15px;
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: white;
+  color: var(--ink);
+  cursor: pointer;
+}
+.reiter button:hover { border-color: var(--blue); }
+.reiter button[aria-current="true"] { background: var(--blue); border-color: var(--blue); color: white; }
+
+/* --- Gruppen innerhalb eines Abschnitts (z. B. ein Knopf mit zwei Feldern) - */
+
+.untergruppe {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px 16px 2px;
+  margin: 0 0 16px;
+  background: white;
+}
+.untergruppe > legend { font-weight: 650; font-size: 15px; padding: 0 6px; }
+.untergruppe > .erklaerung { display: block; color: var(--muted); font-size: 13px; margin: -2px 0 10px; }
+
+.liste { margin: 22px 0 18px; }
+.liste > h3 { margin: 0 0 4px; font-size: 19px; }
+.liste > .erklaerung { display: block; color: var(--muted); font-size: 14px; margin-bottom: 10px; }
+
+/* Einträge einer Liste aus einfachen Texten (Absätze, Stichworte) */
+.textzeile { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 8px; }
+.textzeile .feld { flex: 1 1 auto; margin: 0; }
+.textzeile .karte-knoepfe { padding-top: 6px; }
+
+/* Bildauswahl mit kleinem Vorschaubild */
+.bildwahl { display: flex; gap: 12px; align-items: center; }
+.bildwahl select { flex: 1 1 auto; }
+.bildwahl img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); background: var(--paper-2); }
+.feld select {
+  width: 100%;
+  font: inherit;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+  color: inherit;
+}
+
+.vorschau-warnung { background: #fdeceb; color: #8a0d16; border-radius: 10px; padding: 8px 12px; font-size: 14px; }
+
 /* --- Karten (ein Termin, eine Stimme, eine Person) ------------------------ */
 
 .karte {
   border: 1px solid var(--line);
   border-left: 5px solid var(--blue);
   border-radius: 14px;
-  padding: 16px 18px 6px;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   background: var(--paper);
 }
-.karte.hervor { border-left-color: var(--red); }
+.karte[open] { padding-bottom: 6px; }
+.karte .karte-inhalt { padding: 4px 18px 0; }
+.karte .karte-inhalt .karte { background: white; }
 
 .karte-kopf {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   gap: 8px 14px;
-  margin-bottom: 12px;
+  padding: 12px 18px;
+  cursor: pointer;
+  list-style: none;
 }
-.karte-titel { font-weight: 650; font-size: 16px; margin: 0; flex: 1 1 200px; }
+.karte-kopf::-webkit-details-marker { display: none; }
+.karte-kopf::before { content: "▸"; color: var(--blue); font-size: 14px; }
+.karte[open] > .karte-kopf::before { content: "▾"; }
+.karte-titel { font-weight: 650; font-size: 16px; margin: 0; flex: 1 1 180px; }
 .karte-titel span { display: block; font-weight: 400; font-size: 14px; color: var(--muted); }
 .karte-knoepfe { display: flex; gap: 6px; }
 
@@ -159,7 +233,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 /* --- Vorschau ------------------------------------------------------------- */
 
-.vorschau { position: sticky; top: 20px; }
+.vorschau { position: sticky; top: 80px; }
 .vorschau-kopf { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .vorschau-knoepfe { display: flex; gap: 6px; }
 .vorschau-knoepfe [aria-pressed="true"] { background: var(--blue); color: white; }
@@ -170,7 +244,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .vorschau-buehne {
   position: relative;
   overflow: hidden;
-  height: min(74vh, 900px);
+  height: min(calc(100vh - 210px), 900px);
+  min-height: 360px;
   border: 1px solid var(--line);
   border-radius: 18px;
   background: white;
@@ -265,6 +340,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 @media (max-width: 560px) {
   .felder-paar { grid-template-columns: 1fr; }
+  .textzeile { flex-direction: column; align-items: stretch; gap: 4px; margin-bottom: 14px; }
+  .textzeile .karte-knoepfe { padding-top: 0; justify-content: flex-end; }
   .schritte > li { padding: 60px 18px 20px; }
   .schritte > li::before { top: 16px; }
 }

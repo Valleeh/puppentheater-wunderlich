@@ -1,47 +1,86 @@
 # ─────────────────────────────────────────────────────────────────────────────
-# Inhalte der Website – hier stehen die Texte, die sich am häufigsten ändern:
-# die Termine, die Stimmen von Kitas und Schulen und das Team.
+# Alle Texte der Website. Aus dieser Datei und vorlage.html entsteht index.html.
 #
-# Zwei Wege, diese Datei zu ändern:
-#   • bequem über die Editor-Seite – dort gibt es Felder, Knöpfe und eine
-#     Vorschau (Schritt für Schritt steht in ANLEITUNG.md):
-#     https://puppentheater-wunderlich.de/bearbeiten.html
-#   • oder direkt hier im Text.
+# Am bequemsten ändert man sie mit der Editor-Seite – mit Feldern, Knöpfen und
+# Vorschau (Schritt für Schritt in ANLEITUNG.md):
+#   https://puppentheater-wunderlich.de/bearbeiten.html
 #
-# Wenn hier direkt getippt wird:
+# Wer hier direkt tippt:
 #   • Die Einrückung mit Leerzeichen bleibt, wie sie ist – keine Tabulatoren.
-#   • Jeder Text steht zwischen "geraden Anführungszeichen". Deutsche
-#     Anführungszeichen „so“ dürfen mitten im Text stehen, ein gerades "
-#     dagegen muss als \" geschrieben werden.
-#   • Ein Feld, das leer bleiben soll, bekommt "" – die Zeile fällt dann auf
-#     der Website weg.
-#   • Aus [Bürgersinfonie-Orchester](http://buergersinfonie.de/) wird auf der
-#     Website ein Link.
-#
-# Aus dieser Datei entsteht die fertige index.html (werkzeuge/seite_bauen.py).
-# Das macht GitHub nach dem Speichern von selbst.
+#   • Jeder Text steht zwischen "geraden Anführungszeichen"; ein gerades " im
+#     Text wird als \" geschrieben. Deutsche Anführungszeichen „so“ sind frei.
+#   • Mehrzeilige Texte stehen unter einem |- , jede Zeile eingerückt.
+#   • In Texten: *Wort* kursiv (in Überschriften rot), **Wort** fett,
+#     [Wort](https://adresse.de) ein Link.
+#   • Ein leeres Feld ("") fällt auf der Website weg; ebenso ein Eintrag in
+#     einer Liste, in dem gar nichts steht.
+#   • Bilder werden mit ihrem Namen aus dem Ordner assets/ angegeben, ohne
+#     Endung: "kasperl" für assets/kasperl.jpg.
 # ─────────────────────────────────────────────────────────────────────────────
 
-# Der Termin-Abschnitt oben auf der Startseite.
+# Titel im Browser-Tab, Text für Suchmaschinen und fürs Teilen, Menü oben.
+seite:
+  titel: "Puppentheater Wunderlich – Kleine Bühne. Große Geschichten."
+  beschreibung: "Puppentheater Wunderlich aus Steinfurth vor der Insel Usedom: fantasievolle Stücke zum Staunen, Lachen und Mitmachen – für Kitas, Schulen und Familien in ganz Deutschland. Premiere „Geschichte eines Nussknackers“ am 7. November 2026 in Berlin."
+  teilen_titel: "Puppentheater Wunderlich"
+  teilen_text: "Kleine Bühne. Große Geschichten. Puppentheater zum Mitmachen für Kinder und Erwachsene – wir kommen zu euch."
+  teilen_bild: "elisa-kasperl"
+  navigation:
+    - beschriftung: "Termine"
+      ziel: "#termine"
+    - beschriftung: "Bühnenprojekte"
+      ziel: "#projekte"
+    - beschriftung: "Unsere Stücke"
+      ziel: "#stuecke"
+    - beschriftung: "Wer wir sind"
+      ziel: "#ueber-uns"
+    - beschriftung: "Stimmen"
+      ziel: "#stimmen"
+    - beschriftung: "Galerie"
+      ziel: "#galerie"
+    - beschriftung: "Gut zu wissen"
+      ziel: "#ablauf"
+  navigation_knopf:
+    beschriftung: "Termin anfragen"
+    ziel: "#kontakt"
+
+# Der Anfang der Startseite: große Überschrift, Knöpfe, Foto.
+buehne:
+  vorspann: "Vorhang auf für die Fantasie"
+  titel: |-
+    Kleine Bühne.
+    Große *Geschichten.*
+  einleitung: "Es wird gestaunt, gelacht und mitgemacht. Wir bringen Puppen zum Leben – und Kinder mitten hinein ins Abenteuer."
+  knopf:
+    beschriftung: "Unsere Stücke entdecken"
+    ziel: "#stuecke"
+  link:
+    beschriftung: "Theater zu euch holen"
+    ziel: "#kontakt"
+  hinweis: "Aus Steinfurth vor der Insel Usedom · unterwegs in ganz Deutschland"
+  bild: "elisa-kasperl"
+  bildtext: "Elisa Bartoszewski mit dem Kasperl auf dem Arm"
+  bildunterschrift: |-
+    Es wird gesungen
+    und gelacht!
+
+# Das Band unter dem Anfang – kurze Stichworte.
+band:
+  - "Lebendige Figuren"
+  - "Geschichten zum Mitmachen"
+  - "Theater, das zu euch kommt"
+
+# Die Termine, mit Überschrift, Karten und Hinweis darunter.
 termine:
   vorspann: "Termine im November 2026"
-  titel: "Geschichte eines"
-  titel_betont: "Nussknackers"
+  titel: |-
+    Geschichte eines
+    *Nussknackers*
   einleitung: "Nach Alexandre Dumas, mit der Musik von Pjotr Iljitsch Tschaikowski. Vier öffentliche Vorstellungen für Familien mit Kindern – in Berlin gemeinsam mit dem [Bürgersinfonie-Orchester](http://buergersinfonie.de/konzerte-2026/)."
-
-  # Die einzelnen Vorstellungen, von oben nach unten. Ein Termin verschwindet
-  # von der Website, wenn sein Block hier gelöscht wird. Die Felder:
-  #   etikett     – kleine Zeile über dem Datum, z. B. "Premiere"
-  #   wochentag   – z. B. "Samstag"
-  #   datum       – z. B. "7. November 2026"
-  #   uhrzeit     – z. B. "16:00 Uhr"
-  #   besetzung   – z. B. "Mit dem Bürgersinfonie-Orchester"
-  #   zusatz      – eine zusätzliche Zeile, z. B. "Kurzfassung für Kinder"
-  #   eintritt    – z. B. "15 € · Kinder 7–12 Jahre 7 €"
-  #   ort         – Name des Hauses
-  #   ort_link    – Internetseite des Hauses ("" = kein Link)
-  #   adresse     – Straße, Postleitzahl und Ort
-  #   hervorheben – true stellt die Karte farbig heraus, sonst false
+  # Eine Karte je Vorstellung. Die Felder:
+  #   etikett (z. B. "Premiere"), wochentag, datum, uhrzeit, besetzung,
+  #   zusatz (eine weitere Zeile), eintritt, ort, ort_link (Internetseite des
+  #   Hauses, "" = kein Link), adresse, hervorheben (true = farbige Karte)
   liste:
     - etikett: "Voraufführung"
       wochentag: "Sonntag"
@@ -90,39 +129,448 @@ termine:
       ort_link: ""
       adresse: "Robert-Rössle-Str. 10, 13125 Berlin"
       hervorheben: false
+  hinweis_karten: "Karten für die Berliner Vorstellungen über das Bürgersinfonie-Orchester: [info@buergersinfonie.de](mailto:info@buergersinfonie.de) oder [0177 6240011](tel:+491776240011)"
+  programm_link:
+    beschriftung: "zum Programm ↗"
+    ziel: "http://buergersinfonie.de/konzerte-2026/"
+  hinweis_fragen: "Fragen zur Voraufführung in Steinfurth oder eine Vorstellung in eurer Schule?"
+  anfrage:
+    beschriftung: "Schreibt uns ↗"
+    betreff: "Geschichte eines Nussknackers"
 
-# Stimmen von Kitas, Schulen und Veranstaltern. „quelle“ ist die Zeile unter
-# dem Zitat, z. B. "Kindergarten München · „Glücklich im Park“".
+# Die großen Bühnenprojekte. "plakat: true" zeigt das Bild als Plakat im Hochformat.
+projekte:
+  vorspann: "Für Schulen, Bühnen und Erwachsene"
+  titel: |-
+    Zwei besondere
+    Bühnenprojekte
+  einleitung: "Puppenspiel trifft Musik, Schauspiel und bildende Kunst: unsere beiden großen Inszenierungen."
+  liste:
+    - kennung: "nussknacker"
+      plakat: true
+      bild: "nussknacker-plakat"
+      bildtext: "Plakat: Geschichte eines Nussknackers nach Alexandre Dumas, Musik von Pjotr Iljitsch Tschaikowski"
+      weitere_bilder: []
+      vorspann: "Für Familien und Schulen"
+      titel: "Geschichte eines Nussknackers"
+      untertitel: "Nach Alexandre Dumas · Musik von Pjotr Iljitsch Tschaikowski"
+      absaetze:
+        - "Musik, Literatur und das Eintauchen in das klassische Weihnachtsmärchen verbinden sich zu einem besonderen Theatererlebnis – für Familien mit Kindern und als Theater-Vormittag in der Schule, dort für Schülerinnen und Schüler ab der 5. Klasse."
+        - "Unsere Geschichte basiert auf der literarischen Fassung von Alexandre Dumas, die wiederum auf dem berühmten Märchen von E. T. A. Hoffmann beruht. Dazu erklingt die wunderbare Musik von Pjotr Iljitsch Tschaikowski, live am Klavier gespielt."
+        - "Wir kommen mit allem Drum und Dran zu Ihnen in die Schule und verwandeln Ihre Räume in eine vorweihnachtliche Theaterwelt. Puppenspiel, Schauspiel, Musik und eine fantasievolle Ausstattung lassen die Geschichte unmittelbar vor den Augen der Kinder entstehen."
+      mitwirkende:
+        - wer: "Elisa Bartoszewski"
+          was: "Schauspiel, Puppenspiel, Musik am Klavier"
+        - wer: "Thomas Pötzsch"
+          was: "Schauspiel und Regie"
+      hinweise:
+        - "Für Lehrerinnen und Lehrer empfehlen wir zur Vorbereitung das Unterrichtsmaterial [„Die Nußknacker-Suite“ des Lugert Verlags ↗](https://www.lugert-verlag.de/2016/neuauflage-die-nussknacker-suite-verzaubern-sie-ihre-schueler-zu-weihnachten-mit-klassik.html)."
+        - "Im November 2026 spielen wir das Stück öffentlich für Familien mit Kindern – [alle Termine ansehen ↗](#termine). Schulklassen sind dort ebenso willkommen; für einen eigenen Theater-Vormittag in Ihrer Schule kommen wir gern zu Ihnen."
+      video:
+        datei: ""
+        vorschau_bild: ""
+        bildtext: ""
+        knopf: ""
+        unterschrift: ""
+      anfrage:
+        beschriftung: "Nussknacker anfragen ↗"
+        betreff: "Anfrage: Geschichte eines Nussknackers"
+
+    - kennung: "waldszenen"
+      plakat: false
+      bild: "waldszenen-1"
+      bildtext: "Puppenspielerin und Kasper vor der farbigen Waldszenen-Kulisse"
+      weitere_bilder:
+        - bild: "waldszenen-2"
+          bildtext: "Kasper zwischen weißen Stoffbahnen und Lichtkugeln"
+        - bild: "waldszenen-klavier"
+          bildtext: "Josefine Mücksch am Flügel"
+      vorspann: "Für Kinder und Erwachsene"
+      titel: "Waldszenen"
+      untertitel: "Musik: Robert Schumann"
+      absaetze:
+        - "Ein interdisziplinäres Bühnenprojekt zwischen Puppenspiel, Musik, Theater und bildender Kunst. Waldszenen ist eine poetische Reise ins Unbewusste, inspiriert von Robert Schumanns gleichnamigem romantischen Klavierzyklus."
+        - "Im Mittelpunkt steht der Kasper – eine vertraute und zugleich fremd wirkende Figur, die durch eine surreale Traumwelt führt. Schumanns Musik, Puppenspiel und projizierte Bildcollagen verbinden sich zu einer traumartigen Szenerie. Mit offenen Augen erleben wir die Bühne, mit geschlossenen Augen entstehen innere Bilder."
+        - "Eine Stunde zwischen Traum, Konzert, Theater und bildender Kunst – ein Erlebnis für Ohr, Auge, Herz und Seele. Kinder und Erwachsene begegnen sich dabei in einer gemeinsamen Sprache: der Sprache des Herzens."
+      mitwirkende:
+        - wer: "Klavier"
+          was: "Josefine Mücksch, Pianistin"
+        - wer: "Puppenspiel"
+          was: "Elisa Bartoszewski – Leiterin des Puppentheaters Wunderlich, Kirchenmusikerin, Chorleiterin und Organistin. Sie entwickelt eigene Stücke und gibt Workshops zur heilsamen Kraft von Musik."
+        - wer: "Musikpsychologie & Konzeption"
+          was: "Dr. Jörg Rasche – Psychoanalytiker, Musiker und Autor mit dem Schwerpunkt auf der Beziehung zwischen Musik und Psyche."
+        - wer: "Bühnenbild"
+          was: "Mathias Bartoszewski, Maler und Bühnenbildner"
+      hinweise: []
+      video:
+        datei: "waldszenen-proben"
+        vorschau_bild: "waldszenen-proben-poster"
+        bildtext: "Kasperl zwischen grünen Stoffbahnen in der Waldszenen-Kulisse"
+        knopf: "Proben ansehen · 30 Sekunden"
+        unterschrift: "Einblick in die Proben zu „Waldszenen“ · 30 Sekunden, mit Ton"
+      anfrage:
+        beschriftung: "Waldszenen anfragen ↗"
+        betreff: "Anfrage: Waldszenen"
+
+# Die Stücke. Jedes hat entweder ein bild oder ein video. bild_ausschnitt legt
+# fest, welcher Teil des Fotos zu sehen ist; titel_bild ersetzt die Überschrift
+# durch einen Schriftzug. "gedicht: true" setzt die Einleitung Zeile für Zeile.
+stuecke:
+  vorspann: "Für kleine und größere Entdecker"
+  titel: |-
+    Welches Abenteuer
+    darf es sein?
+  einleitung: "Vom ersten Theatererlebnis für die Allerkleinsten bis zum großen Märchenabenteuer: Findet die Geschichte, die zu euren Kindern passt."
+  liste:
+    - kennung: "prinzessin"
+      etiketten:
+        - "Ein Märchen zum Mitmachen"
+        - "Ab 3 Jahren"
+      titel: "Das Märchen von der Prinzessin in der Suppe"
+      titel_bild: ""
+      bild: ""
+      bild_ausschnitt: ""
+      bildtext: ""
+      video:
+        datei: "prinzessin-in-der-suppe"
+        vorschau_bild: "prinzessin-buehne"
+        bildtext: "Die Spielerin mit den beiden Prinzessinnen-Puppen am weißen Bett, davor die Kinder"
+        knopf: "Ausschnitt ansehen · 26 Sekunden"
+        unterschrift: ""
+      einleitung: |-
+        Oder muss es heißen:
+        „Die Prinzessin auf der Erbse“?
+        Was?
+        Die Kinder sollen mitspielen?
+        Und ein Clown ist auch dabei?
+        Na, das kann ja lustig werden!
+      gedicht: true
+      mehr:
+        - "Elisa Bartoszewski inszeniert Hans Christian Andersens Märchen von der „ach so feinfühligen Prinzessin“ als besonders reizvolle und fantasieanregende Version. Dezent geschminkt schlüpft sie in die Rolle eines neugierigen Clowns, der dem einsamen Prinzen bei der Brautschau hilft und immer wieder den Kontakt zu den Kindern sucht."
+        - "Die jungen Zuschauer werden aktiv ins Geschehen einbezogen: Der Prinz lässt sie an der Suche nach der richtigen Prinzessin teilhaben – Probeliegen auf der Erbse inbegriffen. Lustige, fantasievolle Puppen wie die Schokokuss- und die Fernsehprinzessin, einfallsreiche Kulissen und die verschiedenen Stimmen der Figuren verzaubern das Publikum. *(Presse)*"
+      technik: "Aufführungsdauer ca. 45 Minuten · Bühnenfläche 3 × 3 m · wenn möglich verdunkelbarer Raum · Steckdose 16 A/220 V · Scheinwerfer, Kabel und Stative bringen wir mit."
+      anfrage:
+        beschriftung: "Dieses Stück anfragen ↗"
+        betreff: "Anfrage: Das Märchen von der Prinzessin in der Suppe"
+
+    - kennung: "gluecklich-im-park"
+      etiketten:
+        - "Für Kinder von 1,5 bis 6 Jahren"
+      titel: "Glücklich im Park"
+      titel_bild: "gluecklich-im-park-schriftzug"
+      bild: "gluecklich-im-park"
+      bild_ausschnitt: "focus-top"
+      bildtext: "Lilly tanzt mit erhobenem Bein vor der Wolke"
+      video:
+        datei: ""
+        vorschau_bild: ""
+        bildtext: ""
+        knopf: ""
+        unterschrift: ""
+      einleitung: "Die kleine Lilly nimmt die Kinder mit auf eine Reise durch die vier Jahreszeiten: Vögel singen hören, weiche Federn fühlen, Herbststürme und Regen selber machen, den Schnee fallen sehen und den Duft frisch gebackener Plätzchen riechen."
+      gedicht: false
+      mehr:
+        - "Theater für Kinder ab eineinhalb Jahren. Kinderlieder werden live gesungen – es wird viel gesungen und gelacht! Wir zeigen den Zyklus des Lebens in Form eines Tagesablaufs: Alles kommt und geht, ein ständiges Willkommenheißen und Verabschieden, Binden und Loslassen. Und es werden Schätze gesammelt!"
+        - "Ein Stück für schüchterne und mutige Kinder, laute und leise, kleine Entdecker und Auf-dem-Schoß-sitzen-Bleiber."
+        - "**Liederliste:** Kuckuck, Kuckuck ruft aus dem Wald · Alle Vöglein sind schon da · Alle meine Entchen · Backe, backe Kuchen · Hejo, spann den Wagen an · Schneeflöckchen, Weißröckchen · Der Mond ist aufgegangen · Schlaf, Kindlein, schlaf"
+      technik: "In eurem Kindergarten bauen wir unseren Theaterraum auf. Für Lillys „Nest“ benötigen wir 4–6 Kindertische und eine normale Steckdose. Horizont, Licht, Piano, bunte Tücher, Schnee und viele Federn bringen wir mit. Aufführungsdauer ca. 30 Minuten."
+      anfrage:
+        beschriftung: "Dieses Stück anfragen ↗"
+        betreff: "Anfrage: Glücklich im Park"
+
+    - kennung: "der-stern"
+      etiketten:
+        - "Auch als Kita-Version"
+      titel: "Der Stern"
+      titel_bild: ""
+      bild: "irma-und-fee"
+      bild_ausschnitt: "focus-stage"
+      bildtext: "Hexe Irma und die Putzfee vor dem großen Stern"
+      video:
+        datei: ""
+        vorschau_bild: ""
+        bildtext: ""
+        knopf: ""
+        unterschrift: ""
+      einleitung: "Zwei himmlische Putzfeen stehen vor einem großen Stern. Aber der leuchtet und strahlt nicht mehr! Der Inhalt seiner Zacken ist durcheinandergeraten – und am Sternenhauptplatz der Milchstraße gibt es viel zu tun."
+      gedicht: false
+      mehr:
+        - "„Als himmlische Putzfeen von der Firma Ment ist es unsere vornehmste Aufgabe, diesen matten Stern wieder glänzend und leuchtend erscheinen zu lassen.“ Wie? Mit Freude, Musik, Licht, Witz, Duft und einer Schneeseekleerehfeedrehzehweh-Geschichte. Alle Augensterne, ob blau, braun oder grün, singen, strahlen, riechen, ordnen, freuen sich!"
+        - "So viel sei verraten: Die Hexe Irma sitzt im „Duft- und Kräuterzacken“ und übernimmt nach der Aufräumarbeit eine Hauptrolle im „Geschichtenzacken“. Elisa Bartoszewski bringt als eine der himmlischen Putzfeen mit viel Witz, Ideen und der Mitwirkung des jungen Publikums den großen Stern wieder zum Strahlen. Ein Theatererlebnis, das die Sinne berührt – in einer behutsamen Version auch für Kita-Kinder buchbar."
+      technik: "Aufführungsdauer ca. 45 Minuten · Bühnenfläche 3 × 3 m · wenn möglich verdunkelbarer Raum · Steckdose 16 A/220 V · Scheinwerfer, Kabel und Stative bringen wir mit."
+      anfrage:
+        beschriftung: "Dieses Stück anfragen ↗"
+        betreff: "Anfrage: Der Stern"
+
+    - kennung: "kasperl"
+      etiketten:
+        - "Kasperlkomödie ab 3 Jahren"
+      titel: "… der wackelt seit 300 Jahren!"
+      titel_bild: ""
+      bild: "kasperl"
+      bild_ausschnitt: "focus-face"
+      bildtext: "Der Kasperl zeigt mit dem Finger an die Stirn"
+      video:
+        datei: ""
+        vorschau_bild: ""
+        bildtext: ""
+        knopf: ""
+        unterschrift: ""
+      einleitung: "Es ist schon eine verzwickte Geschichte: Der Kasperl hat einen Zahn verloren, Hexe Irmas „allereinziger“ Zahn soll gerissen werden – und dann das noch: Heute keine Sprechstunde! Denn Dr. Luggi Dents Zahnbürste ist entführt worden."
+      gedicht: false
+      mehr:
+        - "Ausgerechnet diese freche Hexe veranstaltet mit der Zahnbürste wilde Rundflüge im Publikum! Trotz alledem wird zu guter Letzt ein Milchzahn-Geheimnis verraten. Vorsicht, es wird gezaubert!"
+        - "Kasperl und die Hexe Irma erzählen ihre Geschichte in einer traditionellen Guckkastenbühne. Die Puppenspielerinnen Elisa Bartoszewski und Maria Pieper verstehen es meisterlich, den aus Holz gestalteten Stockhandpuppen ganz individuelle, jedoch sehr realistische Charaktere zu verleihen. Gleichzeitig werden die Kinder immer wieder aktiv ins Geschehen einbezogen. *(Presseauszug)*"
+      technik: "Aufführungsdauer ca. 45 Minuten · Bühnenfläche 3 × 3 m · wir bauen eine Guckkastenbühne auf und brauchen eine lichte Höhe von 2,55 m · wenn möglich verdunkelbarer Raum · Steckdose 16 A/220 V."
+      anfrage:
+        beschriftung: "Dieses Stück anfragen ↗"
+        betreff: "Anfrage: … der wackelt seit 300 Jahren!"
+
+    - kennung: "schnecke"
+      etiketten:
+        - "Traditionelles Kasperltheater ab 3 Jahren"
+      titel: "… und die Schnecke steht Schmiere!"
+      titel_bild: ""
+      bild: "der-alte"
+      bild_ausschnitt: ""
+      bildtext: "Die Puppe des Alten mit geschlossenen Augen zwischen Wurzeln und grobem Stoff"
+      video:
+        datei: ""
+        vorschau_bild: ""
+        bildtext: ""
+        knopf: ""
+        unterschrift: ""
+      einleitung: "Stellt euch vor: Die Brillenschlange findet ihre Brille nicht mehr, das Käferlein hat irgendwie seine Punkte verloren und die Schnecke weiß ohne Haus weder ein noch aus. Und das alles nur, weil die Hexe Irma ihre Warze nach Rezept weghexen will!"
+      gedicht: false
+      mehr:
+        - "Ein richtiges Kasperltheater! Aber der Kasperl und die Kinder finden zu einer glücklichen Lösung. Am Ende gibt es ein großes Fest mit Haferschleimsuppe bei Herrn Alois Schneck."
+        - "Die Stockhandpuppen mit ihren verschiedenen Stimmen scheinen vor den fantasievollen Kulissen zu wirklichem Leben zu erwachen. Die Kinder sind von Anfang an begeistert dabei, die Spannung steigt – man muss einfach mitmachen und den Figuren mit Rat und Tat zur Seite stehen. Letztendlich hat es Kasperl einem engagierten Publikum zu verdanken, dass er endlich lernt, wo rechts und links ist! *(Presseauszug)*"
+      technik: "Aufführungsdauer ca. 45 Minuten · Bühnenfläche 3 × 3 m · Guckkastenbühne mit lichter Höhe von 2,55 m · wenn möglich verdunkelbarer Raum · Steckdose 16 A/220 V."
+      anfrage:
+        beschriftung: "Dieses Stück anfragen ↗"
+        betreff: "Anfrage: … und die Schnecke steht Schmiere!"
+
+    - kennung: "drei-federn"
+      etiketten:
+        - "Frei nach Grimm · ab 3 Jahren"
+      titel: "Das Märchen von den drei Federn"
+      titel_bild: ""
+      bild: "dummling"
+      bild_ausschnitt: "focus-stage"
+      bildtext: "Zwei Puppen in glitzernder Kulisse vor einem roten Thron"
+      video:
+        datei: ""
+        vorschau_bild: ""
+        bildtext: ""
+        knopf: ""
+        unterschrift: ""
+      einleitung: "Kennt ihr die Geschichte mit dem Dummling? Hochinteressant, ich sag’s euch! Vom Regieren, vom Erben, von jungen Prinzen, von dicken, fetten Kröten, von Wutanfällen, vom echten Zaubern und vom Erster-sein-Wollen."
+      gedicht: false
+      mehr:
+        - "Da bleibt kein Auge trocken, da wird gesungen und gelacht! Elisa Bartoszewski spielt das Märchen in „offener Spielweise“: Die Kinder sehen die Puppenspielerin auf der Bühne, wie sie Tischmarionetten und Klappmaulpuppen bewegt und zum Leben erweckt. Der Kontakt zum jungen Publikum wird dadurch erleichtert."
+        - "Oft werden die Kinder um ihre Meinung gefragt; gemeinsam überlegt man sich gute Ratschläge für den jüngsten Königssohn. Der hat es wahrlich nicht leicht: Er will seinem Vater als Regent nachfolgen – weil er aber der Jüngste ist, muss er sich erst bewähren. Drei knifflige Aufgaben gilt es zu lösen. Klar, dass der Dummling da jede Unterstützung gebrauchen kann."
+      technik: "Aufführungsdauer ca. 30 Minuten · Bühnenfläche 3 × 3 m · wenn möglich verdunkelbarer Raum · Steckdose 16 A/220 V · Scheinwerfer, Kabel und Stative bringen wir mit."
+      anfrage:
+        beschriftung: "Dieses Stück anfragen ↗"
+        betreff: "Anfrage: Das Märchen von den drei Federn"
+
+    - kennung: "einmal-erde"
+      etiketten:
+        - "Ab dem Grundschulalter"
+      titel: "Einmal Erde und zurück"
+      titel_bild: ""
+      bild: "violetta"
+      bild_ausschnitt: "focus-high"
+      bildtext: "Violetta Augenstern im Blumenkleid mit bunten Luftballons"
+      video:
+        datei: ""
+        vorschau_bild: ""
+        bildtext: ""
+        knopf: ""
+        unterschrift: ""
+      einleitung: "Violetta Augenstern ist eine moderne Hexe! Aus einem fremden Land ist sie mit ihrem Kater Isidor hierhergezogen. Beim Auspacken entdeckt sie etwas, das sie an einen ganz außergewöhnlichen Freund erinnert: den kleinen Außerirdischen Lüps."
+      gedicht: false
+      mehr:
+        - "Frei nach Karl Valentins und Violettas Motto „Fremd ist der Fremde nur in der Fremde“ freut sie sich auf ihr neues Zuhause. Und als Lüps unvermittelt auf den Kopf von Kater Isidor plumpst, geht die Geschichte erst richtig los!"
+        - "Mit diesem interaktiven Theaterstück werden dem jungen Publikum Themen wie Integration, Gastfreundschaft, soziale Kompetenz und „Jeder ist etwas Besonderes“ mühelos und spielerisch nahegebracht. Der einfache Weg zu einer neuen Freundschaft wird gemeinsam erarbeitet: anderen helfen und unterstützen, vereint Ideen suchen und finden und zusammen Spaß haben."
+      technik: "Aufführungsdauer ca. 45 Minuten · Bühnenfläche 3 × 3 m · wenn möglich verdunkelbarer Raum · Steckdose 16 A/220 V · Scheinwerfer, Kabel und Stative bringen wir mit."
+      anfrage:
+        beschriftung: "Dieses Stück anfragen ↗"
+        betreff: "Anfrage: Einmal Erde und zurück"
+
+# Wer wir sind – mit dem Team.
+ueber_uns:
+  bild: "elisa-portrait"
+  bildtext: "Porträt von Elisa Bartoszewski an der Ostsee"
+  vorspann: "Das Puppentheater Wunderlich"
+  titel: |-
+    Von Menschen.
+    Mit Puppen.
+    *Für Kinder.*
+  absaetze:
+    - "Ein neugieriger Clown, eigensinnige Hexen und mutige kleine Helden: Unsere Figuren haben ihren ganz eigenen Kopf. Und die Kinder dürfen mitdenken, mitfühlen und mithelfen."
+    - "**Elisa Bartoszewski** lebt in Steinfurth vor der Insel Usedom. Sie ist Puppenspielerin, Organistin und Komponistin. Mit ihren freien Improvisationen am Klavier und an der Orgel entführt sie ihre Zuhörer liebend gerne in traumhafte Musikwelten. Sie ist eine begeisterte Puppenspielerin und schreibt fantasievolle Stücke für Kinder wie auch Erwachsene, die sie deutschlandweit aufführt."
+  mitgliedschaft: "Mitglied seit 1990: UNIMA – Union Internationale de la Marionnette, Zentrum Bundesrepublik Deutschland e. V. (mit Deutschem Bund für Puppenspiel) · Paul-Klinger-Künstlersozialwerk"
+  team_titel: "Das Team – die Akteure"
+  team:
+    - name: "Maria Pieper"
+      aufgabe: "Puppenspiel, Text, Kostüm, Bühnenbild"
+    - name: "Brigitte Largeteau"
+      aufgabe: "Spiel, Text, Choreographie, Regie"
+    - name: "Barbara Buck"
+      aufgabe: "Tanz, Choreographie, Spiel"
+    - name: "Thomas Pötzsch"
+      aufgabe: "Schauspiel und Regie"
+    - name: "Mathias Bartoszewski"
+      aufgabe: "Spiel, Bühnenbild, Bühnenbau, Technik"
+    - name: "Adrian Wittmann"
+      aufgabe: "Theaterwerkstatt"
+  link:
+    beschriftung: "Lernen wir uns kennen"
+    ziel: "#kontakt"
+
+# Stimmen von Kitas, Schulen und Veranstaltern.
 stimmen:
-  - zitat: "„Das Puppentheater Wunderlich hat alle Kinder und das pädagogische Team verzaubert. Die Kinderaugen haben gefunkelt und durch die Vielzahl an Kinderliedern war die Stimmung im Publikum groß. Es war eine wunderschöne interaktive Besonderheit.“"
-    quelle: "Kita München · „Glücklich im Park“"
+  vorspann: "Das sagen Kitas und Schulen"
+  titel: |-
+    Strahlende Augen.
+    Und viel Applaus.
+  einleitung: "Feedback von Einrichtungen, die uns schon zu sich eingeladen haben."
+  liste:
+    - zitat: "„Das Puppentheater Wunderlich hat alle Kinder und das pädagogische Team verzaubert. Die Kinderaugen haben gefunkelt und durch die Vielzahl an Kinderliedern war die Stimmung im Publikum groß. Es war eine wunderschöne interaktive Besonderheit.“"
+      quelle: "Kita München · „Glücklich im Park“"
+    - zitat: "„Auch noch mal an euch ein großes Dankeschön. Die Kinder haben den ganzen Tag davon erzählt und auch zuhause noch einige Szenen nachgespielt.“"
+      quelle: "Kindergarten München"
+    - zitat: "“We had a lot of fun with the puppet theater Wunderlich, the play was very interactive and engaging. The songs were great to sing along with and the children could follow the story well. Many thanks!”"
+      quelle: "Kids München"
+    - zitat: "„Die Vorstellung ist rundum gelungen. Klein und Groß hatten ihren Spaß dabei. Besonders gelobt wurde das Bühnenbild und dass die Kinder mit einbezogen waren. Die Kinder mochten vor allem den Sternenstaub zum Schluss und haben ihn gehütet wie einen Schatz.“"
+      quelle: "Kindergarten Mühldorf · „Der Stern“"
+    - zitat: "„Die Vorstellung ‚Glücklich im Park‘ war einfach zauberhaft! Die liebevoll gestaltete Bühne als auch die interaktive Darbietung haben die kleinen Zuschauerinnen und Zuschauer im Alter von drei bis sechs Jahren restlos begeistert und für strahlende Augen gesorgt.“"
+      quelle: "Kindergarten Waldtrudering · „Glücklich im Park“"
+    - zitat: "„Die Kinder fühlten sich aufgehoben und durch viele Mutmach-Möglichkeiten folgten sie der Sternengeschichte sehr aktiv und mit großer Aufmerksamkeit. Im anschließenden Gespräch war zu bemerken, dass die Kinder von der Geschichte sehr bewegt waren.“"
+      quelle: "Kita St. Martin, Kastl · „Der Stern“"
 
-  - zitat: "„Auch noch mal an euch ein großes Dankeschön. Die Kinder haben den ganzen Tag davon erzählt und auch zuhause noch einige Szenen nachgespielt.“"
-    quelle: "Kindergarten München"
+# Die Galerie: Fotos mit Bildunterschrift, darunter die Plakate.
+galerie:
+  vorspann: "Ein Blick hinter den Vorhang"
+  titel: "Galerie"
+  einleitung: "Figuren, Bühnenbilder und Momente aus unseren Stücken."
+  bilder:
+    - bild: "hexe-und-kasperl"
+      bildtext: "Hexe Irma und Kasperl in der Guckkastenbühne"
+      unterschrift: "Kasperl & Hexe Irma"
 
-  - zitat: "“We had a lot of fun with the puppet theater Wunderlich, the play was very interactive and engaging. The songs were great to sing along with and the children could follow the story well. Many thanks!”"
-    quelle: "Kids München"
+    - bild: "der-stern"
+      bildtext: "Der große gelbe Stern"
+      unterschrift: "Der Stern"
 
-  - zitat: "„Die Vorstellung ist rundum gelungen. Klein und Groß hatten ihren Spaß dabei. Besonders gelobt wurde das Bühnenbild und dass die Kinder mit einbezogen waren. Die Kinder mochten vor allem den Sternenstaub zum Schluss und haben ihn gehütet wie einen Schatz.“"
-    quelle: "Kindergarten Mühldorf · „Der Stern“"
+    - bild: "der-alte"
+      bildtext: "Die Puppe des Alten in einem hellen Gewand"
+      unterschrift: "Der Alte"
 
-  - zitat: "„Die Vorstellung ‚Glücklich im Park‘ war einfach zauberhaft! Die liebevoll gestaltete Bühne als auch die interaktive Darbietung haben die kleinen Zuschauerinnen und Zuschauer im Alter von drei bis sechs Jahren restlos begeistert und für strahlende Augen gesorgt.“"
-    quelle: "Kindergarten Waldtrudering · „Glücklich im Park“"
+    - bild: "schloss"
+      bildtext: "Gemaltes Schloss als Kulisse"
+      unterschrift: "Kulisse"
 
-  - zitat: "„Die Kinder fühlten sich aufgehoben und durch viele Mutmach-Möglichkeiten folgten sie der Sternengeschichte sehr aktiv und mit großer Aufmerksamkeit. Im anschließenden Gespräch war zu bemerken, dass die Kinder von der Geschichte sehr bewegt waren.“"
-    quelle: "Kita St. Martin, Kastl · „Der Stern“"
+    - bild: "dummling"
+      bildtext: "Zwei Puppen in glitzernder Kulisse vor einem roten Thron"
+      unterschrift: "Drei Federn"
 
-# Das Team im Abschnitt „Wer wir sind“: Name und Aufgabe.
-team:
-  - name: "Maria Pieper"
-    aufgabe: "Puppenspiel, Text, Kostüm, Bühnenbild"
-  - name: "Brigitte Largeteau"
-    aufgabe: "Spiel, Text, Choreographie, Regie"
-  - name: "Barbara Buck"
-    aufgabe: "Tanz, Choreographie, Spiel"
-  - name: "Thomas Pötzsch"
-    aufgabe: "Schauspiel und Regie"
-  - name: "Mathias Bartoszewski"
-    aufgabe: "Spiel, Bühnenbild, Bühnenbau, Technik"
-  - name: "Adrian Wittmann"
-    aufgabe: "Theaterwerkstatt"
+    - bild: "waldszenen-3"
+      bildtext: "Kasper zwischen weißen und roten Stoffbahnen"
+      unterschrift: "Waldszenen"
+
+    - bild: "prinz-und-prinzessin"
+      bildtext: "Die Puppen Prinz und Prinzessin"
+      unterschrift: "Prinzessin in der Suppe"
+
+    - bild: "waldszenen-2"
+      bildtext: "Kasper zwischen weißen Stoffbahnen und Lichtkugeln"
+      unterschrift: "Waldszenen"
+
+    - bild: "putzfee"
+      bildtext: "Die Putzfee mit weißen Locken und goldenem Umhang"
+      unterschrift: "Der Stern"
+
+    - bild: "puppe-bunt"
+      bildtext: "Puppe mit buntem Lockenhaar und Spitzenkragen"
+      unterschrift: "Aus der Puppenwerkstatt"
+  plakate:
+    - bild: "plakat-prinzessin"
+      bildtext: "Plakat: Das Märchen von der Prinzessin in der Suppe"
+    - bild: "plakat-stern"
+      bildtext: "Plakat: Der Stern"
+    - bild: "plakat-drei-federn"
+      bildtext: "Plakat: Das Märchen von den drei Federn"
+    - bild: "plakat-kasperl"
+      bildtext: "Plakat: Kasperlkomödie"
+
+# „Gut zu wissen“: die drei Schritte und die Fragen darunter.
+ablauf:
+  vorspann: "Wir kommen mit unserer Bühne"
+  titel: |-
+    Platz für ein
+    kleines Wunder.
+  einleitung: "Ihr stellt den Raum, wir bringen die Geschichte. Alles Weitere klären wir gemeinsam vor der Aufführung."
+  schritte:
+    - titel: "Geschichte aussuchen"
+      text: "Wählt ein Stück passend zum Alter eurer Kinder. Ihr seid unsicher? Wir helfen gern bei der Auswahl."
+    - titel: "Termin besprechen"
+      text: "Schickt uns Ort, Wunschtermin, Alter und ungefähre Anzahl der Kinder. Wir besprechen Verfügbarkeit und Angebot."
+    - titel: "Vorhang auf!"
+      text: "Für die meisten Stücke brauchen wir etwa 3 × 3 Meter Platz und eine Steckdose. Licht und Bühnentechnik bringen wir mit."
+  fragen:
+    - frage: "Was braucht ihr vor Ort?"
+      antwort: "Für die meisten Stücke ist eine Bühnenfläche von etwa 3 × 3 Metern vorgesehen, dazu eine Steckdose (16 A/220 V). Wenn möglich, sollte der Raum verdunkelbar sein. Für die Guckkastenbühne der Kasperlstücke benötigen wir eine lichte Höhe von 2,55 Metern. Bei „Glücklich im Park“ kommen zusätzlich 4–6 Kindertische zum Einsatz. Scheinwerfer, Kabel und Stative bringen wir mit."
+    - frage: "Wie lange dauert eine Aufführung?"
+      antwort: "Das richtet sich nach dem Stück und dem Alter der Kinder, wir stimmen das gemeinsam mit euch ab. Die Zeit für Auf- und Abbau vereinbaren wir zusätzlich."
+    - frage: "Wo spielt ihr und was kostet eine Aufführung?"
+      antwort: "Unser Theater ist in Steinfurth bei Karlsburg, vor der Insel Usedom, zu Hause und spielt deutschlandweit – von Kitas und Schulen bis zu Bühnen und Festen. Nennt uns euren Veranstaltungsort und das gewünschte Stück, dann klären wir die Anreise und erstellen euch ein passendes Angebot."
+
+# Der Kontakt-Abschnitt. knopf.text ist der Anfang der E-Mail, die sich beim
+# Klick auf den Knopf öffnet.
+kontakt:
+  vorspann: "Die nächste Geschichte beginnt bei euch"
+  titel: |-
+    Dürfen wir
+    euch *verzaubern?*
+  einleitung: "Ein Anruf oder eine E-Mail genügt. Elisa freut sich auf eure Ideen und hilft euch, das passende Stück zu finden."
+  knopf:
+    beschriftung: "Anfrage per E-Mail"
+    betreff: "Anfrage Puppentheater Wunderlich"
+    text: |-
+      Hallo Elisa,
+
+      wir interessieren uns für eine Aufführung.
+
+      Stück:
+      Wunschtermin:
+      Ort:
+      Alter und Anzahl der Kinder:
+
+      Viele Grüße
+  ansprechpartner_vorspann: "Eure Ansprechpartnerin"
+  name: "Elisa Bartoszewski"
+  telefon: "0176 64 28 0017"
+  email: "info@puppentheater-wunderlich.de"
+  adresse: "Puppentheater Wunderlich · Steinfurth 15 · 17495 Karlsburg"
+  hinweis: |-
+    Am besten gleich mit angeben:
+    Wunschtermin · Ort · Alter der Kinder · Gruppengröße
+
+# Ganz unten auf der Seite.
+fuss:
+  spruch: "Geschichten, die lebendig werden."
+  links:
+    - beschriftung: "Instagram ↗"
+      ziel: "https://www.instagram.com/puppentheaterwunderlich/"
+    - beschriftung: "Impressum & Datenschutz"
+      ziel: "impressum.html"
+
+# Kleine feste Wörter, die an mehreren Stellen vorkommen.
+beschriftungen:
+  mitwirkende: "Mitwirkende"
+  mehr_zum_stueck: "Mehr zum Stück"
+  eintritt: "Eintritt"
+  video_fehlt: "Ihr Browser kann dieses Video nicht abspielen."
+  video_herunterladen: "Video herunterladen"
