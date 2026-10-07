@@ -140,6 +140,7 @@ termine:
 
 # Die großen Bühnenprojekte. "plakat: true" zeigt das Bild als Plakat im Hochformat.
 # "mitwirkende_einklappen: true" zeigt die Mitwirkenden erst nach einem Klick.
+# technik: Dauer, Bühnenfläche, Strom … – erscheint kleiner, Zeile für Zeile.
 projekte:
   vorspann: "Für Schulen, Bühnen und Erwachsene"
   titel: |-
@@ -156,7 +157,7 @@ projekte:
       titel: "Geschichte eines Nussknackers"
       untertitel: "Nach Alexandre Dumas · Musik von Pjotr Iljitsch Tschaikowski"
       absaetze:
-        - "Musik, Literatur und das Eintauchen in das klassische Weihnachtsmärchen verbinden sich zu einem besonderen Theatererlebnis – für Familien mit Kindern und als Theater-Vormittag in der Schule, dort für Schülerinnen und Schüler ab der 5. Klasse."
+        - "Musik, Literatur und das Eintauchen in das klassische Weihnachtsmärchen verbinden sich zu einem besonderen Theatererlebnis – für Familien mit Kindern und als Theater-Vormittag in der Schule, dort für Schülerinnen und Schüler ab der 1. Klasse."
         - "Unsere Geschichte basiert auf der literarischen Fassung von Alexandre Dumas, die wiederum auf dem berühmten Märchen von E. T. A. Hoffmann beruht. Dazu erklingt die wunderbare Musik von Pjotr Iljitsch Tschaikowski, live am Klavier gespielt."
         - "Wir kommen mit allem Drum und Dran zu Ihnen in die Schule und verwandeln Ihre Räume in eine vorweihnachtliche Theaterwelt. Puppenspiel, Schauspiel, Musik und eine fantasievolle Ausstattung lassen die Geschichte unmittelbar vor den Augen der Kinder entstehen."
       mitwirkende:
@@ -165,6 +166,11 @@ projekte:
         - wer: "Thomas Pötzsch"
           was: "Schauspiel und Regie"
       mitwirkende_einklappen: false
+      technik: |-
+        Aufführungsdauer ca. 50 Minuten
+        Bühnenfläche 4 × 3 m · wenn möglich verdunkelbarer Raum
+        Steckdose 16 A/220 V
+        Scheinwerfer, Kabel und Stative bringen wir mit
       hinweise:
         - "Für Lehrerinnen und Lehrer empfehlen wir zur Vorbereitung das Unterrichtsmaterial [„Die Nußknacker-Suite“ des Lugert Verlags ↗](https://www.lugert-verlag.de/2016/neuauflage-die-nussknacker-suite-verzaubern-sie-ihre-schueler-zu-weihnachten-mit-klassik.html)."
         - "Im November 2026 spielen wir das Stück öffentlich für Familien mit Kindern – [alle Termine ansehen ↗](#termine). Schulklassen sind dort ebenso willkommen; für einen eigenen Theater-Vormittag in Ihrer Schule kommen wir gern zu Ihnen."
@@ -204,6 +210,7 @@ projekte:
         - wer: "Bühnenbild"
           was: "Mathias Bartoszewski, Maler und Bühnenbildner"
       mitwirkende_einklappen: true
+      technik: ""
       hinweise: []
       video:
         datei: "waldszenen-proben"
