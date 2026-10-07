@@ -1,17 +1,14 @@
-# Veröffentlicht die Website auf GitHub Pages.
+# Die öffentliche Website: puppentheater-wunderlich.de
 #
-# Einmalig im Repository einstellen:
+# Einmalig im Repository eingestellt:
 #   Settings → Pages → "Build and deployment"
-#     Source: "Deploy from a branch"
-#     Branch: "gh-pages", Ordner "/ (root)"
+#     Source: "Deploy from a branch", Branch "gh-pages", Ordner "/ (root)"
+#     Custom domain: puppentheater-wunderlich.de
 #
-# Bei jedem Push auf main entsteht zuerst index.html aus vorlage.html und
-# inhalt.yaml; danach wird der Inhalt des Repositories in den Branch
-# gh-pages kopiert und erscheint unter
-#   https://valleeh.github.io/puppentheater-wunderlich/
-#
-# PR-Vorschauen (siehe pr-preview.yml) liegen im Unterordner pr-preview/
-# und werden hier bewusst nicht gelöscht.
+# Läuft bei jedem Push auf main. Im Alltag kommt main aber nur über den
+# Knopf „Veröffentlichen“ zu neuen Inhalten (veroeffentlichen.yml) – der
+# legt die Seite selbst ab, weil seine Pushes keine Workflows auslösen.
+# Die Ordner werkstatt/ und pr-preview/ in gh-pages bleiben dabei unberührt.
 
 name: GitHub Pages
 
@@ -23,55 +20,9 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: gh-pages
-  cancel-in-progress: false
-
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Repository auschecken
-        uses: actions/checkout@v4
-
-      - name: Python bereitstellen
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-
-      - name: PyYAML installieren
-        run: pip install pyyaml
-
-      - name: index.html aus vorlage.html und inhalt.yaml bauen
-        run: python3 werkzeuge/seite_bauen.py
-
-      # Nur zur Warnung: Weicht die Vorschau der Editor-Seite ab, wird trotzdem
-      # veröffentlicht – im Pull Request fällt so etwas vorher schon auf.
-      - name: Prüfen, ob die Editor-Seite dieselbe Seite baut
-        continue-on-error: true
-        run: node werkzeuge/gleichlauf_pruefen.js
-
-      # Damit index.html im Repository nicht hinter inhalt.yaml zurückbleibt –
-      # so bleibt die Datei auch zum Hochladen auf eigenen Webspace brauchbar.
-      # Schlägt das fehl (z. B. weil main geschützt ist), wird trotzdem
-      # veröffentlicht.
-      - name: Erzeugte index.html zurückschreiben
-        continue-on-error: true
-        run: |
-          if [ -n "$(git status --porcelain index.html assets/medien.json)" ]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add index.html assets/medien.json
-            git commit -m "index.html aus inhalt.yaml erzeugt"
-            git push origin HEAD:main
-          fi
-
-      - name: Website nach gh-pages veröffentlichen
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: .
-          branch: gh-pages
-          clean: true
-          clean-exclude: pr-preview/
-          force: false
-          commit-message: "Website von main veröffentlichen"
+  website:
+    uses: ./.github/workflows/seite-veroeffentlichen.yml
+    with:
+      branch: main
+      werkstatt: false

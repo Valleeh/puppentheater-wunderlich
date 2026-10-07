@@ -16,6 +16,7 @@ Statische Website für das [Puppentheater Wunderlich](https://puppentheater-wund
 | `bearbeiten-kern.js` | YAML lesen/schreiben und Vorlage ausfüllen – im Browser und in Node |
 | `werkzeuge/seite_bauen.py` | baut `index.html` aus `vorlage.html` und `inhalt.yaml`, schreibt dabei `assets/medien.json` |
 | `werkzeuge/gleichlauf_pruefen.js` | prüft, dass Editor-Vorschau und `seite_bauen.py` dieselbe Seite bauen |
+| `robots.txt` | hält Suchmaschinen von `/werkstatt/` und `/pr-preview/` fern |
 | `ANLEITUNG.md` | Schritt-für-Schritt-Anleitung zum Ändern der Inhalte, ohne Vorkenntnisse |
 | `assets/` | Logo, Favicons und optimierte Fotos |
 
@@ -37,7 +38,7 @@ python3 werkzeuge/seite_bauen.py --pruefen   # nur prüfen, ob alles aktuell ist
 node werkzeuge/gleichlauf_pruefen.js         # Editor und Python bauen dieselbe Seite?
 ```
 
-Auf GitHub passiert das von selbst: Bei jedem Push auf `main` wird gebaut, das Ergebnis ins Repository zurückgeschrieben und veröffentlicht. Für Pull Requests wird nur für die Vorschau gebaut, dort muss auch der Gleichlauf-Check grün sein.
+Auf GitHub passiert das von selbst: Bei jedem Push auf `werkstatt` oder `main` wird gebaut, das Ergebnis in den Branch zurückgeschrieben und abgelegt (siehe „Werkstatt und Veröffentlichung“). Für Pull Requests wird nur für die Vorschau gebaut, dort muss auch der Gleichlauf-Check grün sein.
 
 ### Die Vorlagensprache
 
@@ -60,20 +61,27 @@ Bilder stehen in `inhalt.yaml` nur mit Namen (`bild: "kasperl"`). Maße, Größe
 
 `bearbeiten.html` lädt `inhalt.yaml`, `vorlage.html` und `assets/medien.json`, zeigt jeden Text als Feld und baut daneben die fertige Seite als Vorschau – mit demselben Ergebnis wie `seite_bauen.py` (das prüft `gleichlauf_pruefen.js`). Am Ende schreibt sie `inhalt.yaml` zum Kopieren oder Herunterladen; Kommentare in der Datei bleiben erhalten. Kein Server, keine Abhängigkeiten, aber eine `http://`-Adresse ist nötig:
 
-* veröffentlicht unter <https://puppentheater-wunderlich.de/bearbeiten.html>,
+* in der Werkstatt unter <https://puppentheater-wunderlich.de/werkstatt/bearbeiten.html>,
 * lokal mit `python3 -m http.server` im Projektverzeichnis und dann <http://localhost:8000/bearbeiten.html>.
 
-Die Seite ändert nichts von allein und ist für Suchmaschinen gesperrt (`noindex`).
+Auf die öffentliche Seite kommt der Editor nicht mit (siehe unten). Er ändert nichts von allein und ist für Suchmaschinen gesperrt.
 
 `impressum.html` ist bewusst nicht dabei – Rechtstext, der selten und nur mit Bedacht geändert wird.
 
-## Veröffentlichung über GitHub Pages
+## Werkstatt und Veröffentlichung
 
-Zwei Workflows in `.github/workflows/` kümmern sich um die Veröffentlichung:
+Gearbeitet wird im Branch **`werkstatt`**, öffentlich ist **`main`**. Beide liegen fertig gebaut im Branch `gh-pages`, den GitHub Pages ausliefert:
 
-| Workflow | Was passiert |
-| --- | --- |
-| `pages.yml` | Bei jedem Push auf `main` wird `index.html` aus `inhalt.yaml` erzeugt und die Seite in den Branch `gh-pages` kopiert; sie erscheint unter <https://puppentheater-wunderlich.de/> (bzw. <https://valleeh.github.io/puppentheater-wunderlich/>). |
-| `pr-preview.yml` | Jeder Pull Request bekommt eine eigene Vorschau unter `…/pr-preview/pr-<Nummer>/`. Der Link steht als Kommentar im PR und wird bei jedem Push aktualisiert. Nach dem Merge verschwindet die Vorschau wieder. |
+| Branch | Adresse | Workflow |
+| --- | --- | --- |
+| `werkstatt` | <https://puppentheater-wunderlich.de/werkstatt/> (mit Editor, gelbes Schild „Werkstatt“) | `werkstatt.yml` – bei jedem Push |
+| `main` | <https://puppentheater-wunderlich.de/> (ohne Editor) | `pages.yml` – bei jedem Push |
+| Pull Requests | `…/pr-preview/pr-<Nummer>/` | `pr-preview.yml` – für größere Umbauten |
 
-Einmalig eingestellt: **Settings → Pages → Build and deployment → Source: „Deploy from a branch“, Branch: `gh-pages`, Ordner `/ (root)`**, dazu die eigene Domain `puppentheater-wunderlich.de` (liegt als `CNAME` im Branch `gh-pages`).
+**Veröffentlichen** ist ein Knopf: Actions → „Veröffentlichen“ → „Run workflow“ (`veroeffentlichen.yml`). Er holt zuerst Neues von `main` in die Werkstatt, baut, schiebt den Stand nach `main` und legt beide Seiten neu ab. Danach sind `werkstatt` und `main` gleich, und es geht in der Werkstatt weiter – kein neuer Branch, kein neuer PR, keine neuen Adressen.
+
+Das eigentliche Bauen und Ablegen steckt in `seite-veroeffentlichen.yml` (wiederverwendbarer Workflow): bauen, gebaute `index.html` in den Branch zurückschreiben, bei `main` den Editor weglassen, bei `werkstatt` das Schild einsetzen, dann nach `gh-pages` (Wurzel bzw. Ordner `werkstatt/`). Die Ordner `werkstatt/` und `pr-preview/` bleiben beim Ablegen der öffentlichen Seite unberührt; `robots.txt` hält Suchmaschinen von beiden fern.
+
+Regeln für Änderungen am Code: Pull Requests gehen nach **`werkstatt`**, nicht nach `main`. `main` ändert sich nur über „Veröffentlichen“. (Wird `main` doch einmal direkt geändert, holt „Veröffentlichen“ das beim nächsten Mal in die Werkstatt; nur bei Änderungen an derselben Stelle muss man einmal von Hand mergen.)
+
+Einmalig in GitHub eingestellt: **Settings → Pages → Source: „Deploy from a branch“, Branch `gh-pages`, Ordner `/ (root)`**, Custom domain `puppentheater-wunderlich.de` (liegt als `CNAME` in `gh-pages`).

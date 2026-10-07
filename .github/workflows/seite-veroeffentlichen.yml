@@ -1,0 +1,92 @@
+# Baut die Website aus vorlage.html und inhalt.yaml und legt sie in den
+# Branch gh-pages – entweder als öffentliche Seite (oberste Ebene, ohne
+# Editor) oder als Werkstatt-Ansicht im Ordner werkstatt/ (mit Editor).
+#
+# Wird nicht direkt gestartet, sondern von pages.yml, werkstatt.yml und
+# veroeffentlichen.yml aufgerufen.
+
+name: Seite bauen und ablegen
+
+on:
+  workflow_call:
+    inputs:
+      branch:
+        description: Branch, aus dem gebaut wird
+        required: true
+        type: string
+      werkstatt:
+        description: true = Ordner werkstatt/ mit Editor, false = öffentliche Seite ohne Editor
+        required: true
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  bauen:
+    runs-on: ubuntu-latest
+    # Immer nur ein Schreibzugriff auf gh-pages gleichzeitig (auch pr-preview.yml)
+    concurrency:
+      group: gh-pages
+      cancel-in-progress: false
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+
+      - name: Python bereitstellen
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: PyYAML installieren
+        run: pip install pyyaml
+
+      - name: index.html aus vorlage.html und inhalt.yaml bauen
+        run: python3 werkzeuge/seite_bauen.py
+
+      # Nur zur Warnung – eine Veröffentlichung soll nie daran hängen bleiben.
+      - name: Prüfen, ob die Editor-Seite dieselbe Seite baut
+        continue-on-error: true
+        run: node werkzeuge/gleichlauf_pruefen.js
+
+      # Wer inhalt.yaml bei GitHub ändert, ändert index.html nicht mit. Damit
+      # beides im Branch zusammenpasst, wird die gebaute Fassung zurückgeschrieben.
+      # Schlägt das fehl (z. B. weil gerade jemand anderes gespeichert hat),
+      # wird trotzdem abgelegt; der nächste Lauf holt es nach.
+      - name: Erzeugte Dateien in den Branch zurückschreiben
+        continue-on-error: true
+        env:
+          BRANCH: ${{ inputs.branch }}
+        run: |
+          if [ -n "$(git status --porcelain index.html assets/medien.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add index.html assets/medien.json
+            git commit -m "index.html aus inhalt.yaml erzeugt"
+            git push origin "HEAD:$BRANCH"
+          fi
+
+      - name: Die öffentliche Seite bekommt keinen Editor
+        if: ${{ !inputs.werkstatt }}
+        run: rm -f bearbeiten.html bearbeiten.css bearbeiten.js bearbeiten-kern.js
+
+      - name: Werkstatt-Ansicht kennzeichnen
+        if: ${{ inputs.werkstatt }}
+        run: >-
+          sed -i 's|</body>|<p style="position:fixed;left:12px;bottom:12px;z-index:1000;margin:0;padding:8px 16px;border-radius:999px;background:#f1d78f;color:#202b47;font:600 14px/1.4 system-ui,sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.25)">Werkstatt – noch nicht veröffentlicht · <a href="bearbeiten.html" style="color:inherit">bearbeiten</a> · <a href="https://puppentheater-wunderlich.de/" style="color:inherit">öffentliche Seite</a></p></body>|'
+          index.html
+
+      - name: Nach gh-pages legen
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: .
+          branch: gh-pages
+          target-folder: ${{ inputs.werkstatt && 'werkstatt' || '' }}
+          clean: true
+          clean-exclude: |
+            pr-preview/
+            werkstatt/
+          force: false
+          commit-message: Website aus ${{ inputs.branch }} ablegen

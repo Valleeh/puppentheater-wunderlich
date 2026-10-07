@@ -11,7 +11,7 @@
 <body>
 
 <header class="kopf">
-  <a class="zurueck" href="index.html">← zur Website</a>
+  <a class="zurueck" href="index.html">← zur Werkstatt-Ansicht der Website</a>
   <h1>Inhalte bearbeiten</h1>
   <p class="einleitung">Hier lässt sich jeder Text der Website ändern – ohne HTML. Oben einen Abschnitt wählen, in den Feldern ändern, rechts (auf dem Handy gleich hier oben) in der Vorschau nachsehen. Wenn alles passt: ganz unten weiter zum Schritt „Speichern“.</p>
   <p class="status" id="status" role="status">Inhalte werden geladen …</p>
@@ -54,8 +54,8 @@
 </div>
 
 <section class="speichern">
-  <h2>Speichern: so kommen die Änderungen auf die Website</h2>
-  <p>Die Änderungen liegen bis jetzt nur in diesem Fenster. Für die Website müssen sie in die Datei <code>inhalt.yaml</code> – das geht in drei Schritten:</p>
+  <h2>Speichern und veröffentlichen</h2>
+  <p>Die Änderungen liegen bis jetzt nur in diesem Fenster. Gespeichert werden sie in der Datei <code>inhalt.yaml</code> der Werkstatt; erst der letzte Schritt bringt sie auf die öffentliche Website.</p>
   <ol class="schritte">
     <li>
       <h3>Text kopieren</h3>
@@ -66,11 +66,16 @@
     <li>
       <h3>Bei GitHub einfügen</h3>
       <p>Der Knopf öffnet die Datei <code>inhalt.yaml</code> in einem neuen Fenster. Dort im Textfeld <strong>alles markieren</strong> (Strg&nbsp;+&nbsp;A, am Mac ⌘&nbsp;+&nbsp;A) und mit <strong>Strg&nbsp;+&nbsp;V</strong> (⌘&nbsp;+&nbsp;V) den kopierten Text einfügen.</p>
-      <a class="knopf gross" href="https://github.com/Valleeh/puppentheater-wunderlich/edit/main/inhalt.yaml" target="_blank" rel="noopener noreferrer">inhalt.yaml bei GitHub öffnen ↗</a>
+      <a class="knopf gross" href="https://github.com/Valleeh/puppentheater-wunderlich/edit/werkstatt/inhalt.yaml" target="_blank" rel="noopener noreferrer">inhalt.yaml bei GitHub öffnen ↗</a>
     </li>
     <li>
-      <h3>Änderung vorschlagen</h3>
-      <p>Oben rechts auf <strong>„Commit changes…“</strong> klicken, im Fenster <strong>„Create a new branch for this commit and start a pull request“</strong> auswählen und mit <strong>„Propose changes“</strong> bestätigen. Danach entsteht automatisch eine Vorschau-Seite zum Anschauen, und die Änderung kann übernommen werden.</p>
+      <h3>Speichern</h3>
+      <p>Oben rechts auf <strong>„Commit changes…“</strong> klicken. Im Fenster <strong>„Commit directly to the werkstatt branch“</strong> ausgewählt lassen und mit <strong>„Commit changes“</strong> bestätigen. Nach ein, zwei Minuten zeigt die Werkstatt den neuen Stand – diese Seite dann einfach neu laden.</p>
+    </li>
+    <li>
+      <h3>Veröffentlichen</h3>
+      <p>Passt alles? Dann – am besten gemeinsam – auf der GitHub-Seite, die der Knopf öffnet, rechts auf <strong>„Run workflow“</strong> und im kleinen Fenster noch einmal auf den grünen Knopf <strong>„Run workflow“</strong> klicken. Ein paar Minuten später steht der Werkstatt-Stand auf <a href="https://puppentheater-wunderlich.de/">puppentheater-wunderlich.de</a>.</p>
+      <a class="knopf gross still" href="https://github.com/Valleeh/puppentheater-wunderlich/actions/workflows/veroeffentlichen.yml" target="_blank" rel="noopener noreferrer">Veröffentlichen ↗</a>
     </li>
   </ol>
   <details class="ausweichweg">
