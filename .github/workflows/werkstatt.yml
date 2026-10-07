@@ -1,0 +1,24 @@
+# Die Werkstatt: puppentheater-wunderlich.de/werkstatt/
+#
+# Der Branch werkstatt ist der gemeinsame Arbeitsstand. Jede Änderung dort –
+# etwa inhalt.yaml, gespeichert über die Editor-Seite – erscheint nach ein,
+# zwei Minuten unter /werkstatt/, der Editor unter /werkstatt/bearbeiten.html.
+# Öffentlich wird davon erst etwas mit dem Knopf „Veröffentlichen“
+# (veroeffentlichen.yml).
+
+name: Werkstatt
+
+on:
+  push:
+    branches: [werkstatt]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  werkstatt:
+    uses: ./.github/workflows/seite-veroeffentlichen.yml
+    with:
+      branch: werkstatt
+      werkstatt: true

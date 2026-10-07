@@ -1,0 +1,79 @@
+# Der Knopf „Veröffentlichen“: übernimmt den Stand der Werkstatt auf die
+# öffentliche Website.
+#
+# Starten: GitHub → Actions → „Veröffentlichen“ → „Run workflow“.
+#
+# Holt zuerst Neues von main in die Werkstatt (falls dort direkt etwas
+# geändert wurde), baut die Seite und schiebt den Stand dann nach main.
+# Werkstatt und main sind danach gleich; die Werkstatt läuft einfach weiter,
+# ihre Adresse bleibt dieselbe.
+
+name: Veröffentlichen
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: veroeffentlichen
+  cancel-in-progress: false
+
+jobs:
+  zusammenfuehren:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Werkstatt auschecken
+        uses: actions/checkout@v4
+        with:
+          ref: werkstatt
+          fetch-depth: 0
+
+      - name: Neues von main in die Werkstatt holen
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git merge --no-edit origin/main; then
+            echo "::error::main und werkstatt wurden an derselben Stelle geändert. Bitte einmal von Hand main in werkstatt mergen, dann erneut veröffentlichen."
+            exit 1
+          fi
+
+      - name: Python bereitstellen
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: PyYAML installieren
+        run: pip install pyyaml
+
+      - name: index.html aus vorlage.html und inhalt.yaml bauen
+        run: python3 werkzeuge/seite_bauen.py
+
+      - name: Erzeugte Dateien festhalten
+        run: |
+          if [ -n "$(git status --porcelain index.html assets/medien.json)" ]; then
+            git add index.html assets/medien.json
+            git commit -m "index.html aus inhalt.yaml erzeugt"
+          fi
+
+      - name: Werkstatt nach main übernehmen
+        run: |
+          git push origin HEAD:werkstatt
+          git push origin HEAD:main
+
+  # Pushes dieses Workflows lösen keine anderen Workflows aus – deshalb wird
+  # hier direkt abgelegt: die öffentliche Seite und die Werkstatt.
+  website:
+    needs: zusammenfuehren
+    uses: ./.github/workflows/seite-veroeffentlichen.yml
+    with:
+      branch: main
+      werkstatt: false
+
+  werkstatt:
+    needs: zusammenfuehren
+    uses: ./.github/workflows/seite-veroeffentlichen.yml
+    with:
+      branch: werkstatt
+      werkstatt: true

@@ -1,16 +1,14 @@
-# Veröffentlicht die Website auf GitHub Pages.
+# Die öffentliche Website: puppentheater-wunderlich.de
 #
-# Einmalig im Repository einstellen:
+# Einmalig im Repository eingestellt:
 #   Settings → Pages → "Build and deployment"
-#     Source: "Deploy from a branch"
-#     Branch: "gh-pages", Ordner "/ (root)"
+#     Source: "Deploy from a branch", Branch "gh-pages", Ordner "/ (root)"
+#     Custom domain: puppentheater-wunderlich.de
 #
-# Bei jedem Push auf main wird der Inhalt des Repositories in den Branch
-# gh-pages kopiert und erscheint unter
-#   https://valleeh.github.io/puppentheater-wunderlich/
-#
-# PR-Vorschauen (siehe pr-preview.yml) liegen im Unterordner pr-preview/
-# und werden hier bewusst nicht gelöscht.
+# Läuft bei jedem Push auf main. Im Alltag kommt main aber nur über den
+# Knopf „Veröffentlichen“ zu neuen Inhalten (veroeffentlichen.yml) – der
+# legt die Seite selbst ab, weil seine Pushes keine Workflows auslösen.
+# Die Ordner werkstatt/ und pr-preview/ in gh-pages bleiben dabei unberührt.
 
 name: GitHub Pages
 
@@ -22,23 +20,9 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: gh-pages
-  cancel-in-progress: false
-
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Repository auschecken
-        uses: actions/checkout@v4
-
-      - name: Website nach gh-pages veröffentlichen
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: .
-          branch: gh-pages
-          clean: true
-          clean-exclude: pr-preview/
-          force: false
-          commit-message: "Website von main veröffentlichen"
+  website:
+    uses: ./.github/workflows/seite-veroeffentlichen.yml
+    with:
+      branch: main
+      werkstatt: false

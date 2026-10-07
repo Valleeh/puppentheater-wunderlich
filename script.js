@@ -29,8 +29,13 @@
   /* E-Mail-Adresse: wird erst im Browser zusammengesetzt, damit sie
      nicht als Klartext im Quelltext steht (Schutz vor Spam-Bots).
      Im Text bleibt sie als "info (at) puppentheater-wunderlich.de" lesbar. */
-  var user = 'info';
-  var domain = ['puppentheater-wunderlich', 'de'].join('.');
+  var teil = function (auswahl, ersatz) {
+    var knoten = document.querySelector(auswahl);
+    return (knoten && knoten.textContent.trim()) || ersatz;
+  };
+  /* Die Adresse steht als „info (at) …“ im Kontakt-Abschnitt (aus inhalt.yaml) */
+  var user = teil('.mail-user', 'info');
+  var domain = teil('.mail-domain', ['puppentheater-wunderlich', 'de'].join('.'));
   var address = user + '@' + domain;
 
   var links = document.querySelectorAll('a.mail');
