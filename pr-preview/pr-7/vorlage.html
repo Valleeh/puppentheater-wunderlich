@@ -147,6 +147,7 @@
       <p>{{&.}}</p>
 {{/absaetze}}
 {{#mitwirkende?}}
+{{#mitwirkende_einklappen}}
       <details>
         <summary>{{beschriftungen.mitwirkende}}</summary>
         <ul class="credits">
@@ -155,6 +156,15 @@
 {{/mitwirkende}}
         </ul>
       </details>
+{{/mitwirkende_einklappen}}
+{{^mitwirkende_einklappen}}
+      <h4 class="credits-head">{{beschriftungen.mitwirkende}}</h4>
+      <ul class="credits">
+{{#mitwirkende}}
+        <li><strong>{{wer}}:</strong> {{&was}}</li>
+{{/mitwirkende}}
+      </ul>
+{{/mitwirkende_einklappen}}
 {{/mitwirkende?}}
 {{#hinweise}}
       <p class="small-note">{{&.}}</p>

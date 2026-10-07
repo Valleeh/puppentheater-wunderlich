@@ -124,6 +124,7 @@
           text('wer', 'Wer', 'Name oder Aufgabe, z. B. „Klavier“', true),
           text('was', 'Was', null, true)
         ], ['wer']),
+        schalter('mitwirkende_einklappen', 'Mitwirkende erst nach einem Klick zeigen'),
         textliste('hinweise', 'Kleine Hinweise', 'Hinweis', true),
         video(),
         anfrage()

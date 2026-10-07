@@ -139,6 +139,7 @@ termine:
     betreff: "Geschichte eines Nussknackers"
 
 # Die großen Bühnenprojekte. "plakat: true" zeigt das Bild als Plakat im Hochformat.
+# "mitwirkende_einklappen: true" zeigt die Mitwirkenden erst nach einem Klick.
 projekte:
   vorspann: "Für Schulen, Bühnen und Erwachsene"
   titel: |-
@@ -163,6 +164,7 @@ projekte:
           was: "Schauspiel, Puppenspiel, Musik am Klavier"
         - wer: "Thomas Pötzsch"
           was: "Schauspiel und Regie"
+      mitwirkende_einklappen: false
       hinweise:
         - "Für Lehrerinnen und Lehrer empfehlen wir zur Vorbereitung das Unterrichtsmaterial [„Die Nußknacker-Suite“ des Lugert Verlags ↗](https://www.lugert-verlag.de/2016/neuauflage-die-nussknacker-suite-verzaubern-sie-ihre-schueler-zu-weihnachten-mit-klassik.html)."
         - "Im November 2026 spielen wir das Stück öffentlich für Familien mit Kindern – [alle Termine ansehen ↗](#termine). Schulklassen sind dort ebenso willkommen; für einen eigenen Theater-Vormittag in Ihrer Schule kommen wir gern zu Ihnen."
@@ -201,6 +203,7 @@ projekte:
           was: "Dr. Jörg Rasche – Psychoanalytiker, Musiker und Autor mit dem Schwerpunkt auf der Beziehung zwischen Musik und Psyche."
         - wer: "Bühnenbild"
           was: "Mathias Bartoszewski, Maler und Bühnenbildner"
+      mitwirkende_einklappen: true
       hinweise: []
       video:
         datei: "waldszenen-proben"

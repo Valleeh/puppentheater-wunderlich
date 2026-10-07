@@ -338,6 +338,9 @@ header .button:hover { background: #ffe7a6; }
 .project-copy .eyebrow { margin-bottom: 14px; text-align: center; }
 .project details { margin: 6px 0 18px; }
 .credits { list-style: none; padding: 0; margin: 12px 0 0; font-size: 15px; }
+/* Mitwirkende ohne Aufklappen: dieselbe Überschrift wie das Aufklapp-Feld, nur ohne „+“ */
+.credits-head { color: var(--blue); font-weight: 600; font-size: 14px; margin: 6px 0 0; }
+.credits-head + .credits { margin: 8px 0 18px; }
 .credits li { margin-bottom: 8px; }
 .project-copy .text-link { display: inline-block; }
 .small-note a { border-bottom: 1px solid; }
