@@ -125,6 +125,7 @@
           text('was', 'Was', null, true)
         ], ['wer']),
         schalter('mitwirkende_einklappen', 'Mitwirkende erst nach einem Klick zeigen'),
+        lang('technik', 'Technik und Aufbau', 'Dauer, Bühnenfläche, Strom … – neue Zeile mit Enter; erscheint kleiner als der übrige Text'),
         textliste('hinweise', 'Kleine Hinweise', 'Hinweis', true),
         video(),
         anfrage()
