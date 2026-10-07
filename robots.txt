@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /werkstatt/
+Disallow: /pr-preview/

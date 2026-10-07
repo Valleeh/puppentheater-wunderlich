@@ -1,0 +1,217 @@
+{
+ "bilder": {
+  "apple-touch-icon": {
+   "breite": 180,
+   "hoehe": 180,
+   "quelle": "assets/apple-touch-icon.png?v=3dc21d4b",
+   "srcset": ""
+  },
+  "der-alte": {
+   "breite": 1254,
+   "hoehe": 1254,
+   "quelle": "assets/der-alte.jpg?v=7531cf80",
+   "srcset": "assets/der-alte-480.jpg?v=ccd7d17d 480w, assets/der-alte-800.jpg?v=48e4c852 800w, assets/der-alte.jpg?v=7531cf80 1254w"
+  },
+  "der-stern": {
+   "breite": 853,
+   "hoehe": 853,
+   "quelle": "assets/der-stern.jpg?v=51d5d108",
+   "srcset": "assets/der-stern-480.jpg?v=f2123378 480w, assets/der-stern.jpg?v=51d5d108 853w"
+  },
+  "dummling": {
+   "breite": 1200,
+   "hoehe": 1200,
+   "quelle": "assets/dummling.jpg?v=1d6c8329",
+   "srcset": "assets/dummling-480.jpg?v=2f55ca24 480w, assets/dummling-800.jpg?v=84dab122 800w, assets/dummling.jpg?v=1d6c8329 1200w"
+  },
+  "elisa-kasperl": {
+   "breite": 801,
+   "hoehe": 1200,
+   "quelle": "assets/elisa-kasperl.jpg?v=21768486",
+   "srcset": "assets/elisa-kasperl-480.jpg?v=d5f3d682 480w, assets/elisa-kasperl.jpg?v=21768486 801w"
+  },
+  "elisa-portrait": {
+   "breite": 1200,
+   "hoehe": 800,
+   "quelle": "assets/elisa-portrait.jpg?v=82a2f482",
+   "srcset": "assets/elisa-portrait-480.jpg?v=e3f4835a 480w, assets/elisa-portrait-800.jpg?v=50d3d7bd 800w, assets/elisa-portrait.jpg?v=82a2f482 1200w"
+  },
+  "favicon": {
+   "breite": 64,
+   "hoehe": 64,
+   "quelle": "assets/favicon.png?v=c985360d",
+   "srcset": ""
+  },
+  "gluecklich-im-park": {
+   "breite": 1205,
+   "hoehe": 1306,
+   "quelle": "assets/gluecklich-im-park.jpg?v=7c8ad32c",
+   "srcset": "assets/gluecklich-im-park-480.jpg?v=b3ee8cc6 480w, assets/gluecklich-im-park-800.jpg?v=d670ee87 800w, assets/gluecklich-im-park.jpg?v=7c8ad32c 1205w"
+  },
+  "gluecklich-im-park-schriftzug": {
+   "breite": 694,
+   "hoehe": 361,
+   "quelle": "assets/gluecklich-im-park-schriftzug.png?v=c8d4fecb",
+   "srcset": ""
+  },
+  "hexe-und-kasperl": {
+   "breite": 1400,
+   "hoehe": 1400,
+   "quelle": "assets/hexe-und-kasperl.jpg?v=463d1a99",
+   "srcset": "assets/hexe-und-kasperl-480.jpg?v=21c78b78 480w, assets/hexe-und-kasperl-800.jpg?v=09776f99 800w, assets/hexe-und-kasperl.jpg?v=463d1a99 1400w"
+  },
+  "icon-512": {
+   "breite": 512,
+   "hoehe": 512,
+   "quelle": "assets/icon-512.png?v=3de8ebf5",
+   "srcset": ""
+  },
+  "irma-und-fee": {
+   "breite": 1254,
+   "hoehe": 1254,
+   "quelle": "assets/irma-und-fee.jpg?v=d9006e10",
+   "srcset": "assets/irma-und-fee-480.jpg?v=30ebd8dc 480w, assets/irma-und-fee-800.jpg?v=67bab30c 800w, assets/irma-und-fee.jpg?v=d9006e10 1254w"
+  },
+  "kasperl": {
+   "breite": 1254,
+   "hoehe": 1254,
+   "quelle": "assets/kasperl.jpg?v=872dc330",
+   "srcset": "assets/kasperl-480.jpg?v=07714a68 480w, assets/kasperl-800.jpg?v=2f4b9b94 800w, assets/kasperl.jpg?v=872dc330 1254w"
+  },
+  "koffer-1": {
+   "breite": 1122,
+   "hoehe": 1402,
+   "quelle": "assets/koffer-1.jpg?v=7e794b2b",
+   "srcset": "assets/koffer-1-480.jpg?v=bb3b5573 480w, assets/koffer-1-800.jpg?v=84d26c0a 800w, assets/koffer-1.jpg?v=7e794b2b 1122w"
+  },
+  "logo-blume": {
+   "breite": 239,
+   "hoehe": 450,
+   "quelle": "assets/logo-blume.png?v=49ef7752",
+   "srcset": ""
+  },
+  "nussknacker-plakat": {
+   "breite": 800,
+   "hoehe": 1200,
+   "quelle": "assets/nussknacker-plakat.jpg?v=21958dd3",
+   "srcset": "assets/nussknacker-plakat-360.jpg?v=92719a92 360w, assets/nussknacker-plakat-480.jpg?v=bb41da38 480w, assets/nussknacker-plakat.jpg?v=21958dd3 800w"
+  },
+  "plakat-drei-federn": {
+   "breite": 425,
+   "hoehe": 540,
+   "quelle": "assets/plakat-drei-federn.jpg?v=1b534f0f",
+   "srcset": "assets/plakat-drei-federn-360.jpg?v=8150086d 360w, assets/plakat-drei-federn.jpg?v=1b534f0f 425w"
+  },
+  "plakat-kasperl": {
+   "breite": 450,
+   "hoehe": 545,
+   "quelle": "assets/plakat-kasperl.jpg?v=b46a44c6",
+   "srcset": "assets/plakat-kasperl-360.jpg?v=a72013a7 360w, assets/plakat-kasperl.jpg?v=b46a44c6 450w"
+  },
+  "plakat-prinzessin": {
+   "breite": 460,
+   "hoehe": 514,
+   "quelle": "assets/plakat-prinzessin.jpg?v=f9135f90",
+   "srcset": "assets/plakat-prinzessin-360.jpg?v=bdb988c2 360w, assets/plakat-prinzessin.jpg?v=f9135f90 460w"
+  },
+  "plakat-stern": {
+   "breite": 453,
+   "hoehe": 587,
+   "quelle": "assets/plakat-stern.jpg?v=7077d13a",
+   "srcset": "assets/plakat-stern-360.jpg?v=2478ddd7 360w, assets/plakat-stern.jpg?v=7077d13a 453w"
+  },
+  "prinz-und-prinzessin": {
+   "breite": 768,
+   "hoehe": 768,
+   "quelle": "assets/prinz-und-prinzessin.jpg?v=50a9894c",
+   "srcset": "assets/prinz-und-prinzessin-480.jpg?v=a718f922 480w, assets/prinz-und-prinzessin.jpg?v=50a9894c 768w"
+  },
+  "prinzessin-buehne": {
+   "breite": 1536,
+   "hoehe": 1024,
+   "quelle": "assets/prinzessin-buehne.jpg?v=27009f9a",
+   "srcset": "assets/prinzessin-buehne-480.jpg?v=a5d5d24a 480w, assets/prinzessin-buehne-800.jpg?v=e51f54b6 800w, assets/prinzessin-buehne.jpg?v=27009f9a 1536w"
+  },
+  "puppe-bunt": {
+   "breite": 900,
+   "hoehe": 1200,
+   "quelle": "assets/puppe-bunt.jpg?v=a58d4622",
+   "srcset": "assets/puppe-bunt-480.jpg?v=124d0c01 480w, assets/puppe-bunt.jpg?v=a58d4622 900w"
+  },
+  "putzfee": {
+   "breite": 1448,
+   "hoehe": 1086,
+   "quelle": "assets/putzfee.jpg?v=0db6fac0",
+   "srcset": "assets/putzfee-480.jpg?v=aa552d19 480w, assets/putzfee-800.jpg?v=d7a4015b 800w, assets/putzfee.jpg?v=0db6fac0 1448w"
+  },
+  "schloss": {
+   "breite": 1200,
+   "hoehe": 1336,
+   "quelle": "assets/schloss.jpg?v=571a66fc",
+   "srcset": "assets/schloss-480.jpg?v=ea7bb771 480w, assets/schloss-800.jpg?v=ead99b17 800w, assets/schloss.jpg?v=571a66fc 1200w"
+  },
+  "violetta": {
+   "breite": 900,
+   "hoehe": 1200,
+   "quelle": "assets/violetta.jpg?v=c9391804",
+   "srcset": "assets/violetta-480.jpg?v=76059f08 480w, assets/violetta-800.jpg?v=7f365e18 800w, assets/violetta.jpg?v=c9391804 900w"
+  },
+  "waldszenen-1": {
+   "breite": 1448,
+   "hoehe": 1086,
+   "quelle": "assets/waldszenen-1.jpg?v=f588c659",
+   "srcset": "assets/waldszenen-1-480.jpg?v=5f22af3d 480w, assets/waldszenen-1-800.jpg?v=4438f08a 800w, assets/waldszenen-1.jpg?v=f588c659 1448w"
+  },
+  "waldszenen-2": {
+   "breite": 1280,
+   "hoehe": 854,
+   "quelle": "assets/waldszenen-2.jpg?v=a72ec7cd",
+   "srcset": "assets/waldszenen-2-480.jpg?v=4631d611 480w, assets/waldszenen-2-800.jpg?v=df1c5bd9 800w, assets/waldszenen-2.jpg?v=a72ec7cd 1280w"
+  },
+  "waldszenen-3": {
+   "breite": 1280,
+   "hoehe": 854,
+   "quelle": "assets/waldszenen-3.jpg?v=55e31350",
+   "srcset": "assets/waldszenen-3-480.jpg?v=06fc6be5 480w, assets/waldszenen-3-800.jpg?v=54706816 800w, assets/waldszenen-3.jpg?v=55e31350 1280w"
+  },
+  "waldszenen-klavier": {
+   "breite": 1200,
+   "hoehe": 1600,
+   "quelle": "assets/waldszenen-klavier.jpg?v=602d7625",
+   "srcset": "assets/waldszenen-klavier-480.jpg?v=63b837a0 480w, assets/waldszenen-klavier-800.jpg?v=6b3fdc8f 800w, assets/waldszenen-klavier.jpg?v=602d7625 1200w"
+  },
+  "waldszenen-proben-poster": {
+   "breite": 360,
+   "hoehe": 640,
+   "quelle": "assets/waldszenen-proben-poster.jpg?v=5f387726",
+   "srcset": ""
+  },
+  "wolke": {
+   "breite": 1400,
+   "hoehe": 1050,
+   "quelle": "assets/wolke.jpg?v=af8aecff",
+   "srcset": ""
+  },
+  "zauberlehrling": {
+   "breite": 564,
+   "hoehe": 798,
+   "quelle": "assets/zauberlehrling.jpg?v=138e23b1",
+   "srcset": ""
+  }
+ },
+ "videos": {
+  "prinzessin-in-der-suppe": {
+   "breite": 720,
+   "download": "assets/prinzessin-in-der-suppe.mp4",
+   "hoehe": 1280,
+   "mp4": "assets/prinzessin-in-der-suppe.mp4?v=8153d479"
+  },
+  "waldszenen-proben": {
+   "breite": 360,
+   "download": "assets/waldszenen-proben.mp4",
+   "hoehe": 640,
+   "mp4": "assets/waldszenen-proben.mp4?v=21b76fe8",
+   "webm": "assets/waldszenen-proben.webm?v=0dcf38ec"
+  }
+ }
+}
